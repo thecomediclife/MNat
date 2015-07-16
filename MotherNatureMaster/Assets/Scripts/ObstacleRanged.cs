@@ -4,7 +4,7 @@ using System.Collections;
 public class ObstacleRanged : MonoBehaviour {
 
 	public bool useSightController;
-	public bool inSight;
+	bool inSight;
 
 	public bool includeGravity;
 	public Rigidbody projectile;

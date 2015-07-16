@@ -104,8 +104,7 @@ public class CharController3 : MonoBehaviour {
 			}
 		}
 	}
-
-
+	
 	void SimpleMove () 
 	{
 		for (int i = 0; i < endPosArray.Length; i++) {
@@ -139,5 +138,10 @@ public class CharController3 : MonoBehaviour {
 		paused = false;
 		transform.position = new Vector3 (Mathf.Round (transform.position.x), transform.position.y, Mathf.Round (transform.position.z));
 		endPos = new Vector3 (Mathf.Round (transform.position.x), Mathf.Round(transform.position.y), Mathf.Round (transform.position.z));
+	}
+
+	public void ReverseDirection () {
+//		endPos = new Vector3 (Mathf.Round (transform.position.x), Mathf.Round(transform.position.y), Mathf.Round (transform.position.z));
+//		transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
 	}
 }

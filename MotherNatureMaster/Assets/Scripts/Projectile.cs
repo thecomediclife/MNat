@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour {
 	void Start ()
 	{
 		StartCoroutine (WaitToDestruct (waitTime));
-
 	}
 
 	IEnumerator WaitToDestruct (float waitTime) {
@@ -17,7 +16,16 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider other) {
-		if (other.tag != "Obstacle")
-			Destroy (gameObject);
+
+		//	If projectile hits player
+		if (other.tag == "Player") {
+			other.GetComponent<CharController3> ().ReverseDirection ();
+		}
+
+		//	If projectile hits tree
+//		if (other.tag == "") {
+//			other.GetComponent<TreeHealth>().takeDamage();
+//		}
+
 	}
 }
