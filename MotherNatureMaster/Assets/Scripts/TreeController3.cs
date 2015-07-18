@@ -8,6 +8,7 @@ public class TreeController3 : MonoBehaviour {
 	private bool boyOnPlatform;
 
 	public bool buttonDown;
+	public bool touchDrag;
 	public bool activating = false;
 	public bool platformHeightReached = false;
 
@@ -28,17 +29,22 @@ public class TreeController3 : MonoBehaviour {
 		//	Check if boy is within Platform's trigger collider & buttonDown is true
 		if (boyOnPlatform && buttonDown)
 			boy.transform.parent = transform;
-		else
-			boy.transform.parent = null;
+//		else
+//			boy.transform.parent = null;
 
 		//	Activate platform only when buttondown is true 
 		if (buttonDown) {
+			//	Check if platform is at highest point (true) or at lowest point (false)
 			if (!platformHeightReached) {
+				//	If platform is at lowest point, grow
 				ActivatePlatform (true);
 			} else {
+				//	If platform is at highest point, rot
 				ActivatePlatform (false);
 			}
 		}
+
+
 	}
 
 
@@ -49,13 +55,11 @@ public class TreeController3 : MonoBehaviour {
 		//	Change startPos and endPos depending on if growing or rotting
 		switch (grow) 
 		{
-
 		//	Growing
 		case true:		
 			//	startPos = ;
 			//	endPos = ;
 			break;
-
 		//	Rotting
 		case false:				
 			//	startPos = ;
@@ -88,4 +92,35 @@ public class TreeController3 : MonoBehaviour {
 		boyOnPlatform = false;
 	}
 
+
+
+	void OnMouseDown ()
+	{
+
+
+		print (Input.mousePosition);
+
+//		int groundLayerMask = 1 << 9;
+//
+//		RaycastHit hit;
+//		if (Input.GetButtonDown ("Fire1")) {
+//			Vector3 point = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//			
+//			//	Shoot raycast, ignore all layers except layer 10 (Trigger)
+//			/*			if (Physics.Raycast (point, Camera.main.transform.forward, out hit, Mathf.Infinity, triggerLayerMask)) {
+//					hit.transform.GetComponent<TreeController2>().buttonDown = true;
+//			}*/
+//			
+//			if (Physics.Raycast (point, Camera.main.transform.forward, out hit, Mathf.Infinity, groundLayerMask)) {
+////				if (hit.transform.parent != null)
+////					hit.transform.parent.transform.GetComponent<TreeController2>().buttonDown = true;
+//			}
+//			
+//		}
+	}
+
+	void OnMouseUp ()
+	{
+
+	}
 }
