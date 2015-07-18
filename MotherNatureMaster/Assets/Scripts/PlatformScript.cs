@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlatformScript : MonoBehaviour {
 
-	public bool boyOnPlatform;
+	private bool boyOnPlatform;
 
 	void Update () 
 	{
@@ -12,7 +12,7 @@ public class PlatformScript : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) 
 	{
-		if (other.name == "Boy") 
+		if (other.tag == "Boy") 
 		{
 			boyOnPlatform = true;
 		}
@@ -20,8 +20,9 @@ public class PlatformScript : MonoBehaviour {
 	
 	void OnTriggerExit (Collider other)
 	{
-		if (other.name == "Boy") 
+		if (other.tag == "Boy") 
 		{
 			boyOnPlatform = false;
-		}	}
+		}	
+	}
 }
