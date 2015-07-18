@@ -10,34 +10,43 @@ public class CharController6 : MonoBehaviour {
 	private Transform previousNode;
 	private Transform nullNode = null;
 
-	public Transform[] nodeArray = new Transform[8];
+	public bool nextNodeExists;
+	public bool previousNodeExists;
 
-	// Use this for initialization
+	public Transform[] nodeArray = new Transform[8];
+	
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		Debug.DrawRay (transform.position, transform.forward, Color.green);
 
 		if (nextNode != nullNode) {
 			transform.position = Vector3.MoveTowards (transform.position, nextNode.position, speed * Time.deltaTime);
-			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextNode.position - transform.position, new Vector3(0,1,0)), rotateSpeed * Time.deltaTime);
-		} else 
+			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (nextNode.position - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
+		} else {
 			FindNextNode ();
+			RandomlySelectNode();
+		}
 
-		if (Vector3.Distance (transform.position, nextNode.position) < 0.05)
+		if (Vector3.Distance (transform.position, nextNode.position) < 0.05) {
 			FindNextNode ();
+			RandomlySelectNode ();
+		}
+
+
+		//	Gets from trigger
 	}
+
 
 	void FindNextNode() {
 		previousNode = currentNode;
 		currentNode = nextNode;
 		nextNode = nullNode;
 
-		bool nextNodeExists = false;
-		bool previousNodeExists = false;
+		nextNodeExists = false;
+		previousNodeExists = false;
 
 		for (int i = 0; i < nodeArray.Length; i++) {
 			if (nodeArray[i] != nullNode && nodeArray[i] != previousNode && nodeArray[i] != currentNode) {
@@ -47,7 +56,11 @@ public class CharController6 : MonoBehaviour {
 				previousNodeExists = true;
 			}
 		}
+	}
 
+
+
+	void RandomlySelectNode () {
 		if (nextNodeExists) {
 			while (nextNode == nullNode) {
 				int randomIndex = Random.Range (0, nodeArray.Length);
@@ -59,9 +72,11 @@ public class CharController6 : MonoBehaviour {
 		} else if (!nextNodeExists && !previousNodeExists) {
 			nextNode = nullNode;
 		}
-
-
 	}
+
+
+
+
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Node" && other.transform != currentNode) {
