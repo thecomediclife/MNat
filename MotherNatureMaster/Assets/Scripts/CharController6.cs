@@ -23,7 +23,9 @@ public class CharController6 : MonoBehaviour {
 	
 	private float timer;
 	
-	public Transform[] nodeArray = new Transform[8];
+	public Transform[] nodeArray = new Transform[6];
+
+	private int nodeLayerMask = 1 << 10;
 	
 	void Start () {
 		lookTarget = transform.forward;
@@ -31,7 +33,9 @@ public class CharController6 : MonoBehaviour {
 	
 	void Update () {
 		Debug.DrawRay (transform.position, transform.forward, Color.green);
-		
+
+		FillArrays ();
+
 		switch (currentState) {
 			
 		case State.Default:
@@ -108,13 +112,14 @@ public class CharController6 : MonoBehaviour {
 		
 
 		if (Input.GetKeyDown (KeyCode.P))
-			SnapTo ();
+			SnapTo (nextNode);
 
 		if (Input.GetKeyUp (KeyCode.P))
 			Continue (false, nullNode);
 	}
-	
-	void OnTriggerEnter(Collider other) {
+
+	//Legacy code. This part used to fill the node array by trigger
+/*	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Node" && other.transform != currentNode) {
 			for (int i = 0; i < nodeArray.Length; i++) {
 				if (nodeArray[i] == nullNode) {
@@ -130,6 +135,90 @@ public class CharController6 : MonoBehaviour {
 			for (int i = 0; i < nodeArray.Length; i++) {
 				if (other.transform == nodeArray[i]) {
 					nodeArray[i] = nullNode;
+				}
+			}
+		}
+	}*/
+
+	void FillArrays() {
+		//Calculate the initial position of the raycasts
+		Vector3 forwardVec = transform.position + new Vector3(0f,0.5f,1f);
+		forwardVec = new Vector3(Mathf.Round (forwardVec.x), forwardVec.y, Mathf.Round(forwardVec.z));
+		Vector3 backVec = transform.position + new Vector3 (0f, 0.5f, -1f);
+		backVec = new Vector3 (Mathf.Round (backVec.x), backVec.y, Mathf.Round (backVec.z));
+		Vector3 rightVec = transform.position + new Vector3 (1f, 0.5f, 0f);
+		rightVec = new Vector3 (Mathf.Round (rightVec.x), rightVec.y, Mathf.Round (rightVec.z));
+		Vector3 leftVec = transform.position + new Vector3 (-1f, 0.5f, 0f);
+		leftVec = new Vector3 (Mathf.Round (leftVec.x), leftVec.y, Mathf.Round (leftVec.z));
+		Vector3 downVec = new Vector3 (0f, -1f, 0f);
+		float rayDistance = 1f;
+
+		//Visually see raycasts in game if gizmos are on.
+		Debug.DrawRay (forwardVec, downVec * rayDistance, Color.red);
+		Debug.DrawRay (backVec, downVec * rayDistance, Color.red);
+		Debug.DrawRay (rightVec, downVec * rayDistance, Color.red);
+		Debug.DrawRay (leftVec, downVec * rayDistance, Color.red);
+
+		//Save Raycast information
+		RaycastHit hit1;
+		RaycastHit hit2;
+		RaycastHit hit3;
+		RaycastHit hit4;
+
+		//Fire raycasts and get information
+		Physics.Raycast (forwardVec, downVec, out hit1, rayDistance, nodeLayerMask);
+		Physics.Raycast (backVec, downVec, out hit2, rayDistance, nodeLayerMask);
+		Physics.Raycast (rightVec, downVec, out hit3, rayDistance, nodeLayerMask);
+		Physics.Raycast (leftVec, downVec, out hit4, rayDistance, nodeLayerMask);
+
+		//Remove nodes that are too far
+		for (int k = 0; k < nodeArray.Length; k++) {
+			if (nodeArray[k] != null) {
+				if (Vector3.Distance(transform.position, nodeArray[k].position) > 1f)
+					nodeArray[k] = nullNode;
+			}
+		}
+
+		//Check if new nodes are already in array.
+		bool hit1In = false;
+		bool hit2In = false;
+		bool hit3In = false;
+		bool hit4In = false;
+
+		for (int i = 0; i < nodeArray.Length; i++) {
+			if (nodeArray[i] != null) {
+				if (nodeArray[i] == hit1.transform)
+					hit1In = true;
+				if (nodeArray[i] == hit2.transform)
+					hit2In = true;
+				if (nodeArray[i] == hit3.transform)
+					hit3In = true;
+				if (nodeArray[i] == hit4.transform)
+					hit4In = true;
+			}
+		}
+
+		//Place new nodes in the Array
+		for (int j = 0; j < nodeArray.Length; j++) {
+			if (!hit1In) {
+				if (nodeArray[j] == null) {
+					nodeArray[j] = hit1.transform;
+					hit1In = true;
+				}
+			} else if (!hit2In) {
+				if (nodeArray[j] == null) {
+					nodeArray[j] = hit2.transform;
+					hit2In = true;
+				}
+			} else if (!hit3In) {
+				if (nodeArray[j] == null) {
+					nodeArray[j] = hit3.transform;
+				    hit3In = true;
+				}
+			} else if (!hit4In) {
+				if (nodeArray[j] == null) {
+					nodeArray[j] = hit4.transform;
+					hit4In = true;
 				}
 			}
 		}
@@ -252,18 +341,20 @@ public class CharController6 : MonoBehaviour {
 		}
 	}
 
-	public void SnapTo() {
+	public void SnapTo(Transform transformToSnapTo) {
 		currentState = State.SnapTo;
 		previousNode = nullNode;
 		currentNode = nullNode;
 
-		float distanceTemp = 100f;
+		nextNode = transformToSnapTo;
+
+/*		float distanceTemp = 100f;
 		for (int i = 0; i < nodeArray.Length; i++) {
 			if (nodeArray[i] != nullNode && Vector3.Distance(nodeArray[i].position, transform.position) < distanceTemp) {
 				distanceTemp = Vector3.Distance(nodeArray[i].position, transform.position);
 				nextNode = nodeArray[i];
 				currentNode = nodeArray[i];
 			}
-		}
+		}*/
 	}
 }
