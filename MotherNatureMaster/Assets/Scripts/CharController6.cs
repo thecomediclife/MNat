@@ -97,9 +97,11 @@ public class CharController6 : MonoBehaviour {
 			break;
 
 		case State.SnapTo:
-			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, 10f * Time.deltaTime);
-			if (Vector3.Distance(transform.position, nextNode.position) < 0.05)
-				currentState = State.Pause;
+//			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, 10f * Time.deltaTime);
+
+//			if (Vector3.Distance(transform.position, nextNode.position) < 0.05)
+//				currentState = State.Pause;
+			transform.position = nextNode.position;
 
 			break;
 		}
