@@ -7,7 +7,7 @@ public class PlatformScript : MonoBehaviour {
 
 	void Update () 
 	{
-		GetComponentInParent<TreeController3> ().boyOnPlatform = boyOnPlatform;
+		GetComponentInParent<TreeControllerTest1> ().boyOnPlatform = boyOnPlatform;
 	}
 
 	void OnTriggerEnter (Collider other) 
