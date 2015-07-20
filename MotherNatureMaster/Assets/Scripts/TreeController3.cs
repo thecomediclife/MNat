@@ -51,7 +51,11 @@ public class TreeController3 : MonoBehaviour {
 
 		percent += platformSpeed * Time.deltaTime;
 		platform.position = Vector3.Lerp (start, end, percent);
-		
+
+		if (boyOnPlatform) {
+			boy.GetComponent<CharController6>().SnapTo();
+		}
+
 		if (Vector3.Distance(platform.position, end) < 0.01f)
 		{
 			platform.position = end;
@@ -138,4 +142,12 @@ public class TreeController3 : MonoBehaviour {
 			//	first desired floor height relative to the ground level. 
 		}
 	}
+
+	//New Function
+	//Called after DetermineFloor is finished. (calls only once)
+	//1. Snapto()
+	//2. Check if node the player is snapping to is tree node (variable is named nextNode).
+	//3. If nextNode == tree node, then parent boy.
+	//4. If nextNode != tree node, then tell boy Continue().
+	//5. If boy is parented, then after elevator is done moving, tell it Continue().
 }
