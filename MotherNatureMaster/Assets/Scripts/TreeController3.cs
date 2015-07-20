@@ -3,9 +3,10 @@ using System.Collections;
 
 public class TreeController3 : MonoBehaviour {
 
-	private Transform boy;
-	private Transform platform;
-	private bool boyOnPlatform;
+	public Transform boy;
+	public Transform platform;
+	public bool boyOnPlatform;
+	private bool activating = false;
 
 	private bool dragging;
 	private float dragStart;
@@ -22,11 +23,7 @@ public class TreeController3 : MonoBehaviour {
 	private Vector3 groundPos;
 	private Vector3 startPos;
 	private Vector3 endPos;
-
-	void Awake ()
-	{
-		platform = transform.FindChild ("Leaves");
-	}
+	
 
 	void Start () 
 	{
@@ -35,11 +32,11 @@ public class TreeController3 : MonoBehaviour {
 
 	void Update () 
 	{
-//		//	Check if boy is within Platform's trigger collider & dragging is true
-//		if (boyOnPlatform && dragging)
-//			boy.transform.parent = transform;
-//		else if (boy != null)
-//			boy.transform.parent = null;
+		//	Check if boy is within Platform's trigger collider & if lift is activated
+		if (boyOnPlatform && activating) {
+			boy.parent = platform.transform;
+		} else
+			boy.parent = null;
 
 		CalculateTouchDrag ();
 
@@ -50,13 +47,17 @@ public class TreeController3 : MonoBehaviour {
 	//	This function lerps from start position to end position.
 	void ActivatePlatform (Vector3 start, Vector3 end) 
 	{
+		activating = true;
+
 		percent += platformSpeed * Time.deltaTime;
 		platform.position = Vector3.Lerp (start, end, percent);
 		
 		if (Vector3.Distance(platform.position, end) < 0.01f)
 		{
-			percent = 0;
+			platform.position = end;
 			startPos = end;
+			percent = 0;
+			activating = false;
 		}
 	}
 
@@ -136,15 +137,5 @@ public class TreeController3 : MonoBehaviour {
 			//	array [0] is always 0, or basically ground level for the platform. Array[1] is the 
 			//	first desired floor height relative to the ground level. 
 		}
-	}
-
-	void OnTriggerEnter (Collider other) 
-	{
-		boyOnPlatform = true;
-	}
-	
-	void OnTriggerExit (Collider other)
-	{
-		boyOnPlatform = false;
 	}
 }

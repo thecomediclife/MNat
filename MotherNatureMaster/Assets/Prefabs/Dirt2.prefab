@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6512042}
   - 23: {fileID: 2308880}
   - 114: {fileID: 11470228}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Dirt2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,9 @@ GameObject:
   - 33: {fileID: 3352154}
   - 65: {fileID: 6529962}
   - 23: {fileID: 2306606}
-  m_Layer: 0
+  - 65: {fileID: 6522668}
+  - 114: {fileID: 11403712}
+  m_Layer: 9
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +138,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6522668
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &6529962
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -148,6 +162,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11403712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426e6c57d33b64f7cadfb059870c78b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boyOnPlatform: 0
 --- !u!114 &11470228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,13 +185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb03455dae7f4c378c2cb183561a68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragLimit: 2
+  boy: {fileID: 0}
+  platform: {fileID: 440372}
+  boyOnPlatform: 0
+  dragLimit: 3
   platformSpeed: 1
   floorNum: 0
   floors:
   - 0
   - 3
-  - 8
+  - 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
