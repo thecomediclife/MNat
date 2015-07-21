@@ -19,26 +19,7 @@ public class SmartNodeEditor : Editor {
 	SerializedProperty playTimesProp;
 	SerializedProperty playNextActProp;
 	SerializedProperty nextActioninSeqProp;
-
-	/*public bool enabled1 = false;
-	public bool enabled2 = false;
-	public bool enabled3 = false;
-	public bool enabled4 = false;
-
-	public Transform snapToTarget;
-	public bool lookAtTarget = false;
-	public Transform lookDirection;
-
-	public bool chooseDirection = false;
-	public Transform chosenDirection;
-
-	public float delay = 0.0f;
-	public CharController6.State nextState = CharController6.State.Default;
-
-	public bool deactivateAfterPlay = false;
-	public int playTimes = 1;
-	public bool playNextAction = false;
-	public GameObject nextActionInSequence;*/
+	SerializedProperty triggerEnableProp;
 
 	private SmartNodeScript _evCtrl = null;
 
@@ -58,10 +39,14 @@ public class SmartNodeEditor : Editor {
 		playTimesProp = smartNode.FindProperty ("playTimes");
 		playNextActProp = smartNode.FindProperty ("playNextAction");
 		nextActioninSeqProp = smartNode.FindProperty ("nextActionInSequence");
+		triggerEnableProp = smartNode.FindProperty ("triggerEnabled");
 	}
 
 	public override void OnInspectorGUI() {
 		smartNode.Update ();
+
+		GUILayout.Space (5);
+		triggerEnableProp.boolValue = EditorGUILayout.ToggleLeft (" Enable SmartNode", triggerEnableProp.boolValue);
 
 		GUILayout.Space (5);
 		GUILayout.BeginHorizontal ();
