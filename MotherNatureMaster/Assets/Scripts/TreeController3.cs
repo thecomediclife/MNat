@@ -3,10 +3,26 @@ using System.Collections;
 
 public class TreeController3 : MonoBehaviour {
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///	Process Flow: 
+	/// 1. CalculateTouchDrag () function computes the distance from the player puts the finger down (dragging = true) 
+	/// to when the player lifts the finger up (dragging = false). 
+	/// 2. Lifting the finger is called only once and immediately calls the functions DetermineFloor() and ActivatePlatform().
+	/// During this step, this script checks the boy's script to see if he is on or going towards the veggie node. If 
+	/// this is true and platform is activating, then call function SnapTo(). SnapTo() is only called once. 
+	/// 3a. DetermineFloor() calculates the drag distance and determines what floor (end position) the platform should move to. 
+	/// 3b. ActivatePlatform() begins moving the platfrom from start position to end position, determined by function 
+	/// DetermineFloor(). When platform reaches end position (activatePlatform = false), ActivatePlatform() is immediately 
+	/// turned off. This is where we can tell Boy to Continue() moving assuming it was parented to the platform. 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public Transform boy;
 	public Transform platform;
-	public bool boyOnPlatform;
-	private bool activating = false;
+	public Transform sparkles;
+	Transform sparklesInst;
+	
+	private bool activatePlatform = false;
+	private bool reachedEndPos = false;
 
 	private bool dragging;
 	private float dragStart;
@@ -16,28 +32,27 @@ public class TreeController3 : MonoBehaviour {
 
 	private float percent = 0;
 	public float platformSpeed = 2f;
-
-	public int floorNum = 0;
+	
 	public float[] floors; 
+	private int floorNum = 0;
 
 	private Vector3 groundPos;
 	private Vector3 startPos;
 	private Vector3 endPos;
-	
 
-	void Start () 
+	private Transform veggieNode;
+
+
+
+	void Awake ()
 	{
+		veggieNode = transform.Find ("Leaves").transform.Find ("Node");
+		boy = GameObject.Find ("Boy").transform;
 		groundPos = platform.transform.position;
 	}
 
 	void Update () 
 	{
-		//	Check if boy is within Platform's trigger collider & if lift is activated
-		if (boyOnPlatform && activating) {
-			boy.parent = platform.transform;
-		} else
-			boy.parent = null;
-
 		CalculateTouchDrag ();
 
 		ActivatePlatform (startPos, endPos);
@@ -47,21 +62,22 @@ public class TreeController3 : MonoBehaviour {
 	//	This function lerps from start position to end position.
 	void ActivatePlatform (Vector3 start, Vector3 end) 
 	{
-		activating = true;
+		if (activatePlatform) {
 
-		percent += platformSpeed * Time.deltaTime;
-		platform.position = Vector3.Lerp (start, end, percent);
+			percent += platformSpeed * Time.deltaTime;
+			platform.position = Vector3.Lerp (start, end, percent);
 
-		if (boyOnPlatform) {
-			boy.GetComponent<CharController6>().SnapTo();
-		}
-
-		if (Vector3.Distance(platform.position, end) < 0.01f)
-		{
-			platform.position = end;
-			startPos = end;
-			percent = 0;
-			activating = false;
+			if (Vector3.Distance (platform.position, end) < 0.05f) {
+				platform.position = end;
+				startPos = end;
+				percent = 0;
+				activatePlatform = false;
+			
+				if (boy.parent != null) 
+				{
+					boy.GetComponent<CharController6> ().Continue (false, null);
+				}
+			}
 		}
 	}
 
@@ -71,6 +87,8 @@ public class TreeController3 : MonoBehaviour {
 	//	DetermineFloor() function to see how high the tree should grow depending on the drag distance. 
 	void CalculateTouchDrag ()
 	{
+		
+
 		if (Input.GetButtonDown ("Fire1")) 
 		{
 			int groundLayerMask = 1 << 9;
@@ -84,14 +102,26 @@ public class TreeController3 : MonoBehaviour {
 				if (Physics.Raycast(ray, out hit))
 				{	
 					dragStart = hit.point.y;
+
+					sparklesInst = Instantiate (sparkles, hit.point, Quaternion.identity) as Transform;
 				}
 
 				dragging = true;
 			}
 		}
 
+		//	Dragging is true once player puts down finger
 		if (dragging) 
 		{
+			//	Raycast for sparkles. This raycast needs to continuously shoot to see where finger moves.
+			Ray raySparkles = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hitSparkles;
+			if (Physics.Raycast(raySparkles, out hitSparkles))
+			{	
+				sparklesInst.position = hitSparkles.point;
+			}
+
+			//	Once player lifts finger, dragging ends. Shoot a raycast to see where player lifted finger.
 			if (Input.GetButtonUp ("Fire1")) {
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
@@ -100,9 +130,11 @@ public class TreeController3 : MonoBehaviour {
 				}
 
 				dragDist = dragEnd - dragStart;
-				dragging = false;
 
 				DetermineFloor();
+				sparklesInst.GetComponent<SparklesController>().disappear = true;
+
+				dragging = false;
 			}
 		}
 	}
@@ -135,6 +167,9 @@ public class TreeController3 : MonoBehaviour {
 
 			floorNum = Mathf.Clamp (floorNum, 0, floors.Length - 1);
 			endPos = groundPos + new Vector3 (0, floors [floorNum], 0);
+			activatePlatform = true;
+
+			SnapTo (); 
 
 			//	Notes:
 			//	Because arrays start from index 0, floorNum = 0 refers to array [0]. In the inspector
@@ -143,11 +178,23 @@ public class TreeController3 : MonoBehaviour {
 		}
 	}
 
-	//New Function
-	//Called after DetermineFloor is finished. (calls only once)
-	//1. Snapto()
-	//2. Check if node the player is snapping to is tree node (variable is named nextNode).
-	//3. If nextNode == tree node, then parent boy.
-	//4. If nextNode != tree node, then tell boy Continue().
-	//5. If boy is parented, then after elevator is done moving, tell it Continue().
+	//	Called only during the frame that player lifts finger. This function checks if the boy at the moment is moving
+	//	towards the veggie node or is already on the veggie node when the platform is activating. If platform is 
+	//	activating, then snap the boy to the veggie node. 
+	void SnapTo ()
+	{
+//		Transform nextNode = boy.GetComponent<CharController6> ().nextNode;
+//		Transform currentNode = boy.GetComponent<CharController6> ().currentNode;
+//		
+//		if (activatePlatform && (nextNode == veggieNode || currentNode == veggieNode)) {
+//			boy.GetComponent<CharController6> ().SnapTo(veggieNode);
+//			boy.parent = platform.transform;
+//		} else {
+//			boy.parent = null;
+//		}
+	}
+
+
+
+
 }

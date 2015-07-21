@@ -41,6 +41,7 @@ public class SmartNodeScript : MonoBehaviour {
 			} else if (enabled4) {
 				other.GetComponent<CharController6>().ChooseDirection(snapToTarget, chosenDirection);
 			}
+			Debug.Log ("play action");
 		}
 	}
 

@@ -81,22 +81,26 @@ public class CharController6 : MonoBehaviour {
 		case State.ChosenDir:
 			if (nextNode != nullNode) {
 				MoveToNext();
+				Debug.Log ("case 1");
 			} else {
 				FindNextNode ();
 				NextPathChosen();
+				Debug.Log ("case2");
 			}
 
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
 				FindNextNode ();
 				NextPathChosen ();
 				chosenSnapTo = true;
+				Debug.Log ("case3");
 			}
 
 			if (nextNode != nullNode && Vector3.Distance(transform.position, chosenNode.position) < 0.05 && chosenSnapTo) {
-				FindNextNode();
-				NextPathRandom();
+//				FindNextNode();
+//				NextPathRandom();
 				currentState = State.Default;
 				chosenSnapTo = false;
+				Debug.Log ("test");
 			}
 			break;
 
@@ -198,6 +202,83 @@ public class CharController6 : MonoBehaviour {
 			}
 		}
 
+		if (hit2.transform == hit1.transform)
+			hit2In = true;
+		if (hit3.transform == hit1.transform || hit3.transform == hit2.transform)
+			hit3In = true;
+		if (hit4.transform == hit1.transform || hit4.transform == hit2.transform || hit4.transform == hit1.transform)
+			hit4In = true;
+
+		if (hit1.transform == null)
+			hit1In = true;
+		if (hit2.transform == null)
+			hit2In = true;
+		if (hit3.transform == null)
+			hit3In = true;
+		if (hit4.transform == null)
+			hit4In = true;
+
+		for (int l = 0; l < nodeArray.Length; l++) {
+			if (nodeArray[l] != null) {
+				if (!hit1In) {
+					if (hit1.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit1.transform;
+						hit1In = true;
+						if (currentNode == nodeArray[l])
+							currentNode = hit1.transform;
+						if (previousNode == nodeArray[l])
+							previousNode = hit1.transform;
+						if (nextNode == nodeArray[l])
+							nextNode = hit1.transform;
+						if (chosenNode == nodeArray[l])
+							chosenNode = hit1.transform;
+					}
+				}
+				if (!hit2In) {
+					if (hit2.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit2.transform;
+						hit2In = true;
+						if (currentNode == nodeArray[l])
+							currentNode = hit2.transform;
+						if (previousNode == nodeArray[l])
+							previousNode = hit2.transform;
+						if (nextNode == nodeArray[l])
+							nextNode = hit2.transform;
+						if (chosenNode == nodeArray[l])
+							chosenNode = hit2.transform;
+					}
+				}
+				if (!hit3In) {
+					if (hit3.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit3.transform;
+						hit3In = true;
+						if (currentNode == nodeArray[l])
+							currentNode = hit3.transform;
+						if (previousNode == nodeArray[l])
+							previousNode = hit3.transform;
+						if (nextNode == nodeArray[l])
+							nextNode = hit3.transform;
+						if (chosenNode == nodeArray[l])
+							chosenNode = hit3.transform;
+					}
+				}
+				if (!hit4In) {
+					if (hit4.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit4.transform;
+						hit4In = true;
+						if (currentNode == nodeArray[l])
+							currentNode = hit4.transform;
+						if (previousNode == nodeArray[l])
+							previousNode = hit4.transform;
+						if (nextNode == nodeArray[l])
+							nextNode = hit4.transform;
+						if (chosenNode == nodeArray[l])
+							chosenNode = hit4.transform;
+					}
+				}
+			}
+		}
+
 		//Place new nodes in the Array
 		for (int j = 0; j < nodeArray.Length; j++) {
 			if (!hit1In) {
@@ -275,8 +356,8 @@ public class CharController6 : MonoBehaviour {
 	
 	public void Pause(Transform snapToTarget, bool lookAtObject, Transform lookAtTarget) {
 		currentState = State.Pause;
-		previousNode = currentNode;
-		currentNode = nextNode;
+//		previousNode = currentNode;
+//		currentNode = nextNode;
 		nextNode = snapToTarget;
 		
 		if (lookAtObject)
@@ -297,8 +378,8 @@ public class CharController6 : MonoBehaviour {
 
 	public void PauseTimed(Transform snapToTarget, bool lookAtObject, Transform lookAtTarget, float delaySeconds, bool chooseDir, Transform chosenDirection) {
 		currentState = State.PauseTimed;
-		previousNode = currentNode;
-		currentNode = nextNode;
+//		previousNode = currentNode;
+//		currentNode = nextNode;
 		nextNode = snapToTarget;
 
 		if (lookAtObject)
@@ -327,7 +408,7 @@ public class CharController6 : MonoBehaviour {
 		bool chosenNodeExists = false;
 
 		for (int i = 0; i < nodeArray.Length; i++) {
-			if (nodeArray[i] = chosenNode) {
+			if (nodeArray[i] == chosenNode) {
 				nextNode = chosenNode;
 				lookTarget = chosenNode.position;
 				chosenNodeExists = true;
