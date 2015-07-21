@@ -18,7 +18,9 @@ public class TreeController3 : MonoBehaviour {
 
 	public Transform boy;
 	public Transform platform;
-	public bool boyOnPlatform;
+	public Transform sparkles;
+	Transform sparklesInst;
+	
 	private bool activatePlatform = false;
 	private bool reachedEndPos = false;
 
@@ -39,6 +41,8 @@ public class TreeController3 : MonoBehaviour {
 	private Vector3 endPos;
 
 	private Transform veggieNode;
+
+
 
 	void Awake ()
 	{
@@ -83,6 +87,8 @@ public class TreeController3 : MonoBehaviour {
 	//	DetermineFloor() function to see how high the tree should grow depending on the drag distance. 
 	void CalculateTouchDrag ()
 	{
+		
+
 		if (Input.GetButtonDown ("Fire1")) 
 		{
 			int groundLayerMask = 1 << 9;
@@ -96,14 +102,26 @@ public class TreeController3 : MonoBehaviour {
 				if (Physics.Raycast(ray, out hit))
 				{	
 					dragStart = hit.point.y;
+
+					sparklesInst = Instantiate (sparkles, hit.point, Quaternion.identity) as Transform;
 				}
 
 				dragging = true;
 			}
 		}
 
+		//	Dragging is true once player puts down finger
 		if (dragging) 
 		{
+			//	Raycast for sparkles. This raycast needs to continuously shoot to see where finger moves.
+			Ray raySparkles = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hitSparkles;
+			if (Physics.Raycast(raySparkles, out hitSparkles))
+			{	
+				sparklesInst.position = hitSparkles.point;
+			}
+
+			//	Once player lifts finger, dragging ends. Shoot a raycast to see where player lifted finger.
 			if (Input.GetButtonUp ("Fire1")) {
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
@@ -112,9 +130,11 @@ public class TreeController3 : MonoBehaviour {
 				}
 
 				dragDist = dragEnd - dragStart;
-				dragging = false;
 
 				DetermineFloor();
+				sparklesInst.GetComponent<SparklesController>().disappear = true;
+
+				dragging = false;
 			}
 		}
 	}
@@ -163,15 +183,18 @@ public class TreeController3 : MonoBehaviour {
 	//	activating, then snap the boy to the veggie node. 
 	void SnapTo ()
 	{
-		Transform nextNode = boy.GetComponent<CharController6> ().nextNode;
-		Transform currentNode = boy.GetComponent<CharController6> ().currentNode;
-		
-		if (activatePlatform && (nextNode == veggieNode || currentNode == veggieNode)) {
-			boy.GetComponent<CharController6> ().SnapTo(veggieNode);
-			boy.parent = platform.transform;
-		} else {
-			boy.parent = null;
-		}
+//		Transform nextNode = boy.GetComponent<CharController6> ().nextNode;
+//		Transform currentNode = boy.GetComponent<CharController6> ().currentNode;
+//		
+//		if (activatePlatform && (nextNode == veggieNode || currentNode == veggieNode)) {
+//			boy.GetComponent<CharController6> ().SnapTo(veggieNode);
+//			boy.parent = platform.transform;
+//		} else {
+//			boy.parent = null;
+//		}
 	}
+
+
+
 
 }
