@@ -543,14 +543,12 @@ MonoBehaviour:
   rotateSpeed: 10
   currentState: 0
   nextState: 0
+  previousNode: {fileID: 1525658485}
   currentNode: {fileID: 1525658485}
   nextNode: {fileID: 2145067832}
-  previousNode: {fileID: 0}
   nextNodeExists: 0
   previousNodeExists: 0
   nodeArray:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -898,7 +896,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: triggerEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
@@ -978,7 +976,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420024, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 420024, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: m_LocalRotation.z
@@ -986,7 +984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420024, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 420024, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: m_RootOrder
