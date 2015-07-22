@@ -8,10 +8,10 @@ public class CharController6 : MonoBehaviour {
 	public enum State {Default, Pause, Continue, PauseTimed, ChosenDir, SnapTo};
 	public State currentState = State.Default;
 	public State nextState = State.Default;
-	
+
+	public Transform previousNode;
 	public Transform currentNode;
 	public Transform nextNode;
-	public Transform previousNode;
 	private Transform nullNode = null;
 	private Vector3 lookTarget;
 	private Transform chosenNode;
@@ -49,6 +49,7 @@ public class CharController6 : MonoBehaviour {
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05) {
 				FindNextNode ();
 				NextPathRandom ();
+				//Debug.Log ("blah");
 			}
 			break;
 			
@@ -81,26 +82,26 @@ public class CharController6 : MonoBehaviour {
 		case State.ChosenDir:
 			if (nextNode != nullNode) {
 				MoveToNext();
-				Debug.Log ("case 1");
+				//Debug.Log ("case 1");
 			} else {
 				FindNextNode ();
 				NextPathChosen();
-				Debug.Log ("case2");
+				//Debug.Log ("case2");
 			}
 
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
 				FindNextNode ();
 				NextPathChosen ();
 				chosenSnapTo = true;
-				Debug.Log ("case3");
+				//Debug.Log ("case3");
 			}
 
 			if (nextNode != nullNode && Vector3.Distance(transform.position, chosenNode.position) < 0.05 && chosenSnapTo) {
-//				FindNextNode();
-//				NextPathRandom();
+				FindNextNode();
+				NextPathRandom();
 				currentState = State.Default;
 				chosenSnapTo = false;
-				Debug.Log ("test");
+				//Debug.Log ("test");
 			}
 			break;
 
@@ -341,11 +342,15 @@ public class CharController6 : MonoBehaviour {
 		if (nextNodeExists) {
 			while (nextNode == nullNode) {
 				int randomIndex = Random.Range (0, nodeArray.Length);
-				if (nodeArray [randomIndex] != previousNode && nodeArray [randomIndex] != currentNode)
+				if (nodeArray [randomIndex] != nullNode && nodeArray [randomIndex].position != previousNode.position && nodeArray [randomIndex].position != currentNode.position)
 					nextNode = nodeArray [randomIndex];
 			}
+			//Debug.Log ("x");
+			Debug.Log (previousNode.rotation + " and " + previousNode.name);
+			Debug.Log(nextNode.rotation + " but " + nextNode.name);
 		} else if (!nextNodeExists && previousNodeExists) {
 			nextNode = previousNode;
+			//Debug.Log("y");
 		} else if (!nextNodeExists && !previousNodeExists) {
 			nextNode = nullNode;
 		}
