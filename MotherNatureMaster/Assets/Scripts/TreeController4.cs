@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TreeController3 : MonoBehaviour {
+public class TreeController4 : MonoBehaviour {
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///	Process Flow: 
@@ -25,13 +25,13 @@ public class TreeController3 : MonoBehaviour {
 	private bool dragging;
 	private float dragStart;
 	private float dragEnd;
-	private float dragDist;
 	public float dragLimit = 2;
 
 	private float percent = 0;
 	public float platformSpeed = 2f;
 
 	private int floorNum = 0;
+	public float[] floors;
 
 	private Vector3 groundPos;
 	private Vector3 startPos;
@@ -40,9 +40,7 @@ public class TreeController3 : MonoBehaviour {
 	private Transform veggieNode;
 
 	public bool selected = false;
-
-
-
+	
 	void Awake ()
 	{
 		platform = transform.Find ("Leaves");
@@ -55,8 +53,6 @@ public class TreeController3 : MonoBehaviour {
 
 	void Update () 
 	{
-		CalculateTouchDrag ();
-
 		ActivatePlatform (startPos, endPos);
 	}
 
@@ -89,59 +85,13 @@ public class TreeController3 : MonoBehaviour {
 	//	This function calculates the Y distance from when the player touched the screen to when the player
 	//	lifted his finger from the screen. Once player lifts finger and the distance is calculated, go to 
 	//	DetermineFloor() function to see how high the tree should grow depending on the drag distance. 
-	void CalculateTouchDrag ()
-	{
-		if (Input.GetButtonDown ("Fire1")) 
-		{
-			int groundLayerMask = 1 << 9;
-			RaycastHit hitDirt;
-			Vector3 point = Camera.main.ScreenToWorldPoint (Input.mousePosition + new Vector3(0,0,1));
-
-			if (Physics.Raycast (point, Camera.main.transform.forward, out hitDirt, Mathf.Infinity, groundLayerMask)) 
-			{
-				print (hitDirt.collider.gameObject.name);
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;
-				if (Physics.Raycast(ray, out hit))
-				{	
-					dragStart = hit.point.y;
-				}
-
-				dragging = true;
-			}
-		}
-
-		//	Dragging is true once player puts down finger
-		if (dragging) 
-		{
-			//	Once player lifts finger, dragging ends. Shoot a raycast to see where player lifted finger.
-			if (Input.GetButtonUp ("Fire1")) {
-				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				RaycastHit hit;
-				if (Physics.Raycast (ray, out hit)) {
-					dragEnd = hit.point.y;
-				}
-
-				dragDist = dragEnd - dragStart;
-
-				DetermineFloor();
-
-				dragging = false;
-			}
-		}
-	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//	This function is called at the end of CalculateTouchDrag(). Depending on how far the player dragged 
 	//	his finger, DetermineFloor() will calculate how high the tree grows or rots--calculates end position 
 	//	for ActivatePlatform(). 
-	void DetermineFloor () 
+	public void DetermineFloor (float dragDist) 
 	{
-		float[] floors = new float[3];
-		floors [0] = 0;
-		floors [1] = 3;
-		floors [2] = 6;
-
 		if (floors != null) {
 				
 			//	Big flick up

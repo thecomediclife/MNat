@@ -420,8 +420,11 @@ public class CharController6 : MonoBehaviour {
 
 	public void SnapTo(Transform transformToSnapTo) {
 		currentState = State.SnapTo;
-		previousNode = nullNode;
-		currentNode = nullNode;
+		previousNode = transformToSnapTo;
+		currentNode = transformToSnapTo;
+
+//		previousNode = nullNode;
+//		currentNode = nullNode;
 
 		nextNode = transformToSnapTo;
 
