@@ -20,6 +20,10 @@ public class SmartNodeEditor : Editor {
 	SerializedProperty playNextActProp;
 	SerializedProperty nextActioninSeqProp;
 	SerializedProperty triggerEnableProp;
+	SerializedProperty enabled1Prop;
+	SerializedProperty enabled2Prop;
+	SerializedProperty enabled3Prop;
+	SerializedProperty enabled4Prop;
 
 	private SmartNodeScript _evCtrl = null;
 
@@ -40,6 +44,10 @@ public class SmartNodeEditor : Editor {
 		playNextActProp = smartNode.FindProperty ("playNextAction");
 		nextActioninSeqProp = smartNode.FindProperty ("nextActionInSequence");
 		triggerEnableProp = smartNode.FindProperty ("triggerEnabled");
+		enabled1Prop = smartNode.FindProperty ("enabled1");
+		enabled2Prop = smartNode.FindProperty ("enabled2");
+		enabled3Prop = smartNode.FindProperty ("enabled3");
+		enabled4Prop = smartNode.FindProperty ("enabled4");
 	}
 
 	public override void OnInspectorGUI() {
@@ -62,10 +70,10 @@ public class SmartNodeEditor : Editor {
 //			GUILayout.BeginHorizontal ();
 //			_evCtrl.enabled1 = EditorGUILayout.ToggleLeft (" Enable", _evCtrl.enabled1);
 //			GUILayout.EndHorizontal ();
-			_evCtrl.enabled1 = true;
-			_evCtrl.enabled2 = false;
-			_evCtrl.enabled3 = false;
-			_evCtrl.enabled4 = false;
+			enabled1Prop.boolValue = true;
+			enabled2Prop.boolValue = false;
+			enabled3Prop.boolValue = false;
+			enabled4Prop.boolValue = false;
 
 			GUILayout.Space (5);
 			GUILayout.Label ("Snap to Transform", GUILayout.Width (140));
@@ -86,10 +94,10 @@ public class SmartNodeEditor : Editor {
 //			GUILayout.BeginHorizontal ();
 //			_evCtrl.enabled2 = EditorGUILayout.ToggleLeft (" Enable", _evCtrl.enabled2);
 //			GUILayout.EndHorizontal ();
-			_evCtrl.enabled1 = false;
-			_evCtrl.enabled2 = true;
-			_evCtrl.enabled3 = false;
-			_evCtrl.enabled4 = false;
+			enabled1Prop.boolValue = false;
+			enabled2Prop.boolValue = true;
+			enabled3Prop.boolValue = false;
+			enabled4Prop.boolValue = false;
 
 			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
@@ -106,10 +114,10 @@ public class SmartNodeEditor : Editor {
 //			GUILayout.BeginHorizontal ();
 //			_evCtrl.enabled3 = EditorGUILayout.ToggleLeft (" Enable", _evCtrl.enabled3);
 //			GUILayout.EndHorizontal ();
-			_evCtrl.enabled1 = false;
-			_evCtrl.enabled2 = false;
-			_evCtrl.enabled3 = true;
-			_evCtrl.enabled4 = false;
+			enabled1Prop.boolValue = false;
+			enabled2Prop.boolValue = false;
+			enabled3Prop.boolValue = true;
+			enabled4Prop.boolValue = false;
 
 			GUILayout.Space (5);
 			GUILayout.Label ("Snap to Transform", GUILayout.Width (140));
@@ -147,10 +155,10 @@ public class SmartNodeEditor : Editor {
 //			_evCtrl.enabled4 = EditorGUILayout.Toggle (" Enable", _evCtrl.enabled4);
 //			GUILayout.EndHorizontal ();
 
-			_evCtrl.enabled1 = false;
-			_evCtrl.enabled2 = false;
-			_evCtrl.enabled3 = false;
-			_evCtrl.enabled4 = true;
+			enabled1Prop.boolValue = false;
+			enabled2Prop.boolValue = false;
+			enabled3Prop.boolValue = false;
+			enabled4Prop.boolValue = true;
 
 			GUILayout.Space (5);
 			GUILayout.Label ("Snap to Transform", GUILayout.Width (140));

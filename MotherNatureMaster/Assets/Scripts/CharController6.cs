@@ -55,10 +55,14 @@ public class CharController6 : MonoBehaviour {
 		case State.Pause:
 			//transform.position = Vector3.MoveTowards(transform.position, new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z)), 10f * Time.deltaTime);
 			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, speed * Time.deltaTime);
-			if (Vector3.Distance(transform.position, nextNode.position) < 0.05)
-				if (lookTarget - transform.position != Vector3.zero)
-					transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
-			
+			if (Vector3.Distance(transform.position, nextNode.position) < 0.05) {
+				if (lookTarget - transform.position != Vector3.zero) {
+					Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+					rot.eulerAngles = new Vector3(0f, rot.eulerAngles.y, 0f);
+					transform.rotation = rot;
+					//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
+				}
+			}
 			break;
 
 		case State.Continue:
@@ -69,9 +73,12 @@ public class CharController6 : MonoBehaviour {
 
 		case State.PauseTimed:
 			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, speed * Time.deltaTime);
-			if (Vector3.Distance(transform.position, nextNode.position) < 0.05)
-				transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
-
+			if (Vector3.Distance(transform.position, nextNode.position) < 0.05) {
+				Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+				rot.eulerAngles = new Vector3(0f, rot.eulerAngles.y, 0f);
+				transform.rotation = rot;
+				//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
+			}
 			if (Time.time > timer) {
 				currentState = nextState;
 				nextState = State.Default;
@@ -310,13 +317,19 @@ public class CharController6 : MonoBehaviour {
 
 	void MoveToNext() {
 		transform.position = Vector3.MoveTowards (transform.position, nextNode.position, speed * Time.deltaTime);
-		if (lookTarget - transform.position != Vector3.zero)
-			transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+		if (lookTarget - transform.position != Vector3.zero) {
+			Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+			rot.eulerAngles = new Vector3(0f, rot.eulerAngles.y, 0f);
+			transform.rotation = rot;
+			//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+		}
 	}
 
 	void FindNextNode() {
-		previousNode = currentNode;
-		currentNode = nextNode;
+		if (currentNode != nullNode)
+			previousNode = currentNode;
+		if (nextNode != nullNode)
+			currentNode = nextNode;
 		nextNode = nullNode;
 		
 		nextNodeExists = false;
@@ -337,8 +350,9 @@ public class CharController6 : MonoBehaviour {
 		if (nextNodeExists) {
 			while (nextNode == nullNode) {
 				int randomIndex = Random.Range (0, nodeArray.Length);
-				if (nodeArray [randomIndex] != nullNode && nodeArray [randomIndex].position != previousNode.position && nodeArray [randomIndex].position != currentNode.position)
-					nextNode = nodeArray [randomIndex];
+				if (nodeArray[randomIndex] != nullNode && previousNode != nullNode && currentNode != nullNode)
+					if (nodeArray [randomIndex].position != previousNode.position && nodeArray [randomIndex].position != currentNode.position)
+						nextNode = nodeArray [randomIndex];
 			}
 		} else if (!nextNodeExists && previousNodeExists) {
 			nextNode = previousNode;
