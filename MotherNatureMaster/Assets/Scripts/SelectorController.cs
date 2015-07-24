@@ -13,21 +13,26 @@ public class SelectorController : MonoBehaviour {
 		if (Input.GetButtonDown ("Fire1")) 
 		{
 			int groundLayerMask = 1 << 9;
-			RaycastHit hitDirt;
+			RaycastHit hitTarget;
 			Vector3 point = Camera.main.ScreenToWorldPoint (Input.mousePosition + new Vector3 (0, 0, 1));
 		
-			if (Physics.Raycast (point, Camera.main.transform.forward, out hitDirt, Mathf.Infinity, groundLayerMask)) 
+			//	Make sure that only blocks with "Ground" layer can be selected by player
+			if (Physics.Raycast (point, Camera.main.transform.forward, out hitTarget, Mathf.Infinity, groundLayerMask)) 
 			{
-				selectedVeggie = hitDirt.transform.parent.gameObject;
+				selectedVeggie = hitTarget.transform.parent.gameObject;
 
-				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-				RaycastHit hit;
-				if (Physics.Raycast (ray, out hit)) 
-				{	
-					dragStart = hit.point;
+				//	Once selected, make sure that selected veggie is not already activating (lift is not moving)
+				if (!selectedVeggie.GetComponent<TreeController4>().activatePlatform)
+				{
+					Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+					RaycastHit hit;
+					if (Physics.Raycast (ray, out hit)) 
+					{	
+						dragStart = hit.point;
+					}
+				
+					dragging = true;
 				}
-			
-				dragging = true;
 			}
 		}
 	

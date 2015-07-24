@@ -91,7 +91,6 @@ MonoBehaviour:
   turnsToTarget: 0
   targetPos: {x: 0, y: 0, z: 0}
   kidInSight: 0
-  kid: {fileID: 0}
 --- !u!114 &11462744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,10 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useSightController: 0
-  inSight: 0
   includeGravity: 1
   projectile: {fileID: 5414968, guid: 2de3ad77dc7c34b598f553ca41eba5a5, type: 2}
-  interval: 1.5
+  intervalBetweenShots: 1.5
   shotSpeed: 1
   shotForce: 300
 --- !u!135 &13592580
@@ -128,7 +126,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: intervalBetweenShots
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 156904}

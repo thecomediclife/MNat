@@ -9,7 +9,7 @@ public class ObstacleRanged : MonoBehaviour {
 	public bool includeGravity;
 	public Rigidbody projectile;
 	float nextShot = 0.0f;
-	public float interval = 1.5f;
+	public float intervalBetweenShots = 1.5f;
 	public float shotSpeed = 3.0f;
 	public float shotForce = 100f;
 	
@@ -33,7 +33,7 @@ public class ObstacleRanged : MonoBehaviour {
 		//	Shoot projectile
 		if (inSight) {
 			if (Time.time > nextShot) {
-				nextShot = Time.time + interval;
+				nextShot = Time.time + intervalBetweenShots;
 
 				Rigidbody shot = Instantiate (projectile, transform.position + transform.forward, Quaternion.identity) as Rigidbody;
 				Physics.IgnoreCollision (shot.GetComponent<Collider> (), GetComponent<Collider> ());
