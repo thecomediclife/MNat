@@ -7,12 +7,13 @@ public class ObstacleSight : MonoBehaviour {
 	public bool turnsToTarget;
 	public Vector3 targetPos;
 	public bool kidInSight;	
-	public GameObject kid;
+	private GameObject kid;
 	private SphereCollider col;
 	
 	void Awake ()
 	{
 		col = gameObject.GetComponent<SphereCollider>();
+		kid = GameObject.Find ("Kid");
 	}
 
 	void OnTriggerStay (Collider other)
@@ -44,9 +45,6 @@ public class ObstacleSight : MonoBehaviour {
 				kidInSight = true;
 				break;
 			}
-
-
-
 
 //			//	KidInSight is true as long as kid is in collider. Obstacle's sight cannot be blocked.
 //			if (!sightCanBeBlocked) {
