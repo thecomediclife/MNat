@@ -4,7 +4,7 @@ using System.Collections;
 public class Waterfall : MonoBehaviour {
 
 	private Transform RaycastEndPt;
-
+	public float damage = 2f;
 
 	void Awake () {
 		RaycastEndPt = transform.FindChild ("RaycastEndPt");
@@ -21,10 +21,10 @@ public class Waterfall : MonoBehaviour {
 			{
 			case "Obstacle":
 				break;
-			case "Player":
+			case "Kid":
 				break;
 			case "Tree":
-				hit.collider.gameObject.GetComponent<TreeHealth>().takeDamage(1f * Time.deltaTime);
+				hit.collider.gameObject.GetComponentInParent<TreeController4> ().takeDamage(damage * Time.deltaTime);
 				break;
 			default:
 				break;
