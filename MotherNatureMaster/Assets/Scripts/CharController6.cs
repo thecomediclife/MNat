@@ -93,18 +93,21 @@ public class CharController6 : MonoBehaviour {
 				NextPathChosen();
 			}
 
+			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05 && chosenSnapTo) {
+				FindNextNode();
+				NextPathRandom();
+				currentState = State.Default;
+				chosenSnapTo = false;
+			}
+
+
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
 				FindNextNode ();
 				NextPathChosen ();
 				chosenSnapTo = true;
 			}
 
-			if (nextNode != nullNode && Vector3.Distance(transform.position, chosenNode.position) < 0.05 && chosenSnapTo) {
-				FindNextNode();
-				NextPathRandom();
-				currentState = State.Default;
-				chosenSnapTo = false;
-			}
+
 			break;
 
 		case State.SnapTo:

@@ -26,7 +26,7 @@ public class SmartNodeScript : MonoBehaviour {
 	public GameObject nextActionInSequence;
 
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Player" && triggerEnabled) {
+		if (other.tag == "Kid" && triggerEnabled) {
 			if (enabled1) {
 				other.GetComponent<CharController6> ().Pause (snapToTarget, lookAtTarget, lookDirection);
 //				other.GetComponent<CharController6>().ChooseDirection(transform, connectedNode);
@@ -41,12 +41,12 @@ public class SmartNodeScript : MonoBehaviour {
 			} else if (enabled4) {
 				other.GetComponent<CharController6>().ChooseDirection(snapToTarget, chosenDirection);
 			}
-			Debug.Log ("play action");
+			Debug.Log ("play action " + transform.name);
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
-		if (other.tag == "Player" && triggerEnabled) {
+		if (other.tag == "Kid" && triggerEnabled) {
 			if (deactivateAfterPlay) {
 				playTimes--;
 
