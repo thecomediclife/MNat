@@ -5,7 +5,7 @@ public class CharController6 : MonoBehaviour {
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
 	
-	public enum State {Default, Pause, Continue, PauseTimed, ChosenDir, SnapTo};
+	public enum State {Default, Pause, Continue, PauseTimed, ChosenDir, SnapTo, DirectedPath};
 	public State currentState = State.Default;
 	public State nextState = State.Default;
 
@@ -107,7 +107,6 @@ public class CharController6 : MonoBehaviour {
 				chosenSnapTo = true;
 			}
 
-
 			break;
 
 		case State.SnapTo:
@@ -118,14 +117,12 @@ public class CharController6 : MonoBehaviour {
 			transform.position = nextNode.position;
 
 			break;
+
+		case State.DirectedPath:
+
+			break;
 		}
-		
 
-		if (Input.GetKeyDown (KeyCode.P))
-			SnapTo (nextNode);
-
-		if (Input.GetKeyUp (KeyCode.P))
-			Continue (false, nullNode);
 	}
 
 	//Legacy code. This part used to fill the node array by trigger
