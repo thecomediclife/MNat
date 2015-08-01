@@ -2,11 +2,16 @@
 using System.Collections;
 
 public class CharController6 : MonoBehaviour {
-	//1. player clicks flower.
-	//2. Find fastest pathway available.
-	//3. Pathway may have obstructions.
-	//4. Figure out what to do if obstructed.
-	//5. Follow pathway.	
+	//1. player clicks on flower.
+	//2. flower picks closest pathway.
+	//3. flower sends array to boy.
+	//4. boy determines closest point on array going toward array.
+	//5. boy ignores all commands and walks pathway until reaches destination or obstruction.
+	//6. Upon obstruction, boy pauses for 3 seconds, staring at obstruction or flower, then continues default AI.
+	//7. Upon destination, boy pauses for 3 seconds (activates button/lever/etc.), then continues default AI.
+
+	//Smartnode has bool now that checks if it will be ignored when player is on DirectedPath.
+	//GrabAttention script made. It determines out of the pathways inputted, which pathway is quickest to reach the target.
 
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
@@ -21,6 +26,9 @@ public class CharController6 : MonoBehaviour {
 	private Transform nullNode = null;
 	private Vector3 lookTarget;
 	private Transform chosenNode;
+	private Transform directedNode;
+	public Transform[] directedPathway = new Transform[10];
+	private int directedIndex = 0;
 	
 	public bool nextNodeExists;
 	public bool previousNodeExists;
@@ -125,6 +133,26 @@ public class CharController6 : MonoBehaviour {
 			break;
 
 		case State.DirectedPath:
+			if (nextNode != nullNode) {
+				MoveToNext();
+			} else {
+				FindNextNode ();
+				NextPathChosen();
+			}
+			
+			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05 && chosenSnapTo) {
+				FindNextNode();
+				NextPathRandom();
+				currentState = State.Default;
+				chosenSnapTo = false;
+			}
+			
+			
+			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
+				FindNextNode ();
+				NextPathChosen ();
+				chosenSnapTo = true;
+			}
 
 			break;
 		}
