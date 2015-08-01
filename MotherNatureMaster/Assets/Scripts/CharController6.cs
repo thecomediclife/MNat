@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class CharController6 : MonoBehaviour {
+	//1. player clicks flower.
+	//2. Find fastest pathway available.
+	//3. Pathway may have obstructions.
+	//4. Figure out what to do if obstructed.
+	//5. Follow pathway.	
+
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
 	
