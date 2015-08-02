@@ -2,10 +2,21 @@
 using System.Collections;
 
 public class CharController6 : MonoBehaviour {
+	//1. player clicks on flower.
+	//2. flower picks closest pathway.
+	//3. flower sends array to boy.
+	//4. boy determines closest point on array going toward array.
+	//5. boy ignores all commands and walks pathway until reaches destination or obstruction.
+	//6. Upon obstruction, boy pauses for 3 seconds, staring at obstruction or flower, then continues default AI.
+	//7. Upon destination, boy pauses for 3 seconds (activates button/lever/etc.), then continues default AI.
+
+	//Smartnode has bool now that checks if it will be ignored when player is on DirectedPath.
+	//GrabAttention script made. It determines out of the pathways inputted, which pathway is quickest to reach the target.
+
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
 	
-	public enum State {Default, Pause, Continue, PauseTimed, ChosenDir, SnapTo};
+	public enum State {Default, Pause, Continue, PauseTimed, ChosenDir, SnapTo, DirectedPath};
 	public State currentState = State.Default;
 	public State nextState = State.Default;
 
@@ -15,6 +26,9 @@ public class CharController6 : MonoBehaviour {
 	private Transform nullNode = null;
 	private Vector3 lookTarget;
 	private Transform chosenNode;
+	private Transform directedNode;
+	public Transform[] directedPathway = new Transform[10];
+	private int directedIndex = 0;
 	
 	public bool nextNodeExists;
 	public bool previousNodeExists;
@@ -107,7 +121,6 @@ public class CharController6 : MonoBehaviour {
 				chosenSnapTo = true;
 			}
 
-
 			break;
 
 		case State.SnapTo:
@@ -118,14 +131,29 @@ public class CharController6 : MonoBehaviour {
 			transform.position = nextNode.position;
 
 			break;
+
+		case State.DirectedPath:
+			if (nextNode != nullNode) {
+				MoveToNext();
+			} else {
+				Debug.Log ("this shouldn't happen. Directed path next node is null.");
+			}
+			
+			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05) {
+				directedIndex++;
+
+				if (directedIndex >= 10 || directedPathway[directedIndex] == nullNode) {
+					PauseTimed(nextNode, false, nullNode, 2.0f, false, nullNode);
+				} else {
+					FindNextDirectedNode();
+				}
+			}
+
+
+
+			break;
 		}
-		
 
-		if (Input.GetKeyDown (KeyCode.P))
-			SnapTo (nextNode);
-
-		if (Input.GetKeyUp (KeyCode.P))
-			Continue (false, nullNode);
 	}
 
 	//Legacy code. This part used to fill the node array by trigger
@@ -453,5 +481,55 @@ public class CharController6 : MonoBehaviour {
 				currentNode = nodeArray[i];
 			}
 		}*/
+	}
+
+	public void DirectedPathwayFunc(int closestNodeIndex) {
+		currentState = State.DirectedPath;
+
+		if (directedPathway [0] == null)
+			Debug.Log ("problem: Boy's directed pathway array is empty");
+
+		directedIndex = closestNodeIndex;
+
+		bool directedNodeExists = false;
+
+		if (directedPathway [directedIndex] != nullNode) {
+			for (int i = 0; i < nodeArray.Length; i++) {
+				if (nodeArray[i] == directedPathway [directedIndex]) {
+					nextNode = directedPathway[directedIndex];
+					lookTarget = directedPathway[directedIndex].position;
+					directedNodeExists = true;
+					break;
+				}
+			}
+		}
+
+		if (!directedNodeExists) {
+			NextPathRandom();
+			currentState = State.Default;
+			Debug.Log ("couldn't find directed node in possible pathways");
+		}
+
+	}
+
+	void FindNextDirectedNode() {
+		bool directedNodeExists = false;
+		
+		for (int i = 0; i < nodeArray.Length; i++) {
+			if (nodeArray[i] == directedPathway [directedIndex]) {
+				previousNode = currentNode;
+				currentNode = nextNode;
+				nextNode = directedPathway[directedIndex];
+				lookTarget = directedPathway[directedIndex].position;
+				directedNodeExists = true;
+				break;
+			}
+		}
+		
+		if (!directedNodeExists) {
+			NextPathRandom();
+			currentState = State.Default;
+			Debug.Log ("couldn't find directed node in possible pathways");
+		}
 	}
 }
