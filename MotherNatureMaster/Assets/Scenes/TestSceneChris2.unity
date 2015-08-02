@@ -221,7 +221,9 @@ MonoBehaviour:
   - {fileID: 1782659943}
   - {fileID: 1383983425}
   - {fileID: 179218372}
-  paths2Size: 8
+  - {fileID: 0}
+  - {fileID: 0}
+  path2Size: 0
   path2:
   - {fileID: 78785691}
   - {fileID: 1005756809}
@@ -231,7 +233,35 @@ MonoBehaviour:
   - {fileID: 1782659943}
   - {fileID: 1383983425}
   - {fileID: 179218372}
+  - {fileID: 0}
+  - {fileID: 0}
+  path3Size: 0
+  path3:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  path4Size: 0
+  path4:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   chosenPath: 0
+  delay: 5
+  timer: 0
 --- !u!4 &106572287
 Transform:
   m_ObjectHideFlags: 0
@@ -563,7 +593,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -.707106829
       objectReference: {fileID: 0}
     - target: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_LocalRotation.z
@@ -571,7 +601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_RootOrder
@@ -989,6 +1019,10 @@ Prefab:
       propertyPath: chosenDirection
       value: 
       objectReference: {fileID: 1244863444}
+    - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
+      propertyPath: ignorable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
   m_IsPrefabParent: 0

@@ -136,23 +136,20 @@ public class CharController6 : MonoBehaviour {
 			if (nextNode != nullNode) {
 				MoveToNext();
 			} else {
-				FindNextNode ();
-				NextPathChosen();
+				Debug.Log ("this shouldn't happen. Directed path next node is null.");
 			}
 			
-			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05 && chosenSnapTo) {
-				FindNextNode();
-				NextPathRandom();
-				currentState = State.Default;
-				chosenSnapTo = false;
+			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05) {
+				directedIndex++;
+
+				if (directedIndex >= 10 || directedPathway[directedIndex] == nullNode) {
+					PauseTimed(nextNode, false, nullNode, 2.0f, false, nullNode);
+				} else {
+					FindNextDirectedNode();
+				}
 			}
-			
-			
-			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
-				FindNextNode ();
-				NextPathChosen ();
-				chosenSnapTo = true;
-			}
+
+
 
 			break;
 		}
@@ -484,5 +481,55 @@ public class CharController6 : MonoBehaviour {
 				currentNode = nodeArray[i];
 			}
 		}*/
+	}
+
+	public void DirectedPathwayFunc(int closestNodeIndex) {
+		currentState = State.DirectedPath;
+
+		if (directedPathway [0] == null)
+			Debug.Log ("problem: Boy's directed pathway array is empty");
+
+		directedIndex = closestNodeIndex;
+
+		bool directedNodeExists = false;
+
+		if (directedPathway [directedIndex] != nullNode) {
+			for (int i = 0; i < nodeArray.Length; i++) {
+				if (nodeArray[i] == directedPathway [directedIndex]) {
+					nextNode = directedPathway[directedIndex];
+					lookTarget = directedPathway[directedIndex].position;
+					directedNodeExists = true;
+					break;
+				}
+			}
+		}
+
+		if (!directedNodeExists) {
+			NextPathRandom();
+			currentState = State.Default;
+			Debug.Log ("couldn't find directed node in possible pathways");
+		}
+
+	}
+
+	void FindNextDirectedNode() {
+		bool directedNodeExists = false;
+		
+		for (int i = 0; i < nodeArray.Length; i++) {
+			if (nodeArray[i] == directedPathway [directedIndex]) {
+				previousNode = currentNode;
+				currentNode = nextNode;
+				nextNode = directedPathway[directedIndex];
+				lookTarget = directedPathway[directedIndex].position;
+				directedNodeExists = true;
+				break;
+			}
+		}
+		
+		if (!directedNodeExists) {
+			NextPathRandom();
+			currentState = State.Default;
+			Debug.Log ("couldn't find directed node in possible pathways");
+		}
 	}
 }
