@@ -18,17 +18,14 @@ public class TreeController4 : MonoBehaviour {
 
 	public Transform kid;
 	private Transform platform;
-	
+
+	private float percent = 0;
+	public float platformSpeed = 2f;
 	public bool activatePlatform = false;
 	private bool reachedEndPos = false;
 
 	private bool dragging;
-	private float dragStart;
-	private float dragEnd;
 	public float dragLimit = 2;
-
-	private float percent = 0;
-	public float platformSpeed = 2f;
 
 	private int floorNum = 0;
 	public float[] floors;
@@ -72,7 +69,8 @@ public class TreeController4 : MonoBehaviour {
 	//	This function lerps from start position to end position.
 	void ActivatePlatform (Vector3 start, Vector3 end) 
 	{
-		if (activatePlatform) {
+		if (activatePlatform) 
+		{
 
 			percent += platformSpeed * Time.deltaTime;
 			platform.position = Vector3.Lerp (start, end, percent);

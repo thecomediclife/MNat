@@ -154,9 +154,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 195154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e5472abb89649c2ac7fbcd0bb542a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7feb757ba189e4a36ab07db28d0427f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  dragging: 0
+  deltaPosV3Y: 0
 --- !u!124 &12420846
 Behaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +199,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_BackGroundColor.b
       value: .733169496
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: groundLayerMask.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
