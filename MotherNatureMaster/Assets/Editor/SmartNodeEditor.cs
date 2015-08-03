@@ -20,6 +20,7 @@ public class SmartNodeEditor : Editor {
 	SerializedProperty playNextActProp;
 	SerializedProperty nextActioninSeqProp;
 	SerializedProperty triggerEnableProp;
+	SerializedProperty ignorableProp;
 	SerializedProperty enabled1Prop;
 	SerializedProperty enabled2Prop;
 	SerializedProperty enabled3Prop;
@@ -44,6 +45,7 @@ public class SmartNodeEditor : Editor {
 		playNextActProp = smartNode.FindProperty ("playNextAction");
 		nextActioninSeqProp = smartNode.FindProperty ("nextActionInSequence");
 		triggerEnableProp = smartNode.FindProperty ("triggerEnabled");
+		ignorableProp = smartNode.FindProperty ("ignorable");
 		enabled1Prop = smartNode.FindProperty ("enabled1");
 		enabled2Prop = smartNode.FindProperty ("enabled2");
 		enabled3Prop = smartNode.FindProperty ("enabled3");
@@ -55,6 +57,7 @@ public class SmartNodeEditor : Editor {
 
 		GUILayout.Space (5);
 		triggerEnableProp.boolValue = EditorGUILayout.ToggleLeft (" Enable SmartNode", triggerEnableProp.boolValue);
+		ignorableProp.boolValue = EditorGUILayout.ToggleLeft (" Ignorable?", ignorableProp.boolValue);
 
 		GUILayout.Space (5);
 		GUILayout.BeginHorizontal ();
