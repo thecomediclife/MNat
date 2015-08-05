@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SelectorController : MonoBehaviour {
+public class TouchController1 : MonoBehaviour {
 
 	private bool dragging;
 	private Vector3 dragStart;
