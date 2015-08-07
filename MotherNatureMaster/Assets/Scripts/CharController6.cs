@@ -42,7 +42,7 @@ public class CharController6 : MonoBehaviour {
 	private int nodeLayerMask = 1 << 10;
 	
 	void Start () {
-		lookTarget = transform.forward;
+		lookTarget = transform.forward + transform.position;
 	}
 	
 	void Update () {
