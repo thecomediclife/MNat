@@ -9,22 +9,28 @@ public class TreeController5 : MonoBehaviour {
 	private Transform trunk;
 	private Transform color;
 
+	public bool liftingHeavyObj;
+	public bool inSunLight;
+
+	[HideInInspector]
 	public float deltaY;
 	public float treeHeight = 6;	
-	public float groundY;
-	public float maxHeightY;
-
-	public float growSpeed = 2f;
-	public float decaySpeed = 2f;
-
+	private float groundY;
+	private float maxHeightY;
+	
 	private float timer;
 	public float waitTime = 2;
 
 	public bool activate;
 	public bool dragging;
+
 	public bool growing;
+	public float growSpeed = 2f;
+
 	public bool decaying;
-	public bool liftingHeavyObj;
+	public float decaySpeed = 2f;
+
+
 
 	void Awake()
 	{
@@ -32,7 +38,7 @@ public class TreeController5 : MonoBehaviour {
 		platform = transform.Find ("Platform");
 		node = platform.Find ("Node");
 		color = transform.Find ("Color");
-//		kid = GameObject.Find ("Kid").transform;
+		kid = GameObject.Find ("Kid").transform;
 
 		groundY = platform.localPosition.y;
 		maxHeightY = groundY + treeHeight;
@@ -53,74 +59,82 @@ public class TreeController5 : MonoBehaviour {
 		trunk.localScale = new Vector3 (trunk.localScale.x, platform.localPosition.y + 0.5f, trunk.localScale.z); 
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 
-		//	Disable node while tree is moving
+		//  Disable node while tree is moving
 		if (platform.localPosition.y == groundY || platform.localPosition.y == maxHeightY)
 			node.gameObject.SetActive (true); 
 		else
 			node.gameObject.SetActive (false);
-
-		print (liftingHeavyObj);
 	}
 
 	void FixedUpdate ()
 	{
-		if (activate) {
+		if (inSunLight) {
+
+			if (activate) {
+		
+				switch (dragging) {
 			
-			switch (dragging) {
-				
-			//	If player is touching the screen
-			case true:
+				//	If player is touching the screen
+				case true:
 
-				growing = false; 
-				decaying = false;
+					growing = false; 
+					decaying = false;
 
-				if (deltaY > 0 && platform.localPosition.y <= maxHeightY)
-				{
-					platform.GetComponent<Rigidbody>().MovePosition(platform.localPosition + transform.up * Time.deltaTime);
-				}
-				break;
+					if (deltaY > 0 && platform.localPosition.y <= maxHeightY) {
+						platform.GetComponent<Rigidbody> ().MovePosition (platform.localPosition + transform.up * Time.deltaTime);
+					}
+			
+					break;
+			
+				//	If player is no longer touching the screen
+				case false:
+			
+					switch (liftingHeavyObj) {
 				
-			//	If player is no longer touching the screen
-			case false:
-				
-				switch (liftingHeavyObj) 
-				{
-					
-				//	If tree is lifting nothing or a light object
-				case (false):
-					switch (growing) {
-					case true:
-						Grow ();
+					//	If tree is lifting nothing or a light object
+					case (false):
+						switch (growing) {
+						case true:
+							Grow ();
+							break;
+						case false:
+							if (decaying) {
+								if (Time.time > timer + waitTime)
+									Decay ();
+							}
+							break;
+						}
 						break;
-					case false:
-						if (decaying)
-						{
-							if (Time.time > timer + waitTime)
+				
+					//	If tree is lifting a heavy object
+					case (true):
+						switch (growing) {
+						case true:
+							growing = false;
+							decaying = true;
+					//	Because tree is lifting a heavy object, tree cannot grow and therefore decays immediately
+							break;
+						case false:
+							if (decaying) {
 								Decay ();
-						}
-						break;
-					}
-					break;
-					
-				//	If tree is lifting a heavy object
-				case (true):
-					switch (growing) {
-					case true:
-						growing = false;
-						decaying = true;
-						//	Because tree is lifting a heavy object, tree cannot grow and therefore decays immediately
-						break;
-					case false:
-						if (decaying)
-						{
-							Decay ();
+							}
+							break;
 						}
 						break;
 					}
 					break;
 				}
-				break;
 			}
+		} else {
+			if (activate || growing || decaying)
+			{
+				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
+				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
+				//	will decay regardless.
+			}
+
+			if (decaying)
+				Decay ();
 		}
 	}
 
@@ -145,6 +159,7 @@ public class TreeController5 : MonoBehaviour {
 		{
 			platform.localPosition = new Vector3 (platform.localPosition.x, groundY, platform.localPosition.z);
 			decaying = false;
+			growing = false;
 			activate = false;
 		}
 	}

@@ -192,10 +192,10 @@ public class CharController6 : MonoBehaviour {
 		float rayDistance = 1f;
 
 		//Visually see raycasts in game if gizmos are on.
-		Debug.DrawRay (forwardVec, downVec * rayDistance, Color.red);
+		Debug.DrawRay (forwardVec, downVec * rayDistance, Color.blue);
 		Debug.DrawRay (backVec, downVec * rayDistance, Color.red);
-		Debug.DrawRay (rightVec, downVec * rayDistance, Color.red);
-		Debug.DrawRay (leftVec, downVec * rayDistance, Color.red);
+		Debug.DrawRay (rightVec, downVec * rayDistance, Color.yellow);
+		Debug.DrawRay (leftVec, downVec * rayDistance, Color.magenta);
 
 		//Save Raycast information
 		RaycastHit hit1;
@@ -223,26 +223,7 @@ public class CharController6 : MonoBehaviour {
 		bool hit3In = false;
 		bool hit4In = false;
 
-		for (int i = 0; i < nodeArray.Length; i++) {
-			if (nodeArray[i] != null) {
-				if (nodeArray[i] == hit1.transform)
-					hit1In = true;
-				if (nodeArray[i] == hit2.transform)
-					hit2In = true;
-				if (nodeArray[i] == hit3.transform)
-					hit3In = true;
-				if (nodeArray[i] == hit4.transform)
-					hit4In = true;
-			}
-		}
-
-		if (hit2.transform == hit1.transform)
-			hit2In = true;
-		if (hit3.transform == hit1.transform || hit3.transform == hit2.transform)
-			hit3In = true;
-		if (hit4.transform == hit1.transform || hit4.transform == hit2.transform || hit4.transform == hit1.transform)
-			hit4In = true;
-
+		//Checks if hit transform hit anything at all
 		if (hit1.transform == null)
 			hit1In = true;
 		if (hit2.transform == null)
@@ -252,62 +233,89 @@ public class CharController6 : MonoBehaviour {
 		if (hit4.transform == null)
 			hit4In = true;
 
+		//Checks if hit transform already exists in the array
+		for (int i = 0; i < nodeArray.Length; i++) {
+			if (nodeArray[i] != null) {
+				if (!hit1In && nodeArray[i] == hit1.collider.transform)
+					hit1In = true;
+				if (!hit2In && nodeArray[i] == hit2.collider.transform)
+					hit2In = true;
+				if (!hit3In && nodeArray[i] == hit3.collider.transform)
+					hit3In = true;
+				if (!hit4In && nodeArray[i] == hit4.collider.transform)
+					hit4In = true;
+			}
+		}
+
+		if (hit2.transform != null)
+		Debug.Log (hit2.collider.transform.name);
+
+		//Checks if any hits are returning the same transform as another hit.
+//		if (hit2.transform == hit1.transform)
+//			hit2In = true;
+//		if (hit3.transform == hit1.transform || hit3.transform == hit2.transform)
+//			hit3In = true;
+//		if (hit4.transform == hit1.transform || hit4.transform == hit2.transform || hit4.transform == hit1.transform)
+//			hit4In = true;
+
+		//Replaces nodes that have the same name in the array if the new node isn't the same node as the one in the position.
+		//Perhaps change this to check for same positions in the future.
 		for (int l = 0; l < nodeArray.Length; l++) {
 			if (nodeArray[l] != null) {
 				if (!hit1In) {
-					if (hit1.transform.name == nodeArray[l].name) {
-						nodeArray[l] = hit1.transform;
+					if (hit1.collider.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit1.collider.transform;
 						hit1In = true;
 						if (currentNode == nodeArray[l])
-							currentNode = hit1.transform;
+							currentNode = hit1.collider.transform;
 						if (previousNode == nodeArray[l])
-							previousNode = hit1.transform;
+							previousNode = hit1.collider.transform;
 						if (nextNode == nodeArray[l])
-							nextNode = hit1.transform;
+							nextNode = hit1.collider.transform;
 						if (chosenNode == nodeArray[l])
-							chosenNode = hit1.transform;
+							chosenNode = hit1.collider.transform;
 					}
 				}
 				if (!hit2In) {
-					if (hit2.transform.name == nodeArray[l].name) {
-						nodeArray[l] = hit2.transform;
+					if (hit2.collider.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit2.collider.transform;
 						hit2In = true;
 						if (currentNode == nodeArray[l])
-							currentNode = hit2.transform;
+							currentNode = hit2.collider.transform;
 						if (previousNode == nodeArray[l])
-							previousNode = hit2.transform;
+							previousNode = hit2.collider.transform;
 						if (nextNode == nodeArray[l])
-							nextNode = hit2.transform;
+							nextNode = hit2.collider.transform;
 						if (chosenNode == nodeArray[l])
-							chosenNode = hit2.transform;
+							chosenNode = hit2.collider.transform;
 					}
 				}
 				if (!hit3In) {
-					if (hit3.transform.name == nodeArray[l].name) {
-						nodeArray[l] = hit3.transform;
+					if (hit3.collider.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit3.collider.transform;
 						hit3In = true;
 						if (currentNode == nodeArray[l])
-							currentNode = hit3.transform;
+							currentNode = hit3.collider.transform;
 						if (previousNode == nodeArray[l])
-							previousNode = hit3.transform;
+							previousNode = hit3.collider.transform;
 						if (nextNode == nodeArray[l])
-							nextNode = hit3.transform;
+							nextNode = hit3.collider.transform;
 						if (chosenNode == nodeArray[l])
-							chosenNode = hit3.transform;
+							chosenNode = hit3.collider.transform;
 					}
 				}
 				if (!hit4In) {
-					if (hit4.transform.name == nodeArray[l].name) {
-						nodeArray[l] = hit4.transform;
+					if (hit4.collider.transform.name == nodeArray[l].name) {
+						nodeArray[l] = hit4.collider.transform;
 						hit4In = true;
 						if (currentNode == nodeArray[l])
-							currentNode = hit4.transform;
+							currentNode = hit4.collider.transform;
 						if (previousNode == nodeArray[l])
-							previousNode = hit4.transform;
+							previousNode = hit4.collider.transform;
 						if (nextNode == nodeArray[l])
-							nextNode = hit4.transform;
+							nextNode = hit4.collider.transform;
 						if (chosenNode == nodeArray[l])
-							chosenNode = hit4.transform;
+							chosenNode = hit4.collider.transform;
 					}
 				}
 			}
@@ -317,22 +325,22 @@ public class CharController6 : MonoBehaviour {
 		for (int j = 0; j < nodeArray.Length; j++) {
 			if (!hit1In) {
 				if (nodeArray[j] == null) {
-					nodeArray[j] = hit1.transform;
+					nodeArray[j] = hit1.collider.transform;
 					hit1In = true;
 				}
 			} else if (!hit2In) {
 				if (nodeArray[j] == null) {
-					nodeArray[j] = hit2.transform;
+					nodeArray[j] = hit2.collider.transform;
 					hit2In = true;
 				}
 			} else if (!hit3In) {
 				if (nodeArray[j] == null) {
-					nodeArray[j] = hit3.transform;
+					nodeArray[j] = hit3.collider.transform;
 				    hit3In = true;
 				}
 			} else if (!hit4In) {
 				if (nodeArray[j] == null) {
-					nodeArray[j] = hit4.transform;
+					nodeArray[j] = hit4.collider.transform;
 					hit4In = true;
 				}
 			}
