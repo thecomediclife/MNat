@@ -247,9 +247,6 @@ public class CharController6 : MonoBehaviour {
 			}
 		}
 
-		if (hit2.transform != null)
-		Debug.Log (hit2.collider.transform.name);
-
 		//Checks if any hits are returning the same transform as another hit.
 //		if (hit2.transform == hit1.transform)
 //			hit2In = true;
