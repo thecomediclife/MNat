@@ -3,14 +3,16 @@ using System.Collections;
 
 public class TreeController5 : MonoBehaviour {
 
-	public Transform kid;
-	public Transform platform;
+	private Transform kid;
+	private Transform platform;
 	private Transform node;
-	public Transform trunk;
+	private Transform trunk;
 	private Transform color;
 
 	public bool liftingHeavyObj;
 	public bool inSunLight;
+	public bool kidInRange;
+	private bool kidAttached;
 
 	[HideInInspector]
 	public float deltaY;
@@ -38,7 +40,7 @@ public class TreeController5 : MonoBehaviour {
 		platform = transform.Find ("Platform");
 		node = platform.Find ("Node");
 		color = transform.Find ("Color");
-//		kid = GameObject.Find ("Kid").transform;
+		kid = GameObject.Find ("Kid").transform;
 
 		groundY = platform.localPosition.y;
 		maxHeightY = groundY + treeHeight;
@@ -55,15 +57,20 @@ public class TreeController5 : MonoBehaviour {
 
 	void Update ()
 	{
+		DetermineKidDistance ();
+
 		//	TEMPORARY: Creates a tree that scales with the platform's position
 		trunk.localScale = new Vector3 (trunk.localScale.x, platform.localPosition.y + 0.5f, trunk.localScale.z); 
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 
 		//  Disable node while tree is moving
-		if (platform.localPosition.y == groundY || platform.localPosition.y == maxHeightY)
-			node.gameObject.SetActive (true); 
-		else
+		if (platform.localPosition.y == groundY || platform.localPosition.y == maxHeightY) {
+			node.gameObject.SetActive (true);
+			if (kidAttached)
+				DetachKid();
+		} else {
 			node.gameObject.SetActive (false);
+		}
 	}
 
 	void FixedUpdate ()
@@ -71,7 +78,10 @@ public class TreeController5 : MonoBehaviour {
 		if (inSunLight) {
 
 			if (activate) {
-		
+
+				if (kidInRange && !kidAttached)
+					AttachKid();
+
 				switch (dragging) {
 			
 				//	If player is touching the screen
@@ -163,4 +173,30 @@ public class TreeController5 : MonoBehaviour {
 			activate = false;
 		}
 	}
+
+	void DetermineKidDistance() {
+		//Debug.Log (Vector3.Distance (kid.transform.position, transform.position) + " " + transform.name);
+
+		if (Mathf.Abs(node.position.y - kid.transform.position.y) < 0.1f && Vector3.Distance (kid.transform.position, transform.position) < 1.0f) {
+			kidInRange = true;
+		} else {
+			kidInRange = false;
+		}
+	}
+
+	void AttachKid() {
+		kid.GetComponent<CharController6> ().Pause (node, false, null);
+		kid.transform.parent = platform.transform;
+		kidAttached = true;
+	}
+
+	void DetachKid() {
+		kid.GetComponent<CharController6> ().Continue (false, null);
+		kid.transform.parent = null;
+		kidAttached = false;
+	}
+
+//	void OnTriggerEnter(Collider other) {
+//		Debug.Log (other.name);
+//	}
 }
