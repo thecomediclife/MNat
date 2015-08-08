@@ -38,7 +38,7 @@ public class TreeController5 : MonoBehaviour {
 		platform = transform.Find ("Platform");
 		node = platform.Find ("Node");
 		color = transform.Find ("Color");
-//		kid = GameObject.Find ("Kid").transform;
+		kid = GameObject.Find ("Kid").transform;
 
 		groundY = platform.localPosition.y;
 		maxHeightY = groundY + treeHeight;
@@ -59,13 +59,11 @@ public class TreeController5 : MonoBehaviour {
 		trunk.localScale = new Vector3 (trunk.localScale.x, platform.localPosition.y + 0.5f, trunk.localScale.z); 
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 
-		//	Disable node while tree is moving
+		//  Disable node while tree is moving
 		if (platform.localPosition.y == groundY || platform.localPosition.y == maxHeightY)
 			node.gameObject.SetActive (true); 
 		else
 			node.gameObject.SetActive (false);
-
-		print (liftingHeavyObj);
 	}
 
 	void FixedUpdate ()
