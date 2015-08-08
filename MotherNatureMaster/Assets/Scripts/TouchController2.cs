@@ -3,8 +3,6 @@ using System.Collections;
 
 public class TouchController2 : MonoBehaviour 
 {
-//	public LayerMask treeLayerMask;
-
 	private float dist;
 	public bool dragging;
 	private Vector3 offset;
@@ -32,20 +30,24 @@ public class TouchController2 : MonoBehaviour
 				if(Physics.Raycast(ray, out hit, Mathf.Infinity, treeLayerMask))
 				{
 					target = hit.transform;
-					print (target.name);
 
-					dist = Vector3.Distance(hit.transform.position, Camera.main.transform.position);
+					if (target.GetComponent<TreeController5>().inSunLight == true)
+					{
+						dist = Vector3.Distance(hit.transform.position, Camera.main.transform.position);
 
-					curV3 = new Vector3(cur.x, cur.y, dist);
-					curV3 = Camera.main.ScreenToWorldPoint(curV3);
-					curV3 = new Vector3 (target.position.x, curV3.y, target.position.z);
+						curV3 = new Vector3(cur.x, cur.y, dist);
+						curV3 = Camera.main.ScreenToWorldPoint(curV3);
+						curV3 = new Vector3 (target.position.x, curV3.y, target.position.z);
 
-					prevV3 = curV3;
+						prevV3 = curV3;
 
-					dragging = true;
+						dragging = true;
 
-					target.GetComponent<TreeController5> ().dragging = dragging;
-					target.GetComponent<TreeController5> ().activate = true;
+						target.GetComponent<TreeController5> ().activate = true;
+						target.GetComponent<TreeController5> ().dragging = true;
+						target.GetComponent<TreeController5> ().growing = false;
+						target.GetComponent<TreeController5> ().decaying = false;
+					}
 				}
 			}
 
@@ -74,8 +76,9 @@ public class TouchController2 : MonoBehaviour
 			if (touch.phase == TouchPhase.Ended && dragging) 
 			{
 				dragging = false;
-				target.GetComponent<TreeController5> ().dragging = dragging;
+				target.GetComponent<TreeController5> ().dragging = false;
 				target.GetComponent<TreeController5> ().growing = true;
+				target.GetComponent<TreeController5> ().decaying = false;
 			}
 		}
 	}
