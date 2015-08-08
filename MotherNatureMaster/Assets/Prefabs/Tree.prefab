@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2356186}
   m_Layer: 11
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467824}
@@ -336,7 +336,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105774}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 5, z: 1}
@@ -364,18 +364,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbb6d7c8e6c24eb7920d7d75e7fcb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kid: {fileID: 0}
+  platform: {fileID: 0}
+  trunk: {fileID: 0}
+  liftingHeavyObj: 0
+  inSunLight: 0
   deltaY: 0
   treeHeight: 10
-  groundY: 0
-  maxHeightY: 0
-  growSpeed: 3
-  decaySpeed: 2
   waitTime: 2
   activate: 0
   dragging: 0
   growing: 0
+  growSpeed: 3
   decaying: 0
-  liftingHeavyObj: 0
+  decaySpeed: 2
 --- !u!114 &11475542
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class TreeController5 : MonoBehaviour {
 
-	private Transform kid;
-	private Transform platform;
+	public Transform kid;
+	public Transform platform;
 	private Transform node;
-	private Transform trunk;
+	public Transform trunk;
 	private Transform color;
 
 	public bool liftingHeavyObj;
@@ -16,7 +16,7 @@ public class TreeController5 : MonoBehaviour {
 	public float deltaY;
 	public float treeHeight = 6;	
 	private float groundY;
-	private float maxHeightY;
+	public float maxHeightY;
 	
 	private float timer;
 	public float waitTime = 2;
@@ -38,7 +38,7 @@ public class TreeController5 : MonoBehaviour {
 		platform = transform.Find ("Platform");
 		node = platform.Find ("Node");
 		color = transform.Find ("Color");
-		kid = GameObject.Find ("Kid").transform;
+//		kid = GameObject.Find ("Kid").transform;
 
 		groundY = platform.localPosition.y;
 		maxHeightY = groundY + treeHeight;
@@ -81,7 +81,7 @@ public class TreeController5 : MonoBehaviour {
 					decaying = false;
 
 					if (deltaY > 0 && platform.localPosition.y <= maxHeightY) {
-						platform.GetComponent<Rigidbody> ().MovePosition (platform.localPosition + transform.up * Time.deltaTime);
+						platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime);
 					}
 			
 					break;
@@ -126,21 +126,21 @@ public class TreeController5 : MonoBehaviour {
 				}
 			}
 		} else {
-			if (activate || growing || decaying)
-			{
-				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
-				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
-				//	will decay regardless.
-			}
-
-			if (decaying)
-				Decay ();
+//			if (activate || growing || decaying)
+//			{
+//				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
+//				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
+//				//	will decay regardless.
+//			}
+//
+//			if (decaying)
+//				Decay ();
 		}
 	}
 
 	void Grow ()
 	{
-		platform.GetComponent<Rigidbody> ().MovePosition (platform.localPosition + transform.up * Time.deltaTime * growSpeed);
+		platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime * growSpeed);
 
 		if ((Mathf.Abs (maxHeightY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y > maxHeightY)) 
 		{
@@ -153,7 +153,7 @@ public class TreeController5 : MonoBehaviour {
 
 	void Decay ()
 	{
-		platform.GetComponent<Rigidbody> ().MovePosition (platform.localPosition - transform.up * Time.deltaTime * decaySpeed);
+		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
 
 		if ((Mathf.Abs (groundY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y < groundY)) 
 		{
