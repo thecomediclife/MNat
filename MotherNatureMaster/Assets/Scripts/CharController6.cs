@@ -80,7 +80,7 @@ public class CharController6 : MonoBehaviour {
 			break;
 
 		case State.Continue:
-			if (Vector3.Distance(transform.position, new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z))) < 0.05)
+//			if (Vector3.Distance(transform.position, new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z))) < 0.05)
 				currentState = nextState;
 
 			break;
@@ -260,7 +260,7 @@ public class CharController6 : MonoBehaviour {
 		for (int l = 0; l < nodeArray.Length; l++) {
 			if (nodeArray[l] != null) {
 				if (!hit1In) {
-					if (hit1.collider.transform.name == nodeArray[l].name) {
+					if (hit1.collider.transform.position == nodeArray[l].position) {
 						nodeArray[l] = hit1.collider.transform;
 						hit1In = true;
 						if (currentNode == nodeArray[l])
@@ -274,7 +274,7 @@ public class CharController6 : MonoBehaviour {
 					}
 				}
 				if (!hit2In) {
-					if (hit2.collider.transform.name == nodeArray[l].name) {
+					if (hit2.collider.transform.position == nodeArray[l].position) {
 						nodeArray[l] = hit2.collider.transform;
 						hit2In = true;
 						if (currentNode == nodeArray[l])
@@ -288,7 +288,7 @@ public class CharController6 : MonoBehaviour {
 					}
 				}
 				if (!hit3In) {
-					if (hit3.collider.transform.name == nodeArray[l].name) {
+					if (hit3.collider.transform.position == nodeArray[l].position) {
 						nodeArray[l] = hit3.collider.transform;
 						hit3In = true;
 						if (currentNode == nodeArray[l])
@@ -302,7 +302,7 @@ public class CharController6 : MonoBehaviour {
 					}
 				}
 				if (!hit4In) {
-					if (hit4.collider.transform.name == nodeArray[l].name) {
+					if (hit4.collider.transform.position == nodeArray[l].position) {
 						nodeArray[l] = hit4.collider.transform;
 						hit4In = true;
 						if (currentNode == nodeArray[l])

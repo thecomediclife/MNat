@@ -12,7 +12,7 @@ public class TreeController5 : MonoBehaviour {
 	public bool liftingHeavyObj;
 	public bool inSunLight;
 	public bool kidInRange;
-	private bool kidAttached;
+	public bool kidAttached;
 
 	[HideInInspector]
 	public float deltaY;
@@ -64,13 +64,12 @@ public class TreeController5 : MonoBehaviour {
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 
 		//  Disable node while tree is moving
-		if (platform.localPosition.y == groundY || platform.localPosition.y == maxHeightY) {
+		if (Mathf.Abs (platform.localPosition.y - groundY) < 0.05 || Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.05) {
 			node.gameObject.SetActive (true);
-			if (kidAttached)
-				DetachKid();
 		} else {
 			node.gameObject.SetActive (false);
 		}
+
 	}
 
 	void FixedUpdate ()
@@ -79,8 +78,9 @@ public class TreeController5 : MonoBehaviour {
 
 			if (activate) {
 
-				if (kidInRange && !kidAttached)
-					AttachKid();
+//				if (kidInRange && !kidAttached) {
+//					AttachKid();
+//				}
 
 				switch (dragging) {
 			
@@ -91,9 +91,13 @@ public class TreeController5 : MonoBehaviour {
 					decaying = false;
 
 					if (deltaY > 0 && platform.localPosition.y <= maxHeightY) {
-						platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime);
+						platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime * growSpeed);
 					}
-			
+
+					if (kidInRange && !kidAttached) {
+						AttachKid();
+					}
+
 					break;
 			
 				//	If player is no longer touching the screen
@@ -103,19 +107,25 @@ public class TreeController5 : MonoBehaviour {
 				
 					//	If tree is lifting nothing or a light object
 					case (false):
+
+						////////////////////////////
 						switch (growing) {
 						case true:
 							Grow ();
 							break;
 						case false:
 							if (decaying) {
-								if (Time.time > timer + waitTime)
+								if (Time.time > timer + waitTime) {
 									Decay ();
+//									if (kidInRange && !kidAttached)
+//										AttachKid();
+								}
 							}
 							break;
 						}
 						break;
-				
+						///////////////////////////
+
 					//	If tree is lifting a heavy object
 					case (true):
 						switch (growing) {
@@ -152,12 +162,24 @@ public class TreeController5 : MonoBehaviour {
 	{
 		platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime * growSpeed);
 
+		if (kidInRange && !kidAttached) {
+			AttachKid();
+		}
+
 		if ((Mathf.Abs (maxHeightY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y > maxHeightY)) 
 		{
 			platform.localPosition = new Vector3 (platform.localPosition.x, maxHeightY, platform.localPosition.z);
 			growing = false;
 			decaying = true;
 			timer = Time.time;
+
+			//Activate Grab attention at maxHeightY
+			if (!kidAttached) {
+				GetComponent<GrabAttention>().FindClosestPath();
+			}
+
+			if (kidAttached)
+				DetachKid();
 		}
 	}
 
@@ -165,19 +187,26 @@ public class TreeController5 : MonoBehaviour {
 	{
 		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
 
+		if (kidInRange && !kidAttached) {
+			AttachKid();
+		}
+
 		if ((Mathf.Abs (groundY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y < groundY)) 
 		{
 			platform.localPosition = new Vector3 (platform.localPosition.x, groundY, platform.localPosition.z);
 			decaying = false;
 			growing = false;
 			activate = false;
+
+			if (kidAttached)
+				DetachKid();
 		}
 	}
 
 	void DetermineKidDistance() {
-		//Debug.Log (Vector3.Distance (kid.transform.position, transform.position) + " " + transform.name);
+	//	Debug.Log (Vector3.Distance (kid.transform.position, transform.position) + " " + transform.name);
 
-		if (Mathf.Abs(node.position.y - kid.transform.position.y) < 0.1f && Vector3.Distance (kid.transform.position, transform.position) < 1.0f) {
+		if (Mathf.Abs(node.position.y - kid.transform.position.y) < 0.1f && Vector3.Distance (kid.transform.position, node.position) < 1.0f) {
 			kidInRange = true;
 		} else {
 			kidInRange = false;

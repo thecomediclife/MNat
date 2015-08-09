@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class OrbitalCamera : MonoBehaviour {
+	public bool allowRotate = false;
 	public Vector3 centerPoint = Vector3.zero;
 
 	public float omega = 45f;
@@ -16,28 +17,21 @@ public class OrbitalCamera : MonoBehaviour {
 	private bool moveLeft;
 
 	private float lastOmega;
-
-	void Awake () {
-	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
 //		omega += Input.GetAxis ("Horizontal") * xScrollSpeed * Time.deltaTime;
 //		phi -= Input.GetAxis ("Vertical") * yScrollSpeed * Time.deltaTime;
-
-		if (Input.GetKeyDown (KeyCode.RightArrow) && !moveLeft && !moveRight) {
-			moveRight = true;
-			lastOmega = omega;
-		}
+		if (allowRotate) {
+			if (Input.GetKeyDown (KeyCode.RightArrow) && !moveLeft && !moveRight) {
+				moveRight = true;
+				lastOmega = omega;
+			}
 		
-		if (Input.GetKeyDown (KeyCode.LeftArrow) && !moveLeft && !moveRight) {
-			moveLeft = true;
-			lastOmega = omega;
+			if (Input.GetKeyDown (KeyCode.LeftArrow) && !moveLeft && !moveRight) {
+				moveLeft = true;
+				lastOmega = omega;
+			}
 		}
 
 		if (moveRight) {
