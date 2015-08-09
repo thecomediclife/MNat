@@ -360,6 +360,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 454991674}
   m_RootOrder: 4
+--- !u!4 &445930565 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 416658, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+  m_PrefabInternal: {fileID: 1186283220}
 --- !u!1 &454991673
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +649,7 @@ Prefab:
       objectReference: {fileID: 1478050987}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: delay
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: deactivateAfterPlay
@@ -1062,7 +1066,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: deactivateAfterPlay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: playTimes
@@ -1138,6 +1142,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2305338, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0b504cab9c9c434a9f1230ed09eaa15, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
   m_IsPrefabParent: 0
@@ -1380,6 +1388,26 @@ Prefab:
       propertyPath: treeHeight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11453974, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: growSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1Size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[0]
+      value: 
+      objectReference: {fileID: 2020607938}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[1]
+      value: 
+      objectReference: {fileID: 2058848616}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[2]
+      value: 
+      objectReference: {fileID: 445930565}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
   m_IsPrefabParent: 0
@@ -1460,6 +1488,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79be7ad0cc2260a4fae4732af7517e75, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1207509680 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 466842, guid: 79be7ad0cc2260a4fae4732af7517e75, type: 2}
+  m_PrefabInternal: {fileID: 1225071782}
 --- !u!1001 &1225071782
 Prefab:
   m_ObjectHideFlags: 0
@@ -1916,6 +1948,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 454991674}
   m_RootOrder: 0
+--- !u!4 &1384247606 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 416658, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+  m_PrefabInternal: {fileID: 2023051198}
 --- !u!1 &1412101601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2175,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 454991674}
   m_RootOrder: 10
+--- !u!4 &1593142685 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 416658, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+  m_PrefabInternal: {fileID: 1672427333}
 --- !u!1001 &1672427333
 Prefab:
   m_ObjectHideFlags: 0
@@ -2190,6 +2230,26 @@ Prefab:
       propertyPath: treeHeight
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11453974, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: growSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1Size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[0]
+      value: 
+      objectReference: {fileID: 534709838}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[1]
+      value: 
+      objectReference: {fileID: 1207509680}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[2]
+      value: 
+      objectReference: {fileID: 1593142685}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
   m_IsPrefabParent: 0
@@ -2525,7 +2585,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: deactivateAfterPlay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11491782, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
       propertyPath: playTimes
@@ -2601,6 +2661,26 @@ Prefab:
       propertyPath: treeHeight
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11453974, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: growSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1Size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[0]
+      value: 
+      objectReference: {fileID: 2058848616}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[1]
+      value: 
+      objectReference: {fileID: 2020607938}
+    - target: {fileID: 11405128, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
+      propertyPath: path1.Array.data[2]
+      value: 
+      objectReference: {fileID: 1384247606}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d955437b5cdc1456b9f2e78ba70b1494, type: 2}
   m_IsPrefabParent: 0

@@ -26,12 +26,12 @@ public class GrabAttention : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.P)) {
-			FindClosestPath();
-		}
+	//	if (Input.GetKeyDown(KeyCode.P)) {
+	//		FindClosestPath();
+	//	}
 	}
 
-	void FindClosestPath() {
+	public void FindClosestPath() {
 		int shortestPath = 1000;
 		int currentPathCheck = 0;
 		chosenPath = 0;
@@ -139,7 +139,7 @@ public class GrabAttention : MonoBehaviour {
 
 			//Debug.Log (chosenPath + " chosen");
 			//Debug.Log (currentPathCheck);
-			Debug.Log (closestNodeIndex);
+			//Debug.Log (closestNodeIndex);
 		}
 
 		if (chosenPath > 0) {
