@@ -47,12 +47,12 @@ public class TreeController5 : MonoBehaviour {
 
 		//	Update the box collider to match the maximum tree height that player inputs
 		BoxCollider boxCollider = GetComponent<BoxCollider> () as BoxCollider;
-		boxCollider.size = new Vector3 (1, treeHeight, 1);
-		boxCollider.center = new Vector3 (0, treeHeight / 2, 0);
+		boxCollider.size = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
+		boxCollider.center = new Vector3 (0, (treeHeight - 1f) / 2, 0);
 
 		//	TEMPORARY: Provides color box to show where player touch screen to move tree
-		color.localScale = new Vector3 (1, treeHeight, 1);
-		color.localPosition = new Vector3 (0, treeHeight / 2, 0);
+		color.localScale = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
+		color.localPosition = new Vector3 (0, (treeHeight - 1f) / 2, 0);
 	}
 
 	void Update ()
@@ -78,9 +78,6 @@ public class TreeController5 : MonoBehaviour {
 
 			if (activate) {
 
-//				if (kidInRange && !kidAttached) {
-//					AttachKid();
-//				}
 
 				switch (dragging) {
 			
@@ -117,8 +114,6 @@ public class TreeController5 : MonoBehaviour {
 							if (decaying) {
 								if (Time.time > timer + waitTime) {
 									Decay ();
-//									if (kidInRange && !kidAttached)
-//										AttachKid();
 								}
 							}
 							break;
@@ -188,7 +183,8 @@ public class TreeController5 : MonoBehaviour {
 		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
 
 		if (kidInRange && !kidAttached) {
-			AttachKid();
+			if (kid.GetComponent<CharController6>().currentState != CharController6.State.DirectedPath)
+				AttachKid();
 		}
 
 		if ((Mathf.Abs (groundY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y < groundY)) 
@@ -224,8 +220,5 @@ public class TreeController5 : MonoBehaviour {
 		kid.transform.parent = null;
 		kidAttached = false;
 	}
-
-//	void OnTriggerEnter(Collider other) {
-//		Debug.Log (other.name);
-//	}
+	
 }
