@@ -13,15 +13,15 @@ public class GrabAttention : MonoBehaviour {
 	public int path4Size;
 	public Transform[] path4 = new Transform[10];
 
-	private Transform boy;
+	public Transform boy;
 	public int chosenPath = 0;
 
 	public float delay = 5.0f;
 	public float timer = 0.0f;
 
 	// Use this for initialization
-	void Start () {
-		boy = GameObject.FindWithTag ("Kid").transform;
+	void Awake () {
+		boy = GameObject.FindWithTag("Kid").transform;
 	}
 	
 	// Update is called once per frame
@@ -39,97 +39,119 @@ public class GrabAttention : MonoBehaviour {
 
 		if (Time.time >= timer) {
 
-			if (currentPathCheck < 1) {
+			if (currentPathCheck < paths) {
 
-				for (int i = 0; i < path1.Length; i++) {
-					if (path1 [i] != null) {
-						if (boy.GetComponent<CharController6> ().currentNode == path1 [i]) {
-							if (path1Size - i < shortestPath) {
-								shortestPath = path1Size - i;
-								chosenPath = 1;
-								closestNodeIndex = i;
+				if (CheckIfPathValid (path1, path1Size)) {
+					for (int i = 0; i < path1.Length; i++) {
+						if (path1 [i] != null) {
+							if (boy.GetComponent<CharController6> ().currentNode == path1 [i]) {
+								if (path1Size - i < shortestPath) {
+									shortestPath = path1Size - i;
+									chosenPath = 1;
+									closestNodeIndex = i;
+								}
 							}
-						}
-						if (boy.GetComponent<CharController6> ().nextNode == path1 [i]) {
-							if (path1Size - i < shortestPath) {
-								shortestPath = path1Size - i;
-								chosenPath = 1;
-								closestNodeIndex = i;
+							if (boy.GetComponent<CharController6> ().nextNode == path1 [i]) {
+								if (path1Size - i < shortestPath) {
+									shortestPath = path1Size - i;
+									chosenPath = 1;
+									closestNodeIndex = i;
+								}
 							}
 						}
 					}
+//					Debug.Log ("Checking path 1");
+				} else {
+//					Debug.Log ("Skip path 1, inactive node in pathway");
 				}
 
 				currentPathCheck++;
 			}
 
-			if (currentPathCheck < 2) {
+			if (currentPathCheck < paths) {
+
+				if (CheckIfPathValid (path2, path2Size)) {
+					for (int i = 0; i < path2.Length; i++) {
+						if (path2 [i] != null) {
+							if (boy.GetComponent<CharController6> ().currentNode == path2 [i]) {
+								if (path2Size - i < shortestPath) {
+									shortestPath = path2Size - i;
+									chosenPath = 2;
+									closestNodeIndex = i;
+									;
+								}
+							}
+							if (boy.GetComponent<CharController6> ().nextNode == path2 [i]) {
+								if (path2Size - i < shortestPath) {
+									shortestPath = path2Size - i;
+									chosenPath = 2;
+									closestNodeIndex = i;
+									;
+								}
+							}
+						}
+					}
+//					Debug.Log ("Checking path 2");
+				} else {
+//					Debug.Log ("Skip path 2");
+				}
 			
-				for (int i = 0; i < path2.Length; i++) {
-					if (path2 [i] != null) {
-						if (boy.GetComponent<CharController6> ().currentNode == path2 [i]) {
-							if (path2Size - i < shortestPath) {
-								shortestPath = path2Size - i;
-								chosenPath = 2;
-								closestNodeIndex = i;;
-							}
-						}
-						if (boy.GetComponent<CharController6> ().nextNode == path2 [i]) {
-							if (path2Size - i < shortestPath) {
-								shortestPath = path2Size - i;
-								chosenPath = 2;
-								closestNodeIndex = i;;
-							}
-						}
-					}
-				}
-			
 				currentPathCheck++;
 			}
 
-			if (currentPathCheck < 3) {
-				
-				for (int i = 0; i < path3.Length; i++) {
-					if (path3 [i] != null) {
-						if (boy.GetComponent<CharController6> ().currentNode == path3 [i]) {
-							if (path3Size - i < shortestPath) {
-								shortestPath = path3Size - i;
-								chosenPath = 3;
-								closestNodeIndex = i;
+			if (currentPathCheck < paths) {
+
+				if (CheckIfPathValid (path3, path3Size)) {
+					for (int i = 0; i < path3.Length; i++) {
+						if (path3 [i] != null) {
+							if (boy.GetComponent<CharController6> ().currentNode == path3 [i]) {
+								if (path3Size - i < shortestPath) {
+									shortestPath = path3Size - i;
+									chosenPath = 3;
+									closestNodeIndex = i;
+								}
 							}
-						}
-						if (boy.GetComponent<CharController6> ().nextNode == path3 [i]) {
-							if (path3Size - i < shortestPath) {
-								shortestPath = path3Size - i;
-								chosenPath = 3;
-								closestNodeIndex = i;
+							if (boy.GetComponent<CharController6> ().nextNode == path3 [i]) {
+								if (path3Size - i < shortestPath) {
+									shortestPath = path3Size - i;
+									chosenPath = 3;
+									closestNodeIndex = i;
+								}
 							}
 						}
 					}
+//					Debug.Log ("Checking path 3");
+				} else {
+//					Debug.Log ("Skip path 3");
 				}
 				
 				currentPathCheck++;
 			}
 
-			if (currentPathCheck < 4) {
-				
-				for (int i = 0; i < path4.Length; i++) {
-					if (path4 [i] != null) {
-						if (boy.GetComponent<CharController6> ().currentNode == path4 [i]) {
-							if (path4Size - i < shortestPath) {
-								shortestPath = path4Size - i;
-								chosenPath = 4;
-								closestNodeIndex = i;
+			if (currentPathCheck < paths) {
+
+				if (CheckIfPathValid (path4, path4Size)) {
+					for (int i = 0; i < path4.Length; i++) {
+						if (path4 [i] != null) {
+							if (boy.GetComponent<CharController6> ().currentNode == path4 [i]) {
+								if (path4Size - i < shortestPath) {
+									shortestPath = path4Size - i;
+									chosenPath = 4;
+									closestNodeIndex = i;
+								}
 							}
-						}
-						if (boy.GetComponent<CharController6> ().nextNode == path4 [i]) {
-							if (path4Size - i < shortestPath) {
-								shortestPath = path4Size - i;
-								chosenPath = 4;
-								closestNodeIndex = i;
+							if (boy.GetComponent<CharController6> ().nextNode == path4 [i]) {
+								if (path4Size - i < shortestPath) {
+									shortestPath = path4Size - i;
+									chosenPath = 4;
+									closestNodeIndex = i;
+								}
 							}
 						}
 					}
+//					Debug.Log ("Checking path 4");
+				} else {
+//					Debug.Log ("Skip path 4");
 				}
 				
 				currentPathCheck++;
@@ -137,9 +159,11 @@ public class GrabAttention : MonoBehaviour {
 
 			timer = Time.time + delay;
 
-			//Debug.Log (chosenPath + " chosen");
-			//Debug.Log (currentPathCheck);
-			//Debug.Log (closestNodeIndex);
+//			Debug.Log (chosenPath + " chosen");
+//			Debug.Log (currentPathCheck);
+//			Debug.Log (closestNodeIndex);
+		} else {
+//			Debug.Log ("On cooldown.");
 		}
 
 		if (chosenPath > 0) {
@@ -170,5 +194,15 @@ public class GrabAttention : MonoBehaviour {
 		}
 
 		boy.GetComponent<CharController6> ().DirectedPathwayFunc (closestNodeIndex);
+	}
+
+	bool CheckIfPathValid(Transform[] pathToCheck, int pathSize) {
+		for (int i = 0; i < pathSize; i++) {
+			if (!pathToCheck[i].gameObject.activeSelf) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
