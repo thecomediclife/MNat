@@ -247,12 +247,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  interval: 2
-  rb: {fileID: 0}
-  grow: 0
-  spawnPos: {x: 0, y: 0, z: 0}
+  growing: 0
   growSpeed: 12
-  rotSpeed: 12
+  interval: 2
+  activateLift: 0
+  lift: {fileID: 0}
+  liftSpeed: .600000024
+  liftTop: {x: 0, y: 0, z: 0}
+  treeMesh: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

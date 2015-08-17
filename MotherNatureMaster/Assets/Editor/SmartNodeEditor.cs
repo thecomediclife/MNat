@@ -5,7 +5,7 @@ using UnityEditor;
 [CustomEditor(typeof(SmartNodeScript))]
 [CanEditMultipleObjects]
 public class SmartNodeEditor : Editor {
-	private string[] options = new string[] {"Indefinite Pause", "Continue", "Pause with Timer", "Choose Direction"};
+	private string[] options = new string[] {"Indefinite Pause", "Continue", "Pause with Timer", "Choose Direction", "Do Nothing"};
 
 	SerializedObject smartNode;
 	SerializedProperty indexProp;
@@ -170,6 +170,11 @@ public class SmartNodeEditor : Editor {
 			GUILayout.Space (5);
 			GUILayout.Label ("Next Transform in Direction", GUILayout.Width (200));
 			chosenDirProp.objectReferenceValue = EditorGUILayout.ObjectField (chosenDirProp.objectReferenceValue, typeof(Transform), true) as Transform;
+		} else if (indexProp.intValue == 4) {
+			enabled1Prop.boolValue = false;
+			enabled2Prop.boolValue = false;
+			enabled3Prop.boolValue = false;
+			enabled4Prop.boolValue = false;
 		}
 
 		GUILayout.Space (15);
