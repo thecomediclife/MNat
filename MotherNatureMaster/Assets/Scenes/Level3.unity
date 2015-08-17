@@ -752,7 +752,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 95415378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.5, y: -1.5, z: -12}
+  m_LocalPosition: {x: -21.5, y: -1, z: -12}
   m_LocalScale: {x: 14, y: 3, z: 16}
   m_Children: []
   m_Father: {fileID: 1105231727}
@@ -825,7 +825,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 109532947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: -4.5, z: -10.5}
+  m_LocalPosition: {x: -20, y: -4, z: -10.5}
   m_LocalScale: {x: 10, y: 3, z: 9}
   m_Children: []
   m_Father: {fileID: 1105231727}
@@ -4915,6 +4915,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 420024, guid: afb7aaafaae4e9844ae0eb096ab12ca2, type: 2}
   m_PrefabInternal: {fileID: 1584998754}
+--- !u!4 &724095130 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
+  m_PrefabInternal: {fileID: 1651228829}
 --- !u!1 &726457316
 GameObject:
   m_ObjectHideFlags: 0
@@ -9106,6 +9110,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79be7ad0cc2260a4fae4732af7517e75, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1530002936
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 724095130}
+    m_Modifications:
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -.495999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 860fe4c5e608cb445b203bf422fe002c, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1001 &1546012326
 Prefab:
   m_ObjectHideFlags: 0
@@ -9784,7 +9830,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490906, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_RootOrder
-      value: 73
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 102050, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
       propertyPath: m_IsActive
@@ -9802,6 +9848,10 @@ Prefab:
       propertyPath: nextNode
       value: 
       objectReference: {fileID: 2140537039}
+    - target: {fileID: 2305338, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84f55b666514f47f0a5245e085be7bc3, type: 2}
   m_IsPrefabParent: 0
@@ -11128,7 +11178,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890609279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.5, y: -7, z: -8.5}
+  m_LocalPosition: {x: -20.5, y: -6.5, z: -8.5}
   m_LocalScale: {x: 10, y: 2, z: 3}
   m_Children: []
   m_Father: {fileID: 1105231727}
