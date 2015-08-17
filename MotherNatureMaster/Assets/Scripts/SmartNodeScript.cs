@@ -57,17 +57,19 @@ public class SmartNodeScript : MonoBehaviour {
 			played = true;
 
 		} else if (enabled2) {
-			other.GetComponent<CharController6>().Continue(chooseDirection, chosenDirection);
+			other.GetComponent<CharController6> ().Continue (chooseDirection, chosenDirection);
 			played = true;
 
 		} else if (enabled3) {
-			other.GetComponent<CharController6>().PauseTimed(snapToTarget, lookAtTarget, lookDirection, delay, chooseDirection, chosenDirection);
+			other.GetComponent<CharController6> ().PauseTimed (snapToTarget, lookAtTarget, lookDirection, delay, chooseDirection, chosenDirection);
 			played = true;
 
 		} else if (enabled4) {
-			other.GetComponent<CharController6>().ChooseDirection(snapToTarget, chosenDirection);
+			other.GetComponent<CharController6> ().ChooseDirection (snapToTarget, chosenDirection);
 			played = true;
 
+		} else if (!enabled1 && !enabled2 && !enabled3 && !enabled4) {
+			played = true;
 		}
 		//Debug.Log ("play action " + transform.name);
 	}

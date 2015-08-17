@@ -19,21 +19,49 @@ public class TouchController2 : MonoBehaviour
 		{
 			Touch touch = Input.touches[0];
 			Vector3 cur = touch.position;
+			cur += new Vector3(-2f,5f,0f);
 			Vector3 deltaPos = touch.deltaPosition;
+
+			Debug.DrawRay(Camera.main.ScreenToWorldPoint(cur), Camera.main.transform.forward * 100f, Color.green);
+//			Debug.DrawRay(Camera.main.ScreenToWorldPoint(cur + new Vector3(10f,0f,0f)), Camera.main.transform.forward * 100f, Color.red);
 
 			if (touch.phase == TouchPhase.Began)
 			{
 				int treeLayerMask = 1 << 11;
-				RaycastHit hit;
+//				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(cur);
 
-				if(Physics.Raycast(ray, out hit, Mathf.Infinity, treeLayerMask))
+				//RaycastAll to determine which tree is closest to finger
+				RaycastHit[] hits;
+				hits = Physics.RaycastAll(ray, Mathf.Infinity, treeLayerMask);
+				float closestDistance = 1000f;
+				for (int i = 0; i < hits.Length; i++) {
+					if (hits[i].transform != null) {
+						Vector3 hitPoint = hits[i].point;
+						hitPoint = new Vector3(hitPoint.x, 0f, hitPoint.z);
+
+						Vector3 treePoint = hits[i].transform.parent.transform.position;
+						treePoint = new Vector3(treePoint.x, 0f, treePoint.z);
+
+						if (Vector3.Distance(hitPoint, treePoint) < closestDistance) {
+							closestDistance = Vector3.Distance(hitPoint, treePoint);
+							target = hits[i].transform.parent.transform;
+						}
+					}
+				}
+
+				if (closestDistance > 999f) {
+					target = null;
+				}
+
+//				if(Physics.Raycast(ray, out hit, Mathf.Infinity, treeLayerMask))
+				if (target != null)
 				{
-					target = hit.transform;
+//					target = hit.transform.parent.transform;
 
 					if (target.GetComponent<TreeController5>().inSunLight == true)
 					{
-						dist = Vector3.Distance(hit.transform.position, Camera.main.transform.position);
+						dist = Vector3.Distance(target.transform.position, Camera.main.transform.position);
 
 						curV3 = new Vector3(cur.x, cur.y, dist);
 						curV3 = Camera.main.ScreenToWorldPoint(curV3);

@@ -40,6 +40,9 @@ public class CharController6 : MonoBehaviour {
 	public Transform[] nodeArray = new Transform[6];
 
 	private int nodeLayerMask = 1 << 10;
+
+	//Used for pauseTimed.
+	private Vector3 nextLookTarget;
 	
 	void Start () {
 		lookTarget = transform.forward + transform.position;
@@ -47,6 +50,7 @@ public class CharController6 : MonoBehaviour {
 	
 	void Update () {
 		Debug.DrawRay (transform.position, transform.forward, Color.green);
+		Debug.DrawRay (lookTarget + new Vector3 (0f, 2f, 0f), new Vector3 (0f, -4f, 0f), Color.black);
 
 		FillArrays ();
 
@@ -80,26 +84,32 @@ public class CharController6 : MonoBehaviour {
 			break;
 
 		case State.Continue:
+
 //			if (Vector3.Distance(transform.position, new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z))) < 0.05)
-				currentState = nextState;
+			currentState = nextState;
 
 			break;
 
 		case State.PauseTimed:
+
 			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, speed * Time.deltaTime);
+			Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
+			rot.eulerAngles = new Vector3(0f, rot.eulerAngles.y, 0f);
+			transform.rotation = rot;
+
 			if (Vector3.Distance(transform.position, nextNode.position) < 0.05) {
-				Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
-				rot.eulerAngles = new Vector3(0f, rot.eulerAngles.y, 0f);
-				transform.rotation = rot;
-				//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 1, 0)), rotateSpeed * Time.deltaTime);
+				lookTarget = nextLookTarget;
 			}
+
 			if (Time.time > timer) {
 				currentState = nextState;
 				nextState = State.Default;
 			}
+
 			break;
 
 		case State.ChosenDir:
+
 			if (nextNode != nullNode) {
 				MoveToNext();
 			} else {
@@ -124,15 +134,13 @@ public class CharController6 : MonoBehaviour {
 			break;
 
 		case State.SnapTo:
-//			transform.position = Vector3.MoveTowards(transform.position, nextNode.position, 10f * Time.deltaTime);
 
-//			if (Vector3.Distance(transform.position, nextNode.position) < 0.05)
-//				currentState = State.Pause;
 			transform.position = nextNode.position;
 
 			break;
 
 		case State.DirectedPath:
+
 			if (nextNode != nullNode) {
 				MoveToNext();
 			} else {
@@ -144,12 +152,11 @@ public class CharController6 : MonoBehaviour {
 
 				if (directedIndex >= 10 || directedPathway[directedIndex] == nullNode) {
 					PauseTimed(nextNode, false, nullNode, 2.0f, false, nullNode);
+					lookTarget = transform.position + transform.forward * 10f;
 				} else {
 					FindNextDirectedNode();
 				}
 			}
-
-
 
 			break;
 		}
@@ -428,10 +435,13 @@ public class CharController6 : MonoBehaviour {
 //		currentNode = nextNode;
 		nextNode = snapToTarget;
 
-		if (lookAtObject)
-			lookTarget = lookAtTarget.position;
-		else
-			lookTarget = transform.position + transform.forward * 10f;
+		if (lookAtObject) {
+			nextLookTarget = lookAtTarget.position;
+		} else {
+			nextLookTarget = transform.position + transform.forward * 10f;
+		}
+
+		lookTarget = snapToTarget.position;
 
 		timer = Time.time + delaySeconds;
 
@@ -473,19 +483,9 @@ public class CharController6 : MonoBehaviour {
 		previousNode = transformToSnapTo;
 		currentNode = transformToSnapTo;
 
-//		previousNode = nullNode;
-//		currentNode = nullNode;
-
 		nextNode = transformToSnapTo;
 
-/*		float distanceTemp = 100f;
-		for (int i = 0; i < nodeArray.Length; i++) {
-			if (nodeArray[i] != nullNode && Vector3.Distance(nodeArray[i].position, transform.position) < distanceTemp) {
-				distanceTemp = Vector3.Distance(nodeArray[i].position, transform.position);
-				nextNode = nodeArray[i];
-				currentNode = nodeArray[i];
-			}
-		}*/
+		lookTarget = transform.position + transform.forward * 10f;
 	}
 
 	public void DirectedPathwayFunc(int closestNodeIndex) {
@@ -512,7 +512,7 @@ public class CharController6 : MonoBehaviour {
 		if (!directedNodeExists) {
 			NextPathRandom();
 			currentState = State.Default;
-			Debug.Log ("couldn't find directed node in possible pathways");
+			Debug.Log ("couldn't find directed node " + directedPathway[directedIndex].name + " in possible pathways");
 		}
 
 	}
@@ -534,7 +534,7 @@ public class CharController6 : MonoBehaviour {
 		if (!directedNodeExists) {
 			NextPathRandom();
 			currentState = State.Default;
-			Debug.Log ("couldn't find directed node in possible pathways");
+			Debug.Log ("couldn't find directed node " + directedPathway[directedIndex].name + " in possible pathways");
 		}
 	}
 }

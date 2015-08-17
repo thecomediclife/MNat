@@ -32,7 +32,7 @@ public class TreeController5 : MonoBehaviour {
 	public bool decaying;
 	public float decaySpeed = 2f;
 
-
+	private Transform touchCollider;
 
 	void Awake()
 	{
@@ -53,6 +53,8 @@ public class TreeController5 : MonoBehaviour {
 		//	TEMPORARY: Provides color box to show where player touch screen to move tree
 		color.localScale = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
 		color.localPosition = new Vector3 (0, (treeHeight - 1f) / 2, 0);
+
+		touchCollider = transform.Find ("Platform").transform.Find("TouchCollider");
 	}
 
 	void Update ()
@@ -64,12 +66,13 @@ public class TreeController5 : MonoBehaviour {
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 
 		//  Disable node while tree is moving
-		if (Mathf.Abs (platform.localPosition.y - groundY) < 0.05 || Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.05) {
+		if (Mathf.Abs (platform.localPosition.y - groundY) < 0.15f || Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.15f) {
 			node.gameObject.SetActive (true);
 		} else {
 			node.gameObject.SetActive (false);
 		}
 
+		FaceCollider ();
 	}
 
 	void FixedUpdate ()
@@ -220,5 +223,12 @@ public class TreeController5 : MonoBehaviour {
 		kid.transform.parent = null;
 		kidAttached = false;
 	}
-	
+
+	void FaceCollider() {
+		Vector3 camForward = Camera.main.transform.forward;
+		camForward = new Vector3 (camForward.x, 0f, camForward.z);
+		camForward *= -1f;
+
+		touchCollider.transform.forward = camForward;
+	}
 }
