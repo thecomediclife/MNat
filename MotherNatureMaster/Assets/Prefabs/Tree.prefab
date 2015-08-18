@@ -166,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -1.5, z: -9}
+  m_LocalPosition: {x: -10, y: .5, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467824}
@@ -434,7 +434,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 0, g: 1, b: .0896551609, a: 1}
-  m_Intensity: 1
+  m_Intensity: .400000006
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -468,11 +468,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths: 1
-  path1Size: 5
+  path1Size: 3
   path1:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 416658}
   - {fileID: 0}
   - {fileID: 416658}
   - {fileID: 0}
@@ -536,7 +536,7 @@ MonoBehaviour:
   kidInRange: 0
   kidAttached: 0
   deltaY: 0
-  treeHeight: 4
+  treeHeight: 3
   maxHeightY: 0
   waitTime: 2
   activate: 0
