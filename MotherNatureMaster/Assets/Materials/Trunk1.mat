@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Rock1
+  m_Name: Trunk1
   m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c1e26d8cd8fc443ec8f2407db1876ab1, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -85,20 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MatCap
-        second:
-          m_Texture: {fileID: 2800000, guid: 8320987374e1fb544879fc552b145948, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -115,7 +101,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: .0205000006
+        second: .0199999996
       data:
         first:
           name: _ZWrite
@@ -123,7 +109,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 1
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -150,16 +136,12 @@ Material:
         second: 0
       data:
         first:
-          name: _MatCapAccurate
-        second: 0
-      data:
-        first:
           name: _yPosLow
         second: 0
       data:
         first:
           name: _yPosHigh
-        second: 20
+        second: 10
       data:
         first:
           name: _GradientStrength
@@ -168,40 +150,28 @@ Material:
         first:
           name: _EmissiveStrengh
         second: 1
-      data:
-        first:
-          name: _yRelPosLow
-        second: -10
-      data:
-        first:
-          name: _yRelPosHigh
-        second: 10
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: .270934254, g: .639705896, b: .0940744132, a: 1}
-      data:
-        first:
-          name: _Color
-        second: {r: .338235319, g: .534482777, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
           name: _ColorLow
-        second: {r: .328868866, g: .367647052, b: .297361583, a: 1}
+        second: {r: .329411775, g: .231372565, b: .333333343, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: .868566155, g: .875, b: .871783078, a: 1}
+        second: {r: .90196085, g: .521568656, b: .509803951, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .427451015, g: .360784322, b: .325490206, a: 1}
+        second: {r: .536764741, g: .299847901, b: 0, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .701960802, g: .654901981, b: .603921592, a: 1}
+        second: {r: .544117689, g: 0, b: .146349013, a: 1}
