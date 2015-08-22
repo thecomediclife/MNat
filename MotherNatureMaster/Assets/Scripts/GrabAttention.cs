@@ -197,8 +197,12 @@ public class GrabAttention : MonoBehaviour {
 	}
 
 	bool CheckIfPathValid(Transform[] pathToCheck, int pathSize) {
+		if (pathSize == 0) {
+			return false;
+		}
+
 		for (int i = 0; i < pathSize; i++) {
-			if (!pathToCheck[i].gameObject.activeSelf) {
+			if (!pathToCheck [i].gameObject.activeSelf) {
 				return false;
 			}
 		}
