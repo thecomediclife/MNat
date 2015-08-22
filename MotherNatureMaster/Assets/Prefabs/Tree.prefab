@@ -462,19 +462,19 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105774}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88495e8ed2d6fbc4d8fedd700ec0a514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paths: 1
-  path1Size: 3
+  paths: 0
+  path1Size: 0
   path1:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 416658}
   - {fileID: 0}
-  - {fileID: 416658}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -586,6 +586,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: path1Size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: paths
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: path1.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

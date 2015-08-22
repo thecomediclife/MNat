@@ -142,17 +142,28 @@ public class TreeController5 : MonoBehaviour {
 					}
 					break;
 				}
+			} else {
+				//Activate is false
+				growing = false;
+				decaying = true;
+				
+				if (decaying)
+					Decay ();
 			}
 		} else {
-//			if (activate || growing || decaying)
-//			{
-//				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
-//				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
-//				//	will decay regardless.
-//			}
-//
-//			if (decaying)
-//				Decay ();
+			if (activate || growing || decaying)
+			{
+				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
+				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
+				//	will decay regardless.
+			}
+
+			activate = false;
+			growing = false;
+			decaying = true;
+
+			if (decaying)
+				Decay ();
 		}
 	}
 
