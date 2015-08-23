@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Cliffside
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Name: Clear
+  m_Shader: {fileID: 4800000, guid: 871cfd8e86eb64240bb89d9cfa873e3f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -137,11 +137,11 @@ Material:
       data:
         first:
           name: _yPosLow
-        second: 0
+        second: -15
       data:
         first:
           name: _yPosHigh
-        second: 10
+        second: 15
       data:
         first:
           name: _GradientStrength
@@ -149,7 +149,11 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: .300000012
+        second: 1
+      data:
+        first:
+          name: _Transp
+        second: 1
     m_Colors:
       data:
         first:
@@ -162,16 +166,16 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: .720588207, g: .555906892, b: .160671666, a: 1}
+        second: {r: .160784319, g: .10980393, b: .521568656, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: 1, g: .70588237, b: 0, a: 1}
+        second: {r: .073072888, g: 0, b: .963235319, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .411764681, g: .169362232, b: .0610547587, a: 1}
+        second: {r: .160784319, g: .10980393, b: .521568656, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: .15947701, g: .111321382, b: .522058845, a: 1}
