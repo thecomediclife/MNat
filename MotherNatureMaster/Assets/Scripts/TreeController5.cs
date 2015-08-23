@@ -142,17 +142,28 @@ public class TreeController5 : MonoBehaviour {
 					}
 					break;
 				}
+			} else {
+				//Activate is false
+				growing = false;
+				decaying = true;
+				
+				if (decaying)
+					SunlightDecay ();
 			}
 		} else {
-//			if (activate || growing || decaying)
-//			{
-//				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
-//				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
-//				//	will decay regardless.
-//			}
-//
-//			if (decaying)
-//				Decay ();
+			if (activate || growing || decaying)
+			{
+				//	Need somethign that overrides all variables and sets decaying to true and starts Decay ().
+				//	Dragging can be true or false (depending on whether player is dragging or not or trying to drag), the tree
+				//	will decay regardless.
+			}
+
+			activate = false;
+			growing = false;
+			decaying = true;
+
+			if (decaying)
+				SunlightDecay ();
 		}
 	}
 
@@ -197,6 +208,22 @@ public class TreeController5 : MonoBehaviour {
 			growing = false;
 			activate = false;
 
+			if (kidAttached)
+				DetachKid();
+		}
+	}
+
+	void SunlightDecay() 
+	{
+		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
+		
+		if ((Mathf.Abs (groundY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y < groundY)) 
+		{
+			platform.localPosition = new Vector3 (platform.localPosition.x, groundY, platform.localPosition.z);
+			decaying = false;
+			growing = false;
+			activate = false;
+			
 			if (kidAttached)
 				DetachKid();
 		}
