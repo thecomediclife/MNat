@@ -202,7 +202,7 @@ public class GrabAttention : MonoBehaviour {
 		}
 
 		for (int i = 0; i < pathSize; i++) {
-			if (!pathToCheck [i].gameObject.activeSelf) {
+			if (pathToCheck[i] != null && !pathToCheck [i].gameObject.activeSelf) {
 				return false;
 			}
 		}

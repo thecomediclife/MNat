@@ -148,7 +148,7 @@ public class TreeController5 : MonoBehaviour {
 				decaying = true;
 				
 				if (decaying)
-					Decay ();
+					SunlightDecay ();
 			}
 		} else {
 			if (activate || growing || decaying)
@@ -163,7 +163,7 @@ public class TreeController5 : MonoBehaviour {
 			decaying = true;
 
 			if (decaying)
-				Decay ();
+				SunlightDecay ();
 		}
 	}
 
@@ -208,6 +208,22 @@ public class TreeController5 : MonoBehaviour {
 			growing = false;
 			activate = false;
 
+			if (kidAttached)
+				DetachKid();
+		}
+	}
+
+	void SunlightDecay() 
+	{
+		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
+		
+		if ((Mathf.Abs (groundY - platform.localPosition.y) < 0.05f) || (platform.localPosition.y < groundY)) 
+		{
+			platform.localPosition = new Vector3 (platform.localPosition.x, groundY, platform.localPosition.z);
+			decaying = false;
+			growing = false;
+			activate = false;
+			
 			if (kidAttached)
 				DetachKid();
 		}
