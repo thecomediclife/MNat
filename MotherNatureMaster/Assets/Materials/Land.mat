@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Land
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -32,6 +32,20 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -71,13 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -93,10 +100,6 @@ Material:
         second: .5
       data:
         first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
           name: _ZWrite
         second: 1
       data:
@@ -105,8 +108,16 @@ Material:
         second: .5
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -125,14 +136,42 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
+          name: _yPosLow
         second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 1, b: .960000038, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0, g: 1, b: .958217144, a: 1}
+      data:
+        first:
+          name: _ColorLow
+        second: {r: .173041135, g: .735906243, b: .760784328, a: .0196078438}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: .172549024, g: .737254918, b: .760784388, a: 1}
+      data:
+        first:
+          name: _ColorX
+        second: {r: .172549024, g: .737254918, b: .760784388, a: 1}
+      data:
+        first:
+          name: _ColorY
+        second: {r: .257352948, g: .187337816, b: .187337816, a: 1}
