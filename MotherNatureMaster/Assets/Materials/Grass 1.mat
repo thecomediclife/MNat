@@ -45,13 +45,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -85,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -100,6 +100,10 @@ Material:
         second: .5
       data:
         first:
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
           name: _ZWrite
         second: 1
       data:
@@ -108,16 +112,8 @@ Material:
         second: .5
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _BumpScale
         second: 1
-      data:
-        first:
-          name: _Parallax
-        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -136,6 +132,10 @@ Material:
         second: 0
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _yPosLow
         second: 0
       data:
@@ -149,7 +149,7 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: .100000001
+        second: .400000006
     m_Colors:
       data:
         first:
@@ -162,15 +162,15 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: 1, g: 0, b: .268965721, a: 1}
+        second: {r: .132203773, g: .235294104, b: .0484429076, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: 1, g: 0, b: .310344696, a: 1}
+        second: {r: .668762684, g: 1, b: .477941155, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .20588237, g: .605679691, b: 1, a: 1}
+        second: {r: .360294104, g: .682353079, b: 1, a: 1}
       data:
         first:
           name: _ColorY
