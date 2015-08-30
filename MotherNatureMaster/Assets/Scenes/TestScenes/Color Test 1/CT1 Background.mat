@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Bush2
+  m_Name: CT1 Background
   m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -137,11 +137,11 @@ Material:
       data:
         first:
           name: _yPosLow
-        second: 0
+        second: -1.51999998
       data:
         first:
           name: _yPosHigh
-        second: 10
+        second: 7.23000002
       data:
         first:
           name: _GradientStrength
@@ -149,6 +149,10 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
+        second: .5
+      data:
+        first:
+          name: _Transp
         second: 1
     m_Colors:
       data:
@@ -158,20 +162,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .532006919, g: .557958364, b: .882352948, a: 1}
       data:
         first:
           name: _ColorLow
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: .0117647061, g: .247058824, b: .388235301, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: 1, g: 0, b: .227586269, a: 1}
+        second: {r: .154033318, g: .566176474, b: .549122393, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .507352948, g: 1, b: .836916864, a: 1}
+        second: {r: .181552798, g: .492669493, b: .536764741, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .507352948, g: .164143607, b: .228051692, a: 1}
+        second: {r: .0194636714, g: .147058845, b: .104820482, a: .333999991}
