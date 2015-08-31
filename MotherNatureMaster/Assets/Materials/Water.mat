@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 618a0197c475c1f4abec4a94fb8527c4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,8 +19,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 47139d4fdafae47648da61d29b2dd3ba, type: 3}
+          m_Scale: {x: 1, y: 2}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -41,13 +41,6 @@ Material:
           name: _DecalTex
         second:
           m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -85,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -100,6 +100,10 @@ Material:
         second: .5
       data:
         first:
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
           name: _ZWrite
         second: 1
       data:
@@ -108,16 +112,8 @@ Material:
         second: .5
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _BumpScale
         second: 1
-      data:
-        first:
-          name: _Parallax
-        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -136,6 +132,10 @@ Material:
         second: 0
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _yPosLow
         second: 12.3000002
       data:
@@ -150,6 +150,14 @@ Material:
         first:
           name: _EmissiveStrengh
         second: 1
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 6
       data:
         first:
           name: _Transp
