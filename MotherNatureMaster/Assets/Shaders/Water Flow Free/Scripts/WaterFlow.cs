@@ -35,8 +35,8 @@ public class WaterFlow : MonoBehaviour {
 	void Update () {
 
 		// Update new UV speed
-		float newOffsetU = Time.time * m_SpeedU;
-		float newOffsetV = Time.time * m_SpeedV;
+		float newOffsetU = Time.time * m_SpeedU  * 100;
+		float newOffsetV = Time.time * m_SpeedV * 100;
 		
 		// Check if there is renderer component
 		if (this.GetComponent<Renderer>())

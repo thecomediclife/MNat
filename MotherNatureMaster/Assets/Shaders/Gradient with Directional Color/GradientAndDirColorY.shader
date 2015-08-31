@@ -53,7 +53,7 @@ Shader "Custom/GradientAndDirColorY" {
          
          	finalColor += gradient;															// Add the gradient color
          	finalColor = saturate(finalColor);												// Scale down to 0-1 values
-         	finalColor = lerp(finalColor, decal.rgb, decal.a);								// Splits the pixels between texture and color
+         	finalColor = lerp(finalColor, decal.rgb, decal.a);								// Splits the pixels between the decal texture and gradient color
 
          	o.Emission = lerp(half3(0,0,0), finalColor, _EmissiveStrengh);					// How much should go to emissive. 0 = diffuse color only (requires lighting to be lit)         	
          	o.Albedo = finalColor * saturate(1 - _EmissiveStrengh);							// the "color" before lighting is applied

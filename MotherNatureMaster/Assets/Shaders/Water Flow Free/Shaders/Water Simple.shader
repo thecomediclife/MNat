@@ -23,8 +23,8 @@ Shader "Water Flow/Water Simple" {
 		
 			fixed2 MainTexMoveScrolledUV = IN.uv_MainTex;
 			
-			fixed MainTexMoveU = _MainTexMoveSpeedU * _Time;
-			fixed MainTexMoveV = _MainTexMoveSpeedV * _Time;
+			fixed MainTexMoveU = _MainTexMoveSpeedU * _Time * 10;
+			fixed MainTexMoveV = _MainTexMoveSpeedV * _Time * 10;
 			
 			MainTexMoveScrolledUV += fixed2(MainTexMoveU, MainTexMoveV);
 		
