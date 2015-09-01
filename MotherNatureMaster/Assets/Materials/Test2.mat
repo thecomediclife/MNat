@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Test2
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 871cfd8e86eb64240bb89d9cfa873e3f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -149,7 +149,19 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: .200000003
+        second: 1
+      data:
+        first:
+          name: _Transp
+        second: 1
+      data:
+        first:
+          name: _xPosHigh
+        second: 8.93999958
+      data:
+        first:
+          name: _xPosLow
+        second: -10.1300001
     m_Colors:
       data:
         first:
@@ -166,12 +178,12 @@ Material:
       data:
         first:
           name: _ColorHigh
-        second: {r: .985294104, g: .809420109, b: .586829603, a: 1}
+        second: {r: 1, g: 0, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .926470578, g: .628797472, b: .435986131, a: 1}
+        second: {r: 1, g: .772058845, b: .772058845, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: 1, g: .772058845, b: .833367169, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
