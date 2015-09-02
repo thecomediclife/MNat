@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Step1
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Name: Vase1
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -113,7 +113,7 @@ Material:
       data:
         first:
           name: _yPosHigh
-        second: 10
+        second: 4
       data:
         first:
           name: _Parallax
@@ -150,6 +150,14 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedV
+        second: 0
     m_Colors:
       data:
         first:
@@ -162,16 +170,16 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: .105428204, g: .109212793, b: .183823526, a: 1}
+        second: {r: .580882311, g: .476134986, b: .0384407416, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: .105882362, g: .10980393, b: .184313729, a: 1}
+        second: {r: .95588237, g: .336206973, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .345098048, g: .345098048, b: .345098048, a: 1}
+        second: {r: .580392182, g: .474509835, b: .0392156877, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .105882362, g: .10980393, b: .184313729, a: 1}
+        second: {r: .956862807, g: .337254912, b: 0, a: 1}
