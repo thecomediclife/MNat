@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: CT2 Rocks
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7328ac37991b243c19e9ed4005b1b6d8, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -114,6 +114,22 @@ Material:
         second: .5
       data:
         first:
+          name: _yPosLow
+        second: -3
+      data:
+        first:
+          name: _yPosHigh
+        second: 5
+      data:
+        first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: .300000012
+      data:
+        first:
           name: _Parallax
         second: .0205000006
       data:
@@ -152,22 +168,6 @@ Material:
         first:
           name: _MatCapAccurate
         second: 0
-      data:
-        first:
-          name: _yPosLow
-        second: -3
-      data:
-        first:
-          name: _yPosHigh
-        second: 5
-      data:
-        first:
-          name: _GradientStrength
-        second: 1
-      data:
-        first:
-          name: _EmissiveStrengh
-        second: .300000012
       data:
         first:
           name: _yRelPosLow
