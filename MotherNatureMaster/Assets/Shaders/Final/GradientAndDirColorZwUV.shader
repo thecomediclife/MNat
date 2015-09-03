@@ -7,7 +7,7 @@ Shader "Custom/GradientAndDirColorZwUV" {
       	_zPosHigh ("Z Pos High", Float) = 10
       	_GradientStrength ("Graident Strength", Float) = 1
       	_EmissiveStrengh ("Emissive Strengh ", Float) = 1
-      	_ColorZ ("Color X", COLOR) = (1,1,1,1)
+      	_ColorZ ("Color Z", COLOR) = (1,1,1,1)
 	    _ColorY ("Color Y", COLOR) = (1,1,1,1)
 	    _MainTexMoveSpeedU ("U Move Speed", Range(-50,50)) = 0
 		_MainTexMoveSpeedV ("V Move Speed", Range(-50,50)) = 0
