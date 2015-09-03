@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Test2
+  m_Name: Sun1
   m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -40,7 +40,7 @@ Material:
         first:
           name: _DecalTex
         second:
-          m_Texture: {fileID: 2800000, guid: cffb19b605e194b6ebda8d946f8dc2d8, type: 3}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -145,11 +145,11 @@ Material:
       data:
         first:
           name: _yPosLow
-        second: 0
+        second: 10
       data:
         first:
           name: _yPosHigh
-        second: 10
+        second: 82.9000015
       data:
         first:
           name: _DecalTexMoveSpeedU
@@ -160,16 +160,12 @@ Material:
         second: 0
       data:
         first:
-          name: _xPosHigh
-        second: 8.93999958
+          name: _MainTexMoveSpeedU
+        second: 0
       data:
         first:
-          name: _xPosLow
-        second: -10.1300001
-      data:
-        first:
-          name: _Transp
-        second: 1
+          name: _MainTexMoveSpeedV
+        second: 0
     m_Colors:
       data:
         first:
@@ -178,20 +174,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .800000012, g: .800000012, b: .800000012, a: 1}
       data:
         first:
           name: _ColorLow
-        second: {r: .282466441, g: .1750108, b: .286764681, a: 1}
-      data:
-        first:
-          name: _ColorHigh
-        second: {r: 1, g: 0, b: .3931036, a: 1}
-      data:
-        first:
-          name: _ColorX
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _ColorHigh
+        second: {r: 1, g: .651223302, b: .0147058964, a: 1}
+      data:
+        first:
+          name: _ColorX
+        second: {r: 1, g: 0, b: 0, a: 1}
+      data:
+        first:
           name: _ColorY
-        second: {r: .544117689, g: .300064892, b: .300064892, a: 1}
+        second: {r: 1, g: .846551716, b: .345588207, a: 1}

@@ -1,6 +1,6 @@
 Shader "Custom/GradientAndDirColorXwUV" {
 	Properties {
-		_DecalTex ("Decal Texture", 2D) = "white" {}
+		_MainTex ("Decal Texture", 2D) = "white" {}
 		_ColorLow ("Color Low", COLOR) = (1,1,1,1)
       	_ColorHigh ("Color High", COLOR) = (1,1,1,1)
       	_xPosLow ("X Pos Low", Float) = 0
@@ -9,8 +9,8 @@ Shader "Custom/GradientAndDirColorXwUV" {
       	_EmissiveStrengh ("Emissive Strengh ", Float) = 1
       	_ColorX ("Color X", COLOR) = (1,1,1,1)
 	    _ColorY ("Color Y", COLOR) = (1,1,1,1)
-	    _DecalTexMoveSpeedU ("U Move Speed", Range(-50,50)) = 0
-		_DecalTexMoveSpeedV ("V Move Speed", Range(-50,50)) = 0
+	    _MainTexMoveSpeedU ("U Move Speed", Range(-50,50)) = 0
+		_MainTexMoveSpeedV ("V Move Speed", Range(-50,50)) = 0
 	}
 	
 	SubShader {
@@ -25,7 +25,7 @@ Shader "Custom/GradientAndDirColorXwUV" {
       	#define UP float3(0,1,0)
       	#define RIGHT float3(1,0,0)
       	
-      	sampler2D _DecalTex;
+      	sampler2D _MainTex;
       	fixed4 _ColorLow;
       	fixed4 _ColorHigh;
       	fixed4 _ColorX;
@@ -34,11 +34,11 @@ Shader "Custom/GradientAndDirColorXwUV" {
       	half _xPosHigh;
       	half _GradientStrength;
       	half _EmissiveStrengh;
-      	fixed _DecalTexMoveSpeedU;
-		fixed _DecalTexMoveSpeedV;
+      	fixed _MainTexMoveSpeedU;
+		fixed _MainTexMoveSpeedV;
       
 		struct Input {
-			float2 uv_DecalTex;
+			float2 uv_MainTex;
          	float3 worldPos;
          	float3 normal;
 		};
@@ -46,12 +46,12 @@ Shader "Custom/GradientAndDirColorXwUV" {
 		void surf (Input IN, inout SurfaceOutput o) {
 			
 			//	UV scrolling
-			fixed2 DecalTexMoveScrolledUV = IN.uv_DecalTex;
-			fixed DecalTexMoveU = _DecalTexMoveSpeedU * _Time;
-			fixed DecalTexMoveV = _DecalTexMoveSpeedV * _Time;
-			DecalTexMoveScrolledUV += fixed2(DecalTexMoveU, DecalTexMoveV);
+			fixed2 MainTexMoveScrolledUV = IN.uv_MainTex;
+			fixed MainTexMoveU = _MainTexMoveSpeedU * _Time;
+			fixed MainTexMoveV = _MainTexMoveSpeedV * _Time;
+			MainTexMoveScrolledUV += fixed2(MainTexMoveU, MainTexMoveV);
 			
-			fixed4 decal = tex2D(_DecalTex, DecalTexMoveScrolledUV);
+			fixed4 decal = tex2D(_MainTex, MainTexMoveScrolledUV);
 		
         	// 	Gradient color
          	half3 gradient = lerp(_ColorLow, _ColorHigh,  smoothstep( _xPosLow, _xPosHigh, IN.worldPos.x )).rgb;
