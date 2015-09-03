@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Material
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -100,6 +100,22 @@ Material:
         second: .5
       data:
         first:
+          name: _yPosLow
+        second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -136,20 +152,12 @@ Material:
         second: 0
       data:
         first:
-          name: _GradientStrength
-        second: 1
-      data:
-        first:
-          name: _EmissiveStrengh
-        second: 1
-      data:
-        first:
-          name: _yPosLow
+          name: _MainTexMoveSpeedU
         second: 0
       data:
         first:
-          name: _yPosHigh
-        second: 10
+          name: _MainTexMoveSpeedV
+        second: 0
     m_Colors:
       data:
         first:

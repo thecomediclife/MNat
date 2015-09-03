@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: unnamed
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: WaterLowPoly1
+  m_Shader: {fileID: 4800000, guid: f307c95fcec424eeab15ae06ac0a3336, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -34,6 +34,13 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,6 +100,22 @@ Material:
         second: .5
       data:
         first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
+      data:
+        first:
+          name: _xPosLow
+        second: -12.8900003
+      data:
+        first:
+          name: _xPosHigh
+        second: 15.5799999
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -127,6 +150,22 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedV
+        second: 4.5
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 0
     m_Colors:
       data:
         first:
@@ -136,3 +175,31 @@ Material:
         first:
           name: _Color
         second: {r: .800000012, g: .800000012, b: .800000012, a: 1}
+      data:
+        first:
+          name: _ColorLow
+        second: {r: 1, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: 0, g: 1, b: .0896549225, a: 1}
+      data:
+        first:
+          name: _ColorX
+        second: {r: 1, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ColorY
+        second: {r: 0, g: 1, b: .917241335, a: 1}
+      data:
+        first:
+          name: _ColorStart
+        second: {r: .5, g: .5, b: 1, a: 1}
+      data:
+        first:
+          name: _ColorEnd
+        second: {r: 0, g: 0, b: 1, a: 1}
+      data:
+        first:
+          name: _Dir
+        second: {r: 3.20000005, g: 1.98000002, b: 1, a: 0}
