@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Material
-  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_Name: Block_regular_material
+  m_Shader: {fileID: 4800000, guid: f307c95fcec424eeab15ae06ac0a3336, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 0e767554e67f54b74aff7044b965562c, type: 3}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -40,7 +40,7 @@ Material:
         first:
           name: _DecalTex
         second:
-          m_Texture: {fileID: 2800000, guid: 14bce000a39024537a78463975db0e76, type: 3}
+          m_Texture: {fileID: 2800000, guid: 101e98f11085944ce8d5231c0d540e4a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -109,7 +109,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -144,6 +144,14 @@ Material:
         second: 1
       data:
         first:
+          name: _DecalTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedV
+        second: 0
+      data:
+        first:
           name: _MainTexMoveSpeedU
         second: 0
       data:
@@ -152,34 +160,34 @@ Material:
         second: 0
       data:
         first:
-          name: _yPosLow
-        second: 0
+          name: _xPosHigh
+        second: 7.98999977
       data:
         first:
-          name: _yPosHigh
-        second: 10
+          name: _xPosLow
+        second: -7.78000021
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: .0641481578, g: .845588207, b: 0, a: 1}
-      data:
-        first:
-          name: _Color
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
           name: _ColorLow
-        second: {r: .222565904, g: .41911763, b: 0, a: 1}
+        second: {r: 0, g: .312931001, b: .375, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: .223529428, g: .419607878, b: 0, a: 1}
+        second: {r: 1, g: .193548411, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: .223529428, g: .419607878, b: 0, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .223529428, g: .419607878, b: 0, a: 1}
+        second: {r: .375, g: .222222224, b: 0, a: 1}
