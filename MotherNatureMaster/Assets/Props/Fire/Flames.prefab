@@ -433,7 +433,7 @@ ParticleSystem:
           rgba: 0
         ctime0: 4241
         ctime1: 32382
-        ctime2: 65535
+        ctime2: 52235
         ctime3: 65535
         ctime4: 0
         ctime5: 0
@@ -1124,7 +1124,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ColorModule.gradient.maxGradient.ctime2
+      value: 52235
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 182122}
