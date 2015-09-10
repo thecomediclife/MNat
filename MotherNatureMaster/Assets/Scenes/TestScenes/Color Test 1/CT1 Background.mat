@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: CT1 Background
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -137,11 +137,11 @@ Material:
       data:
         first:
           name: _yPosLow
-        second: -1.51999998
+        second: 0
       data:
         first:
           name: _yPosHigh
-        second: 7.23000002
+        second: 21.1000004
       data:
         first:
           name: _GradientStrength
@@ -150,6 +150,14 @@ Material:
         first:
           name: _EmissiveStrengh
         second: .5
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 0
       data:
         first:
           name: _Transp
@@ -178,4 +186,4 @@ Material:
       data:
         first:
           name: _ColorY
-        second: {r: .0194636714, g: .147058845, b: .104820482, a: .333999991}
+        second: {r: .102184266, g: .417419344, b: .772058845, a: .333999991}
