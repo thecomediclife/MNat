@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 459388}
   - 108: {fileID: 10816556}
+  - 114: {fileID: 11459656}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -112,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 3.33333325, y: 3.33333325, z: 3.33333325}
   m_Children: []
   m_Father: {fileID: 455316}
@@ -175,8 +176,8 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: .977941155, g: .215722322, b: 0, a: 1}
-  m_Intensity: .600000024
-  m_Range: 1.38999999
+  m_Intensity: .200000003
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -186,7 +187,7 @@ Light:
     m_Bias: .0500000007
     m_NormalBias: .400000006
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -197,6 +198,20 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11459656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2008df10eaf6146049e1642599cfde4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minFlickerIntensity: .5
+  maxFlickerIntensity: 4.5
+  flickerSpeed: .100000001
 --- !u!198 &19845552
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -73,6 +73,14 @@ ModelImporter:
     4300006: Body
     4300008: Head
     7400000: Default Take
+    7400002: ArmatureAction
+    7400004: ArmatureAction_001
+    7400006: Run
+    7400008: Walk_001
+    7400010: Idle1
+    7400012: Idle2
+    7400014: Idle3
+    7400016: Walk
     9500000: //RootNode
     13700000: Body
     13700002: Hair
@@ -98,7 +106,553 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle1
+      takeName: Idle1
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle2
+      takeName: Idle2
+      firstFrame: -1
+      lastFrame: 107
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle3
+      takeName: Idle3
+      firstFrame: -1
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body_0
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R
+        weight: 1
+      - path: Armature/Root/Body_0/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body_0/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body_0/Head_0
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_L
+        weight: 1
+      - path: Armature/Root/Body_0/Knee_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R
+        weight: 1
+      - path: Armature/Root/Body_0/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body_0/LegIK_R
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hair
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Legs
+        weight: 1
+      - path: Shoes
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

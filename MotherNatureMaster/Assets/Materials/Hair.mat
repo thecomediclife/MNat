@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Hair
-  m_Shader: {fileID: 4800000, guid: fd9ab5d078f8349f5ad7e590278a510e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 539e440f4713d8942abdef5d2853d5a3, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -156,7 +156,15 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: 1
+        second: .699999988
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 0
     m_Colors:
       data:
         first:
@@ -169,16 +177,16 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: .544117689, g: .348985821, b: 0, a: 1}
+        second: {r: .41911763, g: .221885815, b: 0, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: .522058845, g: .343933582, b: .0268706698, a: 1}
+        second: {r: .419607878, g: .223529428, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: 1, g: .639215708, b: 0, a: 1}
+        second: {r: .897058845, g: .63321805, b: 0, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .713235259, g: .398427963, b: 0, a: 1}
+        second: {r: .419607878, g: .223529428, b: 0, a: 1}
