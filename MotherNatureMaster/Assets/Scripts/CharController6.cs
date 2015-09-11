@@ -25,7 +25,7 @@ public class CharController6 : MonoBehaviour {
 	public Transform nextNode;
 	private Transform nullNode = null;
 	private Vector3 lookTarget;
-	private Transform chosenNode;
+	public Transform chosenNode;
 	private Transform directedNode;
 	public Transform[] directedPathway = new Transform[10];
 	private int directedIndex = 0;
@@ -118,12 +118,18 @@ public class CharController6 : MonoBehaviour {
 			}
 
 			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05 && chosenSnapTo) {
-				FindNextNode();
-				NextPathRandom();
-				currentState = State.Default;
-				chosenSnapTo = false;
+                if (chosenNode == nextNode) {
+                    FindNextNode();
+                    NextPathRandom();
+                    currentState = State.Default;
+                    chosenSnapTo = false;
+                } else {
+                    FindNextNode();
+                    NextPathChosen();
+                    chosenSnapTo = true;
+                }
+				
 			}
-
 
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
 				FindNextNode ();
@@ -187,16 +193,16 @@ public class CharController6 : MonoBehaviour {
 
 	void FillArrays() {
 		//Calculate the initial position of the raycasts
-		Vector3 forwardVec = transform.position + new Vector3(0f,0.5f,1f);
+		float rayDistance = 2.0f;
+		Vector3 forwardVec = transform.position + new Vector3(0f,rayDistance / 2f,1f);
 		forwardVec = new Vector3(Mathf.Round (forwardVec.x), forwardVec.y, Mathf.Round(forwardVec.z));
-		Vector3 backVec = transform.position + new Vector3 (0f, 0.5f, -1f);
+		Vector3 backVec = transform.position + new Vector3 (0f, rayDistance / 2f, -1f);
 		backVec = new Vector3 (Mathf.Round (backVec.x), backVec.y, Mathf.Round (backVec.z));
-		Vector3 rightVec = transform.position + new Vector3 (1f, 0.5f, 0f);
+		Vector3 rightVec = transform.position + new Vector3 (1f, rayDistance / 2f, 0f);
 		rightVec = new Vector3 (Mathf.Round (rightVec.x), rightVec.y, Mathf.Round (rightVec.z));
-		Vector3 leftVec = transform.position + new Vector3 (-1f, 0.5f, 0f);
+		Vector3 leftVec = transform.position + new Vector3 (-1f, rayDistance / 2f, 0f);
 		leftVec = new Vector3 (Mathf.Round (leftVec.x), leftVec.y, Mathf.Round (leftVec.z));
 		Vector3 downVec = new Vector3 (0f, -1f, 0f);
-		float rayDistance = 1f;
 
 		//Visually see raycasts in game if gizmos are on.
 		Debug.DrawRay (forwardVec, downVec * rayDistance, Color.blue);
