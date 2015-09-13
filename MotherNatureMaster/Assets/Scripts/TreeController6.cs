@@ -37,7 +37,9 @@ public class TreeController6 : MonoBehaviour {
 	private Transform touchCollider;
 
 	public float lastInput;
-	
+
+    private BoxCollider boxCollider;
+
 	void Awake()
 	{
 		trunk = transform.Find ("Trunk");
@@ -50,9 +52,9 @@ public class TreeController6 : MonoBehaviour {
 		maxHeightY = groundY + treeHeight;
 		
 		//	Update the box collider to match the maximum tree height that player inputs
-		BoxCollider boxCollider = GetComponent<BoxCollider> () as BoxCollider;
-		boxCollider.size = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
-		boxCollider.center = new Vector3 (0, (treeHeight - 1f) / 2, 0);
+		boxCollider = GetComponent<BoxCollider> () as BoxCollider;
+//  	boxCollider.size = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
+//		boxCollider.center = new Vector3 (0, (treeHeight - 1f) / 2, 0);
 		
 		//	TEMPORARY: Provides color box to show where player touch screen to move tree
 		color.localScale = new Vector3 (0.5f, treeHeight + 1f, 0.5f);
@@ -78,8 +80,11 @@ public class TreeController6 : MonoBehaviour {
 		trunk.localScale = new Vector3 (trunk.localScale.x, platform.localPosition.y + 0.5f, trunk.localScale.z); 
 		trunk.localPosition = new Vector3 (trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
 		
-		//  Disable node while tree is moving
-		if (Mathf.Abs (platform.localPosition.y - groundY) < 0.15f || Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.15f) {
+        boxCollider.size = new Vector3(trunk.localScale.x, platform.localPosition.y + 0.5f, trunk.localScale.z);
+        boxCollider.center = new Vector3(trunk.localPosition.x, platform.localPosition.y / 2, trunk.localPosition.z);
+
+        //  Disable node while tree is moving
+        if (Mathf.Abs (platform.localPosition.y - groundY) < 0.15f || Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.15f) {
 			node.gameObject.SetActive (true);
 		} else {
 			node.gameObject.SetActive (false);
