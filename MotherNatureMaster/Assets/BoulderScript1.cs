@@ -4,7 +4,7 @@ using System.Collections;
 public class BoulderScript1 : MonoBehaviour {
 
     public Vector3 direction = new Vector3(8f, 0f, 0f);
-    private Vector3 originalDirection;
+    public Vector3 originalDirection;
 
     public Vector3 awayDirection = new Vector3(8f, 0f, 0f);
 
@@ -36,9 +36,11 @@ public class BoulderScript1 : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        //When boulder collides with tree, it changes direction to the other way.
         if (collision.transform.tag == "Tree")
         {
             Debug.Log("true");
+            direction = awayDirection;
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections;
 public class BoulderSpawn : MonoBehaviour {
     public Transform[] boulderArray = new Transform[5];
 
+    public Vector3 direction;
+
     public float delay = 5.0f;
     private float delayTimer = 0.0f;
 
@@ -25,6 +27,9 @@ public class BoulderSpawn : MonoBehaviour {
                     boulderArray[i].position = this.transform.position;
                     boulderArray[i].GetComponent<Rigidbody>().useGravity = true;
                     boulderArray[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    boulderArray[i].GetComponent<BoulderScript1>().direction = direction;
+                    boulderArray[i].GetComponent<BoulderScript1>().originalDirection = direction;
+                    boulderArray[i].GetComponent<BoulderScript1>().awayDirection = direction;
                     break;
                 } 
             }
