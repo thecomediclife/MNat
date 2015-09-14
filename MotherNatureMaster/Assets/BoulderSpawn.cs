@@ -5,6 +5,7 @@ public class BoulderSpawn : MonoBehaviour {
     public Transform[] boulderArray = new Transform[5];
 
     public Vector3 direction;
+	public Vector3 awayDirection;
 
     public float delay = 5.0f;
     private float delayTimer = 0.0f;
@@ -29,7 +30,7 @@ public class BoulderSpawn : MonoBehaviour {
                     boulderArray[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     boulderArray[i].GetComponent<BoulderScript1>().direction = direction;
                     boulderArray[i].GetComponent<BoulderScript1>().originalDirection = direction;
-                    boulderArray[i].GetComponent<BoulderScript1>().awayDirection = direction;
+                    boulderArray[i].GetComponent<BoulderScript1>().awayDirection = awayDirection;
                     break;
                 } 
             }

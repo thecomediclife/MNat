@@ -29,9 +29,14 @@ public class BoulderScript1 : MonoBehaviour {
     }
 
     //Changes direction of the boulder rolling. Function is called outside of the script.
-    public void ChangeDirection(Vector3 newDirection)
+    public void ChangeDirection(Vector3 newDirection, bool newAwayDir, Vector3 newAwayDirec)
     {
         direction = newDirection;
+		FreezeConstraint ();
+
+		if (newAwayDir) {
+			awayDirection = newAwayDirec;
+		}
     }
 
     void OnCollisionEnter(Collision collision)
@@ -41,6 +46,16 @@ public class BoulderScript1 : MonoBehaviour {
         {
             Debug.Log("true");
             direction = awayDirection;
+
+			FreezeConstraint();
         }
     }
+
+	void FreezeConstraint() {
+		if (direction.x == 0f) {
+			this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezePositionX;
+		} else if (direction.z == 0f) {
+			this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+		}
+	}
 }
