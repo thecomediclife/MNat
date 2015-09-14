@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WaterTransparentTest1
+  m_Shader: {fileID: 4800000, guid: f09b7ce6c43a542d4943c78d5656fdaa, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: fbb9b6dca3d184efa9605bbf3cb06cef, type: 3}
+          m_Scale: {x: 5, y: 5}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _yPosLow
+        second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: .600000024
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: .5
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .665927768, g: .83088237, b: .783102453, a: .552999973}
+      data:
+        first:
+          name: _ColorLow
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _ColorX
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ColorY
+        second: {r: .492647052, g: .0713488311, b: 0, a: .597000003}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .387975782, g: .558173239, b: .573529422, a: .319000006}
