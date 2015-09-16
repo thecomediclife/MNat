@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BucketTrigger : MonoBehaviour {
     public int ballCounter = 0;
-    public Transform bottomBoundary;
 
     public Material whiteMat, blueMat, greenMat, redMat;
 
@@ -15,7 +14,6 @@ public class BucketTrigger : MonoBehaviour {
         } else
         {
             ballCounter = 0;
-            bottomBoundary.GetComponent<Collider>().enabled = false;
         }
 
         if (ballCounter == 0)

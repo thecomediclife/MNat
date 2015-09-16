@@ -39,22 +39,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &169526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 431560}
-  - 65: {fileID: 6535012}
-  m_Layer: 0
-  m_Name: Bottom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &427600
 Transform:
   m_ObjectHideFlags: 1
@@ -66,18 +50,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 450296}
-  m_RootOrder: 1
---- !u!4 &431560
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 169526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 450296}
   m_RootOrder: 0
 --- !u!4 &450296
 Transform:
@@ -86,10 +58,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106412}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
-  m_LocalPosition: {x: -3.5, y: 3, z: 6}
+  m_LocalPosition: {x: -3.5, y: 3, z: 6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 431560}
   - {fileID: 427600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -160,18 +131,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .200000003, y: 2.00000048, z: 3.21000051}
   m_Center: {x: -.899999976, y: 0, z: 1.5}
---- !u!65 &6535012
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 169526}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: .200000003}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6557390
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -225,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballCounter: 0
-  bottomBoundary: {fileID: 431560}
+  bottomBoundary: {fileID: 0}
   whiteMat: {fileID: 2100000, guid: c833237075aef9a41946528f56133215, type: 2}
   blueMat: {fileID: 2100000, guid: 34500e02b1be04e4ab239a3b200f71e3, type: 2}
   greenMat: {fileID: 2100000, guid: ea5f30688a605e24da8630ad1a4131b9, type: 2}

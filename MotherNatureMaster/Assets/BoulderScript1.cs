@@ -8,6 +8,9 @@ public class BoulderScript1 : MonoBehaviour {
 
     public Vector3 awayDirection = new Vector3(8f, 0f, 0f);
 
+	public float resetDelay = 10f;
+	public float timer;
+
 	// Use this for initialization
 	void Start () {
         originalDirection = direction;
@@ -20,7 +23,7 @@ public class BoulderScript1 : MonoBehaviour {
 
         GetComponent<Rigidbody>().AddForce(direc);
 
-        if (transform.position.y < -20f)
+        if (transform.position.y < -20f || Time.time > timer + resetDelay)
         {
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             transform.position = Vector3.zero;
@@ -44,7 +47,7 @@ public class BoulderScript1 : MonoBehaviour {
         //When boulder collides with tree, it changes direction to the other way.
         if (collision.transform.tag == "Tree")
         {
-            Debug.Log("true");
+//            Debug.Log("true");
             direction = awayDirection;
 
 			FreezeConstraint();

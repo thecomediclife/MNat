@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TreeController6 : MonoBehaviour {
@@ -39,6 +39,9 @@ public class TreeController6 : MonoBehaviour {
 	public float lastInput;
 
     private BoxCollider boxCollider;
+
+	public bool onGround = true;
+	public bool fullyGrown;
 
 	void Awake()
 	{
@@ -88,6 +91,18 @@ public class TreeController6 : MonoBehaviour {
 			node.gameObject.SetActive (true);
 		} else {
 			node.gameObject.SetActive (false);
+		}
+
+		//State at what position the tree is at
+		if (Mathf.Abs (platform.localPosition.y - groundY) < 0.15f) {
+			onGround = true;
+			fullyGrown = false;
+		} else if (Mathf.Abs (platform.localPosition.y - maxHeightY) < 0.15f) {
+			onGround = false;
+			fullyGrown = true;
+		} else {
+			onGround = false;
+			fullyGrown = false;
 		}
 		
 		FaceCollider ();
@@ -149,7 +164,7 @@ public class TreeController6 : MonoBehaviour {
 		}
 	}
 	
-	void Grow ()
+	public void Grow ()
 	{
 		platform.GetComponent<Rigidbody> ().MovePosition (platform.position + transform.up * Time.deltaTime * growSpeed);
 		
@@ -169,12 +184,12 @@ public class TreeController6 : MonoBehaviour {
 //			if (!kidAttached) {
 //				GetComponent<GrabAttention>().FindClosestPath();
 //			}
-			
+
 			DetachKid();
 		}
 	}
 	
-	void Decay ()
+	public void Decay ()
 	{
 		platform.GetComponent<Rigidbody> ().MovePosition (platform.position - transform.up * Time.deltaTime * decaySpeed);
 		
