@@ -9,6 +9,7 @@ public class SmartNodeEditor : Editor {
 
 	SerializedObject smartNode;
 	SerializedProperty indexProp;
+	SerializedProperty channelProp;
 	SerializedProperty snapToProp;
 	SerializedProperty lookAtTargetProp;
 	SerializedProperty lookDirProp;
@@ -34,6 +35,7 @@ public class SmartNodeEditor : Editor {
 //		indexProp = serializedObject.FindProperty ("Index");
 		smartNode = new SerializedObject(target);
 		indexProp = smartNode.FindProperty ("index");
+		channelProp = smartNode.FindProperty ("channel");
 		snapToProp = smartNode.FindProperty ("snapToTarget");
 		lookAtTargetProp = smartNode.FindProperty ("lookAtTarget");
 		lookDirProp = smartNode.FindProperty ("lookDirection");
@@ -54,6 +56,12 @@ public class SmartNodeEditor : Editor {
 
 	public override void OnInspectorGUI() {
 		smartNode.Update ();
+
+		GUILayout.Space (5);
+		GUILayout.BeginHorizontal();
+		GUILayout.Label ("Channel", GUILayout.Width (150));
+		channelProp.intValue = EditorGUILayout.IntField(channelProp.intValue);
+		GUILayout.EndHorizontal();
 
 		GUILayout.Space (5);
 		triggerEnableProp.boolValue = EditorGUILayout.ToggleLeft (" Enable SmartNode", triggerEnableProp.boolValue);

@@ -29,7 +29,7 @@ public class TouchController4 : MonoBehaviour {
 			Touch touch = Input.touches[0];
 			Vector3 cur = touch.position;
 			cur += new Vector3(-2f,5f,0f);
-			Vector3 deltaPos = touch.deltaPosition;
+//			Vector3 deltaPos = touch.deltaPosition;
 			
 			Debug.DrawRay(Camera.main.ScreenToWorldPoint(cur), Camera.main.transform.forward * 100f, Color.green);
 

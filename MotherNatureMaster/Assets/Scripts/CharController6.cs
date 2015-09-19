@@ -2,16 +2,7 @@
 using System.Collections;
 
 public class CharController6 : MonoBehaviour {
-	//1. player clicks on flower.
-	//2. flower picks closest pathway.
-	//3. flower sends array to boy.
-	//4. boy determines closest point on array going toward array.
-	//5. boy ignores all commands and walks pathway until reaches destination or obstruction.
-	//6. Upon obstruction, boy pauses for 3 seconds, staring at obstruction or flower, then continues default AI.
-	//7. Upon destination, boy pauses for 3 seconds (activates button/lever/etc.), then continues default AI.
-
-	//Smartnode has bool now that checks if it will be ignored when player is on DirectedPath.
-	//GrabAttention script made. It determines out of the pathways inputted, which pathway is quickest to reach the target.
+	public int channel;
 
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
@@ -43,9 +34,20 @@ public class CharController6 : MonoBehaviour {
 
 	//Used for pauseTimed.
 	private Vector3 nextLookTarget;
+
+	//Used to determine respawn point;
+	[HideInInspector] public Vector3 respawnPoint;
+	[HideInInspector] public Transform originPrevNode;
+	[HideInInspector] public Transform originNextNode;
+
+	private int invokeCounter;
 	
 	void Start () {
 		lookTarget = transform.forward + transform.position;
+
+		respawnPoint = transform.position;
+		originPrevNode = previousNode;
+		originNextNode = nextNode;
 	}
 	
 	void Update () {
@@ -543,4 +545,39 @@ public class CharController6 : MonoBehaviour {
 			Debug.Log ("couldn't find directed node " + directedPathway[directedIndex].name + " in possible pathways");
 		}
 	}
+
+	void OnCollisionEnter(Collision collision) {
+		if ((collision.transform.tag == "Kid" || collision.transform.tag == "Enemy") && channel == 0) {
+			Respawn ();
+		}
+	}
+
+	void Respawn() {
+		transform.position = respawnPoint;
+		previousNode = originPrevNode;
+		currentNode = previousNode;
+		nextNode = originNextNode;
+		Pause (currentNode, false, null);
+
+		for (int i = 0; i < nodeArray.Length; i++) {
+			nodeArray[i] = nullNode;
+		}
+
+		lookTarget = nextNode.position;
+
+		invokeCounter = 0;
+		InvokeRepeating ("FlashRespawn", 0.1f, 0.15f);
+	}
+
+	void FlashRespawn() {
+		this.GetComponent<Renderer> ().enabled = !this.GetComponent<Renderer> ().enabled;
+		invokeCounter++;
+
+		if (invokeCounter > 7) {
+			CancelInvoke();
+			this.GetComponent<Renderer> ().enabled = true;
+			currentState = State.Default;
+		}
+	}
+
 }

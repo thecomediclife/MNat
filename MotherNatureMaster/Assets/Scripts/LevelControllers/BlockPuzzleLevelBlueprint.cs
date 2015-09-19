@@ -6,7 +6,7 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 	public enum PuzzleLayer{Layer1, Layer2, Layer3, Layer4};
 	public PuzzleLayer currentPuzzle = PuzzleLayer.Layer1;
 
-	public Transform[] currentBlocks, trees, lights, cylinders = new Transform[8];
+	public Transform[] pillars, lights, cylinders = new Transform[8];
 	public Transform[] blockLayer1, blockLayer2, blockLayer3, blockLayer4 = new Transform[8];
 	public Transform[] blockLayers = new Transform[4];
 	public Transform[] icons = new Transform[5];
@@ -15,7 +15,7 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 	public Transform key;
 	public Transform nullCube;
 
-	public Material greyMat, greenMat, whiteMat, redMat;
+	public Material greyMat, greenMat, blueMat, redMat;
 
 	public bool resetting;
 	public bool puzzleCompleted;
@@ -53,9 +53,10 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 			}
 		} else {
 			bool finishedReset = true;
-			for (int i = 0; i < trees.Length; i++) {
-				trees[i].GetComponent<TreeController6>().Decay();
-				if (!trees[i].GetComponent<TreeController6>().onGround)
+			for (int i = 0; i < pillars.Length; i++) {
+				pillars[i].GetComponent<PillarController>().Fall();
+				pillars[i].GetComponent<PillarController>().grow = false;
+				if (!pillars[i].GetComponent<PillarController>().atGroundHeight)
 					finishedReset = false;
 			}
 
@@ -87,13 +88,15 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 
 		////////////////////////////////Puzzle has been completed
 		if (puzzleCompleted) {
-			for (int i = 0; i < trees.Length; i++) {
-				trees[i].GetComponent<TreeController6>().Decay();
+			for (int i = 0; i < pillars.Length; i++) {
+				pillars[i].GetComponent<PillarController>().Fall();
+				pillars[i].GetComponent<PillarController>().grow = false;
 			}
 			VanishBlocks(blockLayer4, 3);
 		}
 
 		MatchCylinderHeight();
+		MatchCylinderColor ();
 
 		if (Mathf.Abs(key.transform.position.y - 18.5f) < 0.1f && currentPuzzle == PuzzleLayer.Layer1) {
 			resetting = true;
@@ -113,37 +116,63 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 			icons[3].GetComponent<Renderer>().material = redMat;
 			wallHeight -= 1.0f;
 		}
-		if (Mathf.Abs(key.transform.position.y - 14.5f) < 0.1f && currentPuzzle == PuzzleLayer.Layer4) {
+		if (Mathf.Abs(key.transform.position.y - 15.5f) < 0.1f && currentPuzzle == PuzzleLayer.Layer4) {
 			puzzleCompleted = true;
+		}
+
+		if (Mathf.Abs(key.transform.position.y - 14.5f) < 0.1f && currentPuzzle == PuzzleLayer.Layer4) {
 			icons[4].GetComponent<Renderer>().material = redMat;
 		}
+
+//		if (Input.GetKey (KeyCode.Z)) {
+//			blockLayer1[2].GetComponent<Rigidbody>().MovePosition(new Vector3(blockLayer1[2].position.x - 0.05f, blockLayer1[2].position.y, blockLayer1[2].position.z));
+//		}
 
 	}
 
 	void EnableLayer(Transform[] blockLayer) {
 		for (int i = 0; i < blockLayer.Length; i++) {
 			if (blockLayer[i] == nullCube) {
-				trees[i].GetComponent<TreeController6>().maxHeightY = 2.0f;
+				pillars[i].GetComponent<PillarController>().pillarHeight = 3.5f;
 				lights[i].GetComponent<Renderer>().material = greyMat;
 			} else {
-				trees[i].GetComponent<TreeController6>().maxHeightY = 3.5f;
-				lights[i].GetComponent<Renderer>().material = greenMat;
+				pillars[i].GetComponent<PillarController>().pillarHeight = 4.5f;
+//				lights[i].GetComponent<Renderer>().material = greenMat;
 			}
 		}
 	}
 
-
 	//This function makes sure the cylinder height is correct based on the height of the platform of the tree. Never goes below the 12f y value.
 	void MatchCylinderHeight() {
-		for (int i = 0; i < trees.Length; i++) {
-			//Vector3 cylPos = cylinders[i].localPosition;
-			Vector3 treePos = trees[i].transform.GetChild(0).transform.localPosition;
-			float yPos = treePos.y + 10f;
-			if (yPos < 12f) {
-				yPos = 12f;
+		for (int i = 0; i < pillars.Length; i++) {
+			Vector3 platformPos = pillars[i].transform.GetChild(0).transform.localPosition;
+			float yPos = platformPos.y;
+
+			if (pillars[i].GetComponent<PillarController>().pillarHeight == 4.5f) {
+				yPos += 6.5f;
+				if (yPos < 8.5f) {
+					yPos = 8.5f;
+				}
+			} else if (pillars[i].GetComponent<PillarController>().pillarHeight == 3.5f) {
+				yPos += 6.5f;
+				if (yPos < 9.5f) {
+					yPos = 9.5f;
+				}
 			}
 
-			cylinders[i].localPosition = new Vector3(cylinders[i].localPosition.x, yPos, cylinders[i].localPosition.z);
+			cylinders[i].localPosition = Vector3.MoveTowards(cylinders[i].localPosition, new Vector3(cylinders[i].localPosition.x, yPos, cylinders[i].localPosition.z), 0.05f);
+		}
+	}
+
+	void MatchCylinderColor() {
+		for (int i = 0; i < cylinders.Length; i++) {
+			if (Mathf.Abs (cylinders[i].localPosition.y - 10.5f) < 0.15f) {
+				lights[i].GetComponent<Renderer>().material = blueMat;
+			} else if (Mathf.Abs (cylinders[i].localPosition.y - 8.5f	) < 0.15f) {
+				lights[i].GetComponent<Renderer>().material = greenMat;
+			} else {
+				lights[i].GetComponent<Renderer>().material = greyMat;
+			}
 		}
 	}
 
@@ -151,17 +180,21 @@ public class BlockPuzzleLevelBlueprint : MonoBehaviour {
 	void AddBlockForce(Transform[] blockLayer) {
 		for (int i = 0; i < blockLayer.Length; i++) {
 			if (blockLayer[i] != nullCube) {
-				if (Mathf.Approximately(cylinders[i].localPosition.y,13.5f)) {
+				if (Mathf.Abs (cylinders[i].localPosition.y - 10.5f) < 0.15f) {
 					if (i < 4) {
-						blockLayer[i].GetComponent<Rigidbody>().AddForce(-10f,0f,0f);
+//						blockLayer[i].GetComponent<Rigidbody>().AddForce(-10f,0f,0f);
+						blockLayer[i].GetComponent<Rigidbody>().MovePosition(new Vector3(blockLayer[i].position.x - 0.05f, blockLayer[i].position.y, blockLayer[i].position.z));
 					} else {
-						blockLayer[i].GetComponent<Rigidbody>().AddForce(0f,0f,-10f);
+//						blockLayer[i].GetComponent<Rigidbody>().AddForce(0f,0f,-10f);
+						blockLayer[i].GetComponent<Rigidbody>().MovePosition(new Vector3(blockLayer[i].position.x, blockLayer[i].position.y, blockLayer[i].position.z - 0.05f));
 					}
-				} else if (Mathf.Approximately(cylinders[i].localPosition.y,12f)) {
+				} else if (Mathf.Abs (cylinders[i].localPosition.y - 8.5f) < 0.15f) {
 					if (i < 4) {
-						blockLayer[i].GetComponent<Rigidbody>().AddForce(10f,0f,0f);
+//						blockLayer[i].GetComponent<Rigidbody>().AddForce(10f,0f,0f);
+						blockLayer[i].GetComponent<Rigidbody>().MovePosition(new Vector3(blockLayer[i].position.x + 0.05f, blockLayer[i].position.y, blockLayer[i].position.z));
 					} else {
-						blockLayer[i].GetComponent<Rigidbody>().AddForce(0f,0f,10f);
+//						blockLayer[i].GetComponent<Rigidbody>().AddForce(0f,0f,10f);
+						blockLayer[i].GetComponent<Rigidbody>().MovePosition(new Vector3(blockLayer[i].position.x, blockLayer[i].position.y, blockLayer[i].position.z + 0.05f));
 					}
 				}
 			}
