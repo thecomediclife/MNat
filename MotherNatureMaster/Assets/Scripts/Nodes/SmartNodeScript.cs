@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SmartNodeScript : MonoBehaviour {
 	public int index = 0;
+	public int channel;
 
 	public bool triggerEnabled = true;					//Enables the smart node script
 	public bool ignorable = true;						//Checks if directing path will ignore this smart node.
@@ -30,22 +31,26 @@ public class SmartNodeScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Kid" && triggerEnabled) {
-			if (ignorable) {
+			if (other.GetComponent<CharController6>().channel == channel) {
+				if (ignorable) {
 
-				if (other.GetComponent<CharController6>().currentState != CharController6.State.DirectedPath)
+					if (other.GetComponent<CharController6>().currentState != CharController6.State.DirectedPath)
+						PlayAction(other);
+
+				} else if (!ignorable) {
 					PlayAction(other);
-
-			} else if (!ignorable) {
-				PlayAction(other);
+				}
 			}
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "Kid" && triggerEnabled) {
-			ReducePlayTimes(other);
+			if (other.GetComponent<CharController6>().channel == channel) {
+				ReducePlayTimes(other);
 
-			played = false;
+				played = false;
+			}
 		}
 	}
 

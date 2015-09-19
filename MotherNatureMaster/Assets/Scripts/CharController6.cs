@@ -2,16 +2,7 @@
 using System.Collections;
 
 public class CharController6 : MonoBehaviour {
-	//1. player clicks on flower.
-	//2. flower picks closest pathway.
-	//3. flower sends array to boy.
-	//4. boy determines closest point on array going toward array.
-	//5. boy ignores all commands and walks pathway until reaches destination or obstruction.
-	//6. Upon obstruction, boy pauses for 3 seconds, staring at obstruction or flower, then continues default AI.
-	//7. Upon destination, boy pauses for 3 seconds (activates button/lever/etc.), then continues default AI.
-
-	//Smartnode has bool now that checks if it will be ignored when player is on DirectedPath.
-	//GrabAttention script made. It determines out of the pathways inputted, which pathway is quickest to reach the target.
+	public int channel;
 
 	public float speed = 2.0f;
 	public float rotateSpeed = 10.0f;
@@ -25,7 +16,7 @@ public class CharController6 : MonoBehaviour {
 	public Transform nextNode;
 	private Transform nullNode = null;
 	private Vector3 lookTarget;
-	private Transform chosenNode;
+	public Transform chosenNode;
 	private Transform directedNode;
 	public Transform[] directedPathway = new Transform[10];
 	private int directedIndex = 0;
@@ -43,9 +34,20 @@ public class CharController6 : MonoBehaviour {
 
 	//Used for pauseTimed.
 	private Vector3 nextLookTarget;
+
+	//Used to determine respawn point;
+	[HideInInspector] public Vector3 respawnPoint;
+	[HideInInspector] public Transform originPrevNode;
+	[HideInInspector] public Transform originNextNode;
+
+	private int invokeCounter;
 	
 	void Start () {
 		lookTarget = transform.forward + transform.position;
+
+		respawnPoint = transform.position;
+		originPrevNode = previousNode;
+		originNextNode = nextNode;
 	}
 	
 	void Update () {
@@ -118,12 +120,18 @@ public class CharController6 : MonoBehaviour {
 			}
 
 			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05 && chosenSnapTo) {
-				FindNextNode();
-				NextPathRandom();
-				currentState = State.Default;
-				chosenSnapTo = false;
+                if (chosenNode == nextNode) {
+                    FindNextNode();
+                    NextPathRandom();
+                    currentState = State.Default;
+                    chosenSnapTo = false;
+                } else {
+                    FindNextNode();
+                    NextPathChosen();
+                    chosenSnapTo = true;
+                }
+				
 			}
-
 
 			if (nextNode != nullNode && Vector3.Distance (transform.position, nextNode.position) < 0.05 && !chosenSnapTo) {
 				FindNextNode ();
@@ -187,16 +195,16 @@ public class CharController6 : MonoBehaviour {
 
 	void FillArrays() {
 		//Calculate the initial position of the raycasts
-		Vector3 forwardVec = transform.position + new Vector3(0f,0.5f,1f);
+		float rayDistance = 2.0f;
+		Vector3 forwardVec = transform.position + new Vector3(0f,rayDistance / 2f,1f);
 		forwardVec = new Vector3(Mathf.Round (forwardVec.x), forwardVec.y, Mathf.Round(forwardVec.z));
-		Vector3 backVec = transform.position + new Vector3 (0f, 0.5f, -1f);
+		Vector3 backVec = transform.position + new Vector3 (0f, rayDistance / 2f, -1f);
 		backVec = new Vector3 (Mathf.Round (backVec.x), backVec.y, Mathf.Round (backVec.z));
-		Vector3 rightVec = transform.position + new Vector3 (1f, 0.5f, 0f);
+		Vector3 rightVec = transform.position + new Vector3 (1f, rayDistance / 2f, 0f);
 		rightVec = new Vector3 (Mathf.Round (rightVec.x), rightVec.y, Mathf.Round (rightVec.z));
-		Vector3 leftVec = transform.position + new Vector3 (-1f, 0.5f, 0f);
+		Vector3 leftVec = transform.position + new Vector3 (-1f, rayDistance / 2f, 0f);
 		leftVec = new Vector3 (Mathf.Round (leftVec.x), leftVec.y, Mathf.Round (leftVec.z));
 		Vector3 downVec = new Vector3 (0f, -1f, 0f);
-		float rayDistance = 1f;
 
 		//Visually see raycasts in game if gizmos are on.
 		Debug.DrawRay (forwardVec, downVec * rayDistance, Color.blue);
@@ -537,4 +545,39 @@ public class CharController6 : MonoBehaviour {
 			Debug.Log ("couldn't find directed node " + directedPathway[directedIndex].name + " in possible pathways");
 		}
 	}
+
+	void OnCollisionEnter(Collision collision) {
+		if ((collision.transform.tag == "Kid" || collision.transform.tag == "Enemy") && channel == 0) {
+			Respawn ();
+		}
+	}
+
+	void Respawn() {
+		transform.position = respawnPoint;
+		previousNode = originPrevNode;
+		currentNode = previousNode;
+		nextNode = originNextNode;
+		Pause (currentNode, false, null);
+
+		for (int i = 0; i < nodeArray.Length; i++) {
+			nodeArray[i] = nullNode;
+		}
+
+		lookTarget = nextNode.position;
+
+		invokeCounter = 0;
+		InvokeRepeating ("FlashRespawn", 0.1f, 0.15f);
+	}
+
+	void FlashRespawn() {
+		this.GetComponent<Renderer> ().enabled = !this.GetComponent<Renderer> ().enabled;
+		invokeCounter++;
+
+		if (invokeCounter > 7) {
+			CancelInvoke();
+			this.GetComponent<Renderer> ().enabled = true;
+			currentState = State.Default;
+		}
+	}
+
 }
