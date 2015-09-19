@@ -19,22 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: fbb9b6dca3d184efa9605bbf3cb06cef, type: 3}
-          m_Scale: {x: 5, y: 5}
+          m_Texture: {fileID: 2800000, guid: 0000b614d88a146c99804c684c08aec7, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _InvFade
         second: 1
-      data:
-        first:
-          name: _yPosLow
-        second: 0
-      data:
-        first:
-          name: _yPosHigh
-        second: 10
       data:
         first:
           name: _GradientStrength
@@ -46,11 +38,19 @@ Material:
       data:
         first:
           name: _MainTexMoveSpeedU
-        second: .600000024
+        second: 1
       data:
         first:
           name: _MainTexMoveSpeedV
-        second: .5
+        second: 1
+      data:
+        first:
+          name: _yPosLow
+        second: -4
+      data:
+        first:
+          name: _yPosHigh
+        second: 3
     m_Colors:
       data:
         first:
@@ -59,11 +59,11 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .0329801105, g: .316384822, b: .448529422, a: 0}
       data:
         first:
           name: _ColorHigh
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: 1, g: 0, b: 0, a: 0}
       data:
         first:
           name: _ColorX
@@ -71,7 +71,7 @@ Material:
       data:
         first:
           name: _ColorY
-        second: {r: .492647052, g: .0713488311, b: 0, a: .597000003}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _TintColor

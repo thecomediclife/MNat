@@ -25,8 +25,6 @@ public class FishController : MonoBehaviour {
 			transform.localPosition = nextDest;
 			nextDest = calcDest();
 
-			print (nextDest);
-
 			speed = Random.Range(0.2f, 1.5f);
 		}
 	}

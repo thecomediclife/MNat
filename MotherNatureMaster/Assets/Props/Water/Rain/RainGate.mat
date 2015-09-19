@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Rain
-  m_Shader: {fileID: 4800000, guid: a1bddbe2b64bb4b7fae974fdfa501297, type: 3}
+  m_Name: RainGate
+  m_Shader: {fileID: 4800000, guid: 618a0197c475c1f4abec4a94fb8527c4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -20,7 +20,7 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 62d5639f94bb94d21a75d6a7a44b811e, type: 3}
-          m_Scale: {x: .5, y: .5}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -34,6 +34,13 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 62d5639f94bb94d21a75d6a7a44b811e, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,14 +100,6 @@ Material:
         second: .5
       data:
         first:
-          name: _MainTexMoveSpeedU
-        second: 0
-      data:
-        first:
-          name: _MainTexMoveSpeedV
-        second: 14
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -135,6 +134,38 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 16
+      data:
+        first:
+          name: _yPosLow
+        second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
+          name: _DecalTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _DecalTexMoveSpeedV
+        second: 18
     m_Colors:
       data:
         first:
@@ -144,3 +175,19 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ColorLow
+        second: {r: .698529422, g: .338992208, b: .338992208, a: 0}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: .441176474, g: .194636688, b: .194636688, a: 0}
+      data:
+        first:
+          name: _ColorX
+        second: {r: .45588237, g: .0770977437, b: .0770977437, a: 0}
+      data:
+        first:
+          name: _ColorY
+        second: {r: 1, g: .948529422, b: .948529422, a: 1}
