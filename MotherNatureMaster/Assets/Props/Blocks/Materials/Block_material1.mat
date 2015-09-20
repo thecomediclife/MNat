@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Grass
+  m_Name: Block_material1
   m_Shader: {fileID: 4800000, guid: 07acf3fb57cd2402da4d3e2a6285efd8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 2b9df3210337f419f81e37f321ee2810, type: 3}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -40,7 +40,7 @@ Material:
         first:
           name: _DecalTex
         second:
-          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 101e98f11085944ce8d5231c0d540e4a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -141,7 +141,7 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: .100000001
+        second: .300000012
       data:
         first:
           name: _MainTexMoveSpeedU
@@ -152,28 +152,28 @@ Material:
         second: 0
       data:
         first:
-          name: _yPosLow
+          name: _DecalTexMoveSpeedU
         second: 0
       data:
         first:
-          name: _yPosHigh
-        second: 25.2000008
+          name: _DecalTexMoveSpeedV
+        second: 0
       data:
         first:
           name: _zPosLow
-        second: -20
+        second: -7.11000013
       data:
         first:
           name: _zPosHigh
-        second: 20
+        second: 2.3599999
       data:
         first:
           name: _xPosHigh
-        second: 10
+        second: 5
       data:
         first:
           name: _xPosLow
-        second: 0
+        second: -5
     m_Colors:
       data:
         first:
@@ -186,20 +186,20 @@ Material:
       data:
         first:
           name: _ColorLow
-        second: {r: .597640514, g: .911764681, b: .382136643, a: 1}
+        second: {r: 0, g: .312931001, b: .375, a: 1}
       data:
         first:
           name: _ColorHigh
-        second: {r: 0, g: .823529422, b: .24421905, a: 1}
+        second: {r: 1, g: .193548411, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: 1, g: .748478711, b: .0882353187, a: 1}
-      data:
-        first:
-          name: _ColorY
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _ColorY
+        second: {r: .375, g: .222222224, b: 0, a: 1}
+      data:
+        first:
           name: _ColorZ
-        second: {r: .301470578, g: .101967998, b: .101967998, a: 1}
+        second: {r: .227450997, g: .0431372561, b: .125490203, a: 1}
