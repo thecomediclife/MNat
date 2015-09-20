@@ -15,7 +15,7 @@ Shader "Custom/GradientAndDirColorYwUV" {
 	
 	SubShader {
 		Tags { 
-      		"Queue" = "Geometry"
+      		"Queue" = "Overlay"
       		"RenderType"="Opaque" 
       	}
 		
