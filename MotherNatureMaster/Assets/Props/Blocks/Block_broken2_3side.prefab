@@ -25,7 +25,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164120}
-  m_LocalRotation: {x: .499999851, y: -.500000238, z: -.49999994, w: -.500000119}
+  m_LocalRotation: {x: .499999791, y: -.500000179, z: -.499999881, w: -.50000006}
   m_LocalPosition: {x: -1, y: 9, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -41,7 +41,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 802dcced0c0c54df99d8acc00bd0b650, type: 2}
+  - {fileID: 2100000, guid: c833237075aef9a41946528f56133215, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -146,6 +146,10 @@ Prefab:
       propertyPath: decals.Array.data[5]
       value: 
       objectReference: {fileID: 2800000, guid: a8a48562ab72f4410a8059b3e261777a, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c833237075aef9a41946528f56133215, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 164120}
