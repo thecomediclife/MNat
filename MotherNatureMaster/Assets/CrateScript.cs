@@ -4,6 +4,8 @@ using System.Collections;
 public class CrateScript : MonoBehaviour {
 	//Crates need to block pathways.
 	//kid needs to push blocks
+	public Transform kid;
+	public bool pushable;
 
 	public bool pushF;
 	public bool pushB;
@@ -17,7 +19,7 @@ public class CrateScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		kid = GameObject.Find ("Kid").transform;
 	}
 	
 	// Update is called once per frame
@@ -30,112 +32,155 @@ public class CrateScript : MonoBehaviour {
 		this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, -100f, 0f));
 
 		//PillarPushing
-		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward, out hit, 0.77f, pillarLayerMask)) {
+		float str = 0.8f;
+		if (PillarRayCast (transform.forward, str)) {
 			pushF = true;
-
-			Vector3 newPos = hit.point - transform.forward * 0.75f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushF = false;
 		}
 
-		if (Physics.Raycast(transform.position, -transform.forward, out hit, 0.77f, pillarLayerMask)) {
+		if (PillarRayCast (-transform.forward, str)) {
 			pushB = true;
-
-			Vector3 newPos = hit.point + transform.forward * 0.75f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushB = false;
 		}
 
-		if (Physics.Raycast(transform.position, transform.right, out hit, 0.77f, pillarLayerMask)) {
+		if (PillarRayCast (transform.right, str)) {
 			pushR = true;
-
-			Vector3 newPos = hit.point - transform.right * 0.75f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushR = false;
 		}
 
-		if (Physics.Raycast(transform.position, -transform.right, out hit, 0.77f, pillarLayerMask)) {
+		if (PillarRayCast (-transform.right, str)) {
 			pushL = true;
-
-			Vector3 newPos = hit.point + transform.right * 0.75f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);;
 		} else {
 			pushL = false;
 		}
 
 		//KidPushing
-		RaycastHit hit2;
-		if (Physics.Raycast(transform.position, transform.forward, out hit2, 0.52f, kidLayerMask)) {
+		str = 0.55f;
+		if (KidRayCast(transform.forward, str)) {
 			pushF = true;
-			
-			Vector3 newPos = hit.point - transform.forward * 0.5f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushF = false;
 		}
-		
-		if (Physics.Raycast(transform.position, -transform.forward, out hit2, 0.52f, kidLayerMask)) {
+
+		if (KidRayCast(-transform.forward, str)) {
 			pushB = true;
-			
-			Vector3 newPos = hit.point + transform.forward * 0.5f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushB = false;
 		}
-		
-		if (Physics.Raycast(transform.position, transform.right, out hit2, 0.52f, kidLayerMask)) {
+
+		if (KidRayCast(transform.right, str)) {
 			pushR = true;
-			
-			Vector3 newPos = hit.point - transform.right * 0.5f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
 		} else {
 			pushR = false;
 		}
-		
-		if (Physics.Raycast(transform.position, -transform.right, out hit2, 0.52f, kidLayerMask)) {
+
+		if (KidRayCast(-transform.right, str)) {
 			pushL = true;
-			
-			Vector3 newPos = hit.point + transform.right * 0.5f;
-			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);;
 		} else {
 			pushL = false;
 		}
 
-
 		if (!pushF && !pushB && !pushL && !pushR) {
+
 			Vector3 snapPos = transform.position * 2f;
 			snapPos = new Vector3(Mathf.Round(snapPos.x), transform.position.y, Mathf.Round(snapPos.z));
 			snapPos = snapPos / 2f;
-			transform.position = new Vector3(snapPos.x, transform.position.y, snapPos.z);
+			transform.position = Vector3.MoveTowards(transform.position,new Vector3(snapPos.x, transform.position.y, snapPos.z), 1.0f);
+
+		}
+
+		//Determines if kid can push the block
+		if ((Mathf.Abs(transform.position.x - kid.transform.position.x) < 0.1f || Mathf.Abs (transform.position.z - kid.transform.position.z) < 0.1f) && Vector3.Distance(transform.position, kid.transform.position) < 2f) {
+
+			//ignore tree layer and node layer;
+			int layerMask = (1 << 10);
+			layerMask |= (1 << 11);
+			layerMask = ~layerMask;
+
+			RaycastHit hit3;
+			Debug.DrawRay(transform.position, kid.transform.forward * 1f, Color.blue);
+			if (Physics.Raycast(transform.position, kid.transform.forward, out hit3, 1f, layerMask)) {
+				pushable = false;
+			} else {
+				pushable = true;
+			}
+
 		}
 
 		//Clears out set inactive nodes once they're far enough.
-		for (int i = 0; i < nodeArray.Length; i++) {
-			if (nodeArray[i] != null) {
-				if (Vector3.Distance(nodeArray[i].position, transform.position) > 0.75f) {
-					nodeArray[i].gameObject.SetActive(true);
-					nodeArray[i] = null;
+		if (!pushable) {
+			for (int i = 0; i < nodeArray.Length; i++) {
+				if (nodeArray [i] != null) {
+					if (Vector3.Distance (nodeArray [i].position, transform.position) > 0.75f) {
+						nodeArray [i].gameObject.SetActive (true);
+						nodeArray [i] = null;
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < nodeArray.Length; i++) {
+				if (nodeArray [i] != null) {
+					nodeArray [i].gameObject.SetActive (true);
+					nodeArray [i] = null;
 				}
 			}
 		}
 	}
 
+
 	void OnTriggerStay(Collider other) {
 		if (other.tag == "Node") {
-			if (Vector3.Distance(other.transform.position, transform.position) < 0.75f) {
-				other.transform.gameObject.SetActive(false);
-				for (int i = 0; i < nodeArray.Length; i++) {
-					if (nodeArray[i] == null) {
-						nodeArray[i] = other.transform;
-						break;
+			if (!pushable) {
+				if (Vector3.Distance(other.transform.position, transform.position) < 0.75f) {
+					other.transform.gameObject.SetActive(false);
+					for (int i = 0; i < nodeArray.Length; i++) {
+						if (nodeArray[i] == null) {
+							nodeArray[i] = other.transform;
+							break;
+						}
 					}
 				}
 			}
 		}
 	}
-	
+
+	bool PillarRayCast(Vector3 direction, float strength) {
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, direction, out hit, strength, pillarLayerMask)) {
+
+			PillarController pillCont = hit.transform.parent.GetComponent<PillarController>();
+
+			if (pillCont.grow && pillCont.currentDirection != PillarController.Direction.Ydir) {
+				
+				Vector3 newPos = hit.point - direction * 0.75f;
+				transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
+
+				return true;
+
+			}
+
+			return false;
+		} else {
+
+			return false;
+		}
+	}
+
+	bool KidRayCast(Vector3 direction, float strength) {
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, direction, out hit, strength, kidLayerMask)) {
+				
+			Vector3 newPos = hit.point - direction * 0.5f;
+			transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
+			
+			return true;
+				
+		} else {
+			
+			return false;
+		}
+	}
 }
