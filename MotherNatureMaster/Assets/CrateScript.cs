@@ -11,6 +11,7 @@ public class CrateScript : MonoBehaviour {
 	public bool pushB;
 	public bool pushL;
 	public bool pushR;
+	public bool falling;
 
 	private int pillarLayerMask = 1 << 12;
 	private int kidLayerMask = 1 << 13;
@@ -29,7 +30,17 @@ public class CrateScript : MonoBehaviour {
 		Debug.DrawRay (transform.position, transform.right * 0.75f, Color.green);
 		Debug.DrawRay (transform.position, -transform.right * 0.75f, Color.green);
 
-		this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, -100f, 0f));
+		//ignore tree layer and node layer;
+		int fallLayerMask = (1 << 10);
+		fallLayerMask |= (1 << 11);
+		fallLayerMask = ~fallLayerMask;
+
+		if (!Physics.Raycast (transform.position, new Vector3 (0f, -1f, 0f), 0.52f, fallLayerMask)) {
+			this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0f, -100f, 0f));
+			falling = true;
+		} else {
+			falling = false;
+		}
 
 		//PillarPushing
 		float str = 0.8f;
@@ -83,7 +94,7 @@ public class CrateScript : MonoBehaviour {
 			pushL = false;
 		}
 
-		if (!pushF && !pushB && !pushL && !pushR) {
+		if (!pushF && !pushB && !pushL && !pushR && !falling) {
 
 			Vector3 snapPos = transform.position * 2f;
 			snapPos = new Vector3(Mathf.Round(snapPos.x), transform.position.y, Mathf.Round(snapPos.z));

@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5492518}
   - 114: {fileID: 11455520}
   - 65: {fileID: 6526994}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,17 +114,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c8a5d7ab7a3f344afefee24b46bdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kid: {fileID: 0}
+  pushable: 0
   pushF: 0
   pushB: 0
   pushL: 0
   pushR: 0
+  falling: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 162642}
