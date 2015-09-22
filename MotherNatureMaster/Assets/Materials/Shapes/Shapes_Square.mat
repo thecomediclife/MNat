@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Brown
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Shapes_Square
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 4f1a284080b5143a1b0df184e64e682d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -129,28 +129,8 @@ Material:
         second: 0
       data:
         first:
-          name: _yPosLow
-        second: 0
-      data:
-        first:
-          name: _yPosHigh
-        second: 10
-      data:
-        first:
-          name: _GradientStrength
+          name: _InvFade
         second: 1
-      data:
-        first:
-          name: _EmissiveStrengh
-        second: 1
-      data:
-        first:
-          name: _MainTexMoveSpeedU
-        second: 0
-      data:
-        first:
-          name: _MainTexMoveSpeedV
-        second: 0
     m_Colors:
       data:
         first:
@@ -159,20 +139,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .573529422, g: .573529422, b: .573529422, a: 1}
-      data:
-        first:
-          name: _ColorLow
-        second: {r: .235294104, g: .235294104, b: .235294104, a: 1}
-      data:
-        first:
-          name: _ColorHigh
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _ColorX
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _ColorY
-        second: {r: 0, g: 0, b: 0, a: 1}
+          name: _TintColor
+        second: {r: .5, g: .5, b: .5, a: .5}
