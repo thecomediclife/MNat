@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlockRandomizer : MonoBehaviour {
+public class BlockRandomizerX : MonoBehaviour {
 
 	public int minimum = 1;
 	public int maximum = 10;
@@ -12,9 +12,9 @@ public class BlockRandomizer : MonoBehaviour {
 		//	Random y position
 		int rando1 = Random.Range (minimum, maximum);
 		if (rando1%2 == 0) {
-			float yPos = transform.position.y;
-			yPos += Random.Range (-0.1f, 0.2f);
-			transform.position = new Vector3 (transform.position.x, yPos, transform.position.z);
+			float xPos = transform.position.x;
+			xPos += Random.Range (-0.1f, 0.2f);
+			transform.position = new Vector3 (xPos,transform.position.y, transform.position.z);
 		}
 
 		//	Random rotation
