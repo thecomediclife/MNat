@@ -181,14 +181,14 @@ public class PillarController : MonoBehaviour {
 	//Raises the pillar upwards
 	public void Rise() {
 		//ignore tree layer and node layer;
-		int layerMask = (1 << 10);
-		layerMask |= (1 << 11);
-		layerMask |= (1 << 14);
-		layerMask = ~layerMask;
+//		int layerMask = (1 << 10);
+//		layerMask |= (1 << 11);
+//		layerMask |= (1 << 14);
+//		layerMask = ~layerMask;
 
-		if (!Physics.Raycast (platform.position + transform.up * 0.5f, transform.up, 0.05f, layerMask)) {
+//		if (!Physics.Raycast (platform.position + transform.up * 0.5f, transform.up, 0.05f, layerMask)) {
 			platform.position = Vector3.MoveTowards (platform.position, transform.position + pillarFinalPosition, moveSpeed * Time.deltaTime);
-		}
+//		}
 
 		Debug.DrawRay (platform.position + transform.up * 0.5f, transform.up * 0.05f, Color.green);
 
