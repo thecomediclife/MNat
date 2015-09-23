@@ -3,6 +3,7 @@ using System.Collections;
 
 public class OrbitalCamera : MonoBehaviour {
 	public bool allowRotate = false;
+    public bool panningCamera = false;
 	public Vector3 centerPoint = Vector3.zero;
 
 	public float omega = 45f;
@@ -33,6 +34,21 @@ public class OrbitalCamera : MonoBehaviour {
 				lastOmega = omega;
 			}
 		}
+
+        if (panningCamera)
+        {
+            centerPoint += Input.GetAxis("Horizontal") * 8f * Time.deltaTime * transform.right;
+            centerPoint += Input.GetAxis("Vertical") * 8f * Time.deltaTime * transform.up;
+
+            if (Input.GetKey(KeyCode.Q))
+            {
+                this.GetComponent<Camera>().orthographicSize -= 8f * Time.deltaTime;
+            } else if (Input.GetKey(KeyCode.E))
+            {
+                this.GetComponent<Camera>().orthographicSize += 8f * Time.deltaTime;
+            }
+            //this.GetComponent<Camera>().orthographicSize -= Input.GetAxis("Vertical") * 0.25f;
+        }
 
 		if (moveRight) {
 			omega += xScrollSpeed * Time.deltaTime;
