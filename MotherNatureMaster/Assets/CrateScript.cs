@@ -36,14 +36,15 @@ public class CrateScript : MonoBehaviour {
 		fallLayerMask = ~fallLayerMask;
 
 		if (!Physics.Raycast (transform.position, new Vector3 (0f, -1f, 0f), 0.52f, fallLayerMask)) {
-			this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0f, -100f, 0f));
+	//		this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0f, -100f, 0f));
 			falling = true;
 		} else {
 			falling = false;
 		}
+        this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, -100f, 0f));
 
-		//PillarPushing
-		float str = 0.8f;
+        //PillarPushing
+        float str = 0.8f;
 		if (PillarRayCast (transform.forward, str)) {
 			pushF = true;
 		} else {
@@ -94,6 +95,7 @@ public class CrateScript : MonoBehaviour {
 			pushL = false;
 		}
 
+        //Rounds out final position
 		if (!pushF && !pushB && !pushL && !pushR && !falling) {
 
 			Vector3 snapPos = transform.position * 2f;
