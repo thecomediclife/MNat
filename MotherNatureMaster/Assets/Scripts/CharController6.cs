@@ -552,7 +552,7 @@ public class CharController6 : MonoBehaviour {
 		}
 	}
 
-	void Respawn() {
+	public void Respawn() {
 		transform.position = respawnPoint;
 		previousNode = originPrevNode;
 		currentNode = previousNode;
