@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Black
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: KidTest01
+  m_Shader: {fileID: 4800000, guid: 4a6aba8ad13e9704687a790b59eaf008, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -80,7 +80,14 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _SpecGlossMap
+          name: _MatCap
+        second:
+          m_Texture: {fileID: 2800000, guid: 3d029b4d5da96d34ca7a873ccfb351aa, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -105,11 +112,11 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: .5
       data:
         first:
           name: _Metallic
-        second: 1
+        second: 0
       data:
         first:
           name: _BumpScale
@@ -149,7 +156,7 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: 1
+        second: .99000001
       data:
         first:
           name: _MainTexMoveSpeedU
@@ -166,24 +173,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _ColorLow
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _ColorHigh
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _ColorX
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _ColorY
+          name: _ColorLow
+        second: {r: .889705896, g: .889705896, b: .889705896, a: 1}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ColorX
         second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ColorY
+        second: {r: 1, g: 1, b: 1, a: 1}
