@@ -20,7 +20,18 @@ public class TouchController5 : MonoBehaviour {
 	private float currentPos;
 	private float previousPos;
 //	public float deltaY;
-	
+
+	public bool enableCursor;
+
+	public Transform cursor;
+
+	private bool animationPlaying;
+	private bool animGrow = true;
+
+	void Start() {
+		cursor = this.transform.Find ("FingerTouchIndicator");
+	}
+
 	void Update ()
 	{
 		if (Input.touchCount > 0) 
@@ -50,6 +61,11 @@ public class TouchController5 : MonoBehaviour {
 				
 //				previousPos = touch.position.y;
 //				currentPos = touch.position.y;
+
+				if (enableCursor) {
+					cursor.GetComponent<SpriteRenderer>().enabled = true;
+					animationPlaying = true;
+				}
 			}
 			
 			if (touch.phase == TouchPhase.Moved) {
@@ -78,9 +94,38 @@ public class TouchController5 : MonoBehaviour {
 //				currentPos = touch.position.y;
 				
 				target = null;
+
+				if (enableCursor) {
+					cursor.GetComponent<SpriteRenderer>().enabled = false;;
+				}
+			}
+
+			if (enableCursor) {
+				Vector3 curPos = touch.position;
+				cursor.position = Camera.main.ScreenToWorldPoint(curPos) + Camera.main.transform.forward * 5f;
 			}
 			
 //			deltaY = currentPos - previousPos;
+		}
+
+		if (animationPlaying) {
+			if (animGrow) {
+				
+				cursor.localScale = Vector3.MoveTowards (cursor.localScale, new Vector3 (1.5f, 1.5f, 1f), 5f * Time.deltaTime);
+				
+				if (Vector3.Distance (cursor.localScale, new Vector3 (1.5f, 1.5f, 1f)) < 0.1f) {
+					animGrow = false;
+				}
+				
+			} else {
+				
+				cursor.localScale = Vector3.MoveTowards (cursor.localScale, new Vector3 (1f, 1f, 1f), 5f * Time.deltaTime);
+				
+				if (Vector3.Distance (cursor.localScale, new Vector3 (1f, 1f, 1f)) < 0.1f) {
+					animGrow = true;
+					animationPlaying = false;
+				}
+			}
 		}
 	}
 
@@ -116,4 +161,5 @@ public class TouchController5 : MonoBehaviour {
 			target = null;
 		}
 	}
+
 }
