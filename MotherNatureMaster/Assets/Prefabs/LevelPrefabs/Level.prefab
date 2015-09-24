@@ -104,6 +104,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &185154
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 458696}
+  - 212: {fileID: 21271114}
+  m_Layer: 0
+  m_Name: FingerTouchIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &189888
 GameObject:
   m_ObjectHideFlags: 1
@@ -209,6 +225,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 462872}
   m_RootOrder: 0
+--- !u!4 &458696
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485882}
+  m_RootOrder: 1
 --- !u!4 &460232
 Transform:
   m_ObjectHideFlags: 1
@@ -275,6 +303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 408564}
+  - {fileID: 458696}
   m_Father: {fileID: 469566}
   m_RootOrder: 0
 --- !u!20 &2096294
@@ -617,6 +646,8 @@ MonoBehaviour:
   fingerMove: 0
   fingerStationary: 0
   fingerUp: 0
+  enableCursor: 1
+  cursor: {fileID: 0}
 --- !u!114 &11489102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowRotate: 0
+  panningCamera: 0
   centerPoint: {x: 0, y: 13, z: 0}
   omega: 45
   phi: 45
@@ -642,6 +674,32 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195204}
   m_Enabled: 1
+--- !u!212 &21271114
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185154}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 8060f69152116441c9e0a20daa0214d6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

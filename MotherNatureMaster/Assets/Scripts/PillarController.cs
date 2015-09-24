@@ -282,23 +282,23 @@ public class PillarController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Kid") {
-			kidInRange = true;
-
-			if (currentDirection != Direction.Ydir) {
-				inputEnabled = false;
-			}
-		}
-	}
-
-	void OnTriggerExit(Collider other) {
-		if (other.tag == "Kid") {
-			kidInRange = false;
-
-			inputEnabled = true;
-		}
-	}
+//	void OnTriggerEnter(Collider other) {
+//		if (other.tag == "Kid") {
+//			kidInRange = true;
+//
+//			if (currentDirection != Direction.Ydir) {
+//				inputEnabled = false;
+//			}
+//		}
+//	}
+//
+//	void OnTriggerExit(Collider other) {
+//		if (other.tag == "Kid") {
+//			kidInRange = false;
+//
+//			inputEnabled = true;
+//		}
+//	}
 
 	void InstantiateExtraNodes() {
 		Transform[] newNodeArray = new Transform[Mathf.FloorToInt (pillarHeight)];
