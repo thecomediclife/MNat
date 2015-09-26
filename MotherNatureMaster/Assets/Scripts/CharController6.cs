@@ -570,12 +570,16 @@ public class CharController6 : MonoBehaviour {
 	}
 
 	void FlashRespawn() {
-		this.GetComponent<Renderer> ().enabled = !this.GetComponent<Renderer> ().enabled;
+		//this.GetComponent<Renderer> ().enabled = !this.GetComponent<Renderer> ().enabled;
+		this.transform.GetChild (0).transform.GetChild (1).GetComponent<Renderer> ().enabled = !this.transform.GetChild (0).transform.GetChild (1).GetComponent<Renderer> ().enabled;
+		this.transform.GetChild (0).transform.GetChild (2).GetComponent<Renderer> ().enabled = !this.transform.GetChild (0).transform.GetChild (2).GetComponent<Renderer> ().enabled;
 		invokeCounter++;
 
 		if (invokeCounter > 7) {
 			CancelInvoke();
-			this.GetComponent<Renderer> ().enabled = true;
+			//this.GetComponent<Renderer> ().enabled = true;
+			this.transform.GetChild (0).transform.GetChild (1).GetComponent<Renderer> ().enabled = true;
+			this.transform.GetChild (0).transform.GetChild (2).GetComponent<Renderer> ().enabled = true;
 			currentState = State.Default;
 		}
 	}
