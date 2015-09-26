@@ -17,31 +17,52 @@ public class KidAnimControllerScript : MonoBehaviour {
 	void Update () {
 		switch (kid.currentState) {
 		case CharController6.State.Default:
+
 			anim.SetBool("Locomotion", true);
+			anim.speed = kid.speed / 2f;
+
 			break;
 
 		case CharController6.State.Pause:
+
 			anim.SetBool("Locomotion", false);
+			anim.speed = 1f;
+
 			break;
 
 		case CharController6.State.Continue:
+
 			anim.SetBool("Locomotion", true);
+			anim.speed = kid.speed / 2f;
+
 			break;
 
 		case CharController6.State.PauseTimed:
+
 			anim.SetBool("Locomotion", false);
+			anim.speed = 1f;
+
 			break;
 
 		case CharController6.State.ChosenDir:
+
 			anim.SetBool("Locomotion", true);
+			anim.speed = kid.speed / 2f;
+
 			break;
 
 		case CharController6.State.SnapTo:
+
 			anim.SetBool("Locomotion", false);
+			anim.speed = 1f;
+
 			break;
 
 		case CharController6.State.DirectedPath:
+
 			anim.SetBool("Locomotion", true);
+			anim.speed = kid.speed / 2f;
+
 			break;
 		}
 	}

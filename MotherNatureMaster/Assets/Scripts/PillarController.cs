@@ -11,7 +11,7 @@ public class PillarController : MonoBehaviour {
 
 	private TouchController5 mainCam;
 	public Transform kid;
-	private Transform platform, touchCollider, node, pillarCollider;
+	public Transform platform, touchCollider, node, pillarCollider;
 
 	public float pillarHeight = 4f;
 	public float moveSpeed = 2f;
