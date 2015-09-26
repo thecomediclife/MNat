@@ -76,7 +76,7 @@ public class PillarController : MonoBehaviour {
 		pillarFinalPosition = transform.up * (pillarHeight - 0.5f);
 
 		//Determines when player has tapped on pillar
-		if (mainCam.target == this.transform && mainCam.fingerDown && inputEnabled) {
+		if (mainCam.target != null && mainCam.target == this.transform && mainCam.fingerDown && inputEnabled) {
 			grow = !grow;
 
 			if (currentDirection == Direction.Ydir) {
@@ -246,21 +246,21 @@ public class PillarController : MonoBehaviour {
 		case Direction.Ydir:
 
 			this.GetComponent<BoxCollider> ().center = new Vector3 (0f, platform.localPosition.y + 0.4f, 0f);
-			this.GetComponent<BoxCollider>().size = new Vector3(1f,0.2f,1f);
+			this.GetComponent<BoxCollider>().size = new Vector3(0.8f,0.2f,0.8f);
 
 			break;
 
 		case Direction.Xdir:
 
 			this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.4f;
-			this.GetComponent<BoxCollider>().size = new Vector3(0.2f,1f,1f) + new Vector3(0f,platform.localPosition.y,0f);
+			this.GetComponent<BoxCollider>().size = new Vector3(0.2f,0.8f,0.8f) + new Vector3(0f,platform.localPosition.y,0f);
 
 			break;
 
 		case Direction.Zdir:
 
 			this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.4f;
-			this.GetComponent<BoxCollider>().size = new Vector3(1f,1f,0.2f) + new Vector3(0f,platform.localPosition.y,0f);
+			this.GetComponent<BoxCollider>().size = new Vector3(0.8f,0.8f,0.2f) + new Vector3(0f,platform.localPosition.y,0f);
 
 			break;
 		}
@@ -282,23 +282,23 @@ public class PillarController : MonoBehaviour {
 		}
 	}
 
-//	void OnTriggerEnter(Collider other) {
-//		if (other.tag == "Kid") {
-//			kidInRange = true;
-//
-//			if (currentDirection != Direction.Ydir) {
-//				inputEnabled = false;
-//			}
-//		}
-//	}
-//
-//	void OnTriggerExit(Collider other) {
-//		if (other.tag == "Kid") {
-//			kidInRange = false;
-//
-//			inputEnabled = true;
-//		}
-//	}
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Kid") {
+			kidInRange = true;
+
+			if (currentDirection != Direction.Ydir) {
+				inputEnabled = false;
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if (other.tag == "Kid") {
+			kidInRange = false;
+
+			inputEnabled = true;
+		}
+	}
 
 	void InstantiateExtraNodes() {
 		Transform[] newNodeArray = new Transform[Mathf.FloorToInt (pillarHeight)];
