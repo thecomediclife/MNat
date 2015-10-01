@@ -144,7 +144,7 @@ public class TreeController4 : MonoBehaviour {
 		Transform currentNode = kid.GetComponent<CharController6> ().currentNode;
 
 		if (activatePlatform && (nextNode == veggieNode || currentNode == veggieNode)) {
-			kid.GetComponent<CharController6> ().SnapTo(veggieNode);
+			kid.GetComponent<CharController6> ().SnapTo(veggieNode, true);
 			kid.parent = platform.transform;
 		} else {
 			kid.parent = null;

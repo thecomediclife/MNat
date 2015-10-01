@@ -36,12 +36,14 @@ public class CharController6 : MonoBehaviour {
 	private Vector3 nextLookTarget;
 
 	//Used to determine respawn point;
-	[HideInInspector] public Vector3 respawnPoint;
-	[HideInInspector] public Transform originPrevNode;
-	[HideInInspector] public Transform originNextNode;
+	public Vector3 respawnPoint;
+	public Transform originPrevNode;
+	public Transform originNextNode;
+
+	public Transform PushCollider;
 
 	private int invokeCounter;
-	
+
 	void Start () {
 		lookTarget = transform.forward + transform.position;
 
@@ -51,6 +53,7 @@ public class CharController6 : MonoBehaviour {
 	}
 	
 	void Update () {
+
 		Debug.DrawRay (transform.position, transform.forward, Color.green);
 		Debug.DrawRay (lookTarget + new Vector3 (0f, 2f, 0f), new Vector3 (0f, -4f, 0f), Color.black);
 
@@ -143,7 +146,17 @@ public class CharController6 : MonoBehaviour {
 
 		case State.SnapTo:
 
-			transform.position = nextNode.position;
+			if (nextNode != nullNode) {
+				MoveToNext();
+			}
+
+			if (nextNode != nullNode && Vector3.Distance(transform.position, nextNode.position) < 0.05f) {
+				currentState = nextState;
+			}
+
+			//transform.position = nextNode.position;
+
+			//currentState = nextState;
 
 			break;
 
@@ -171,6 +184,14 @@ public class CharController6 : MonoBehaviour {
 
 	}
 
+	void LateUpdate() {
+		if (PushCollider != null) {
+			PushCollider.rotation = Quaternion.identity;
+		} else {
+			Debug.Log ("pushcollider not assigned");
+		}
+	}
+
 	//Legacy code. This part used to fill the node array by trigger
 /*	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Node" && other.transform != currentNode) {
@@ -195,14 +216,14 @@ public class CharController6 : MonoBehaviour {
 
 	void FillArrays() {
 		//Calculate the initial position of the raycasts
-		float rayDistance = 2.0f;
-		Vector3 forwardVec = transform.position + new Vector3(0f,rayDistance / 2f,1f);
+		float rayDistance = 1.5f;
+		Vector3 forwardVec = transform.position + new Vector3(0f, 1f,1f);
 		forwardVec = new Vector3(Mathf.Round (forwardVec.x), forwardVec.y, Mathf.Round(forwardVec.z));
-		Vector3 backVec = transform.position + new Vector3 (0f, rayDistance / 2f, -1f);
+		Vector3 backVec = transform.position + new Vector3 (0f, 1f, -1f);
 		backVec = new Vector3 (Mathf.Round (backVec.x), backVec.y, Mathf.Round (backVec.z));
-		Vector3 rightVec = transform.position + new Vector3 (1f, rayDistance / 2f, 0f);
+		Vector3 rightVec = transform.position + new Vector3 (1f, 1f, 0f);
 		rightVec = new Vector3 (Mathf.Round (rightVec.x), rightVec.y, Mathf.Round (rightVec.z));
-		Vector3 leftVec = transform.position + new Vector3 (-1f, rayDistance / 2f, 0f);
+		Vector3 leftVec = transform.position + new Vector3 (-1f, 1f, 0f);
 		leftVec = new Vector3 (Mathf.Round (leftVec.x), leftVec.y, Mathf.Round (leftVec.z));
 		Vector3 downVec = new Vector3 (0f, -1f, 0f);
 
@@ -367,6 +388,12 @@ public class CharController6 : MonoBehaviour {
 	}
 
 	void MoveToNext() {
+
+		//Constantly checks if next node has been disabled
+		if (!nextNode.gameObject.activeInHierarchy) {
+			SnapTo(currentNode, false);
+		}
+
 		transform.position = Vector3.MoveTowards (transform.position, nextNode.position, speed * Time.deltaTime);
 		if (lookTarget - transform.position != Vector3.zero) {
 			Quaternion rot = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
@@ -374,6 +401,7 @@ public class CharController6 : MonoBehaviour {
 			transform.rotation = rot;
 			//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.LookRotation (lookTarget - transform.position, new Vector3 (0, 5, 0)), rotateSpeed * Time.deltaTime);
 		}
+
 	}
 
 	void FindNextNode() {
@@ -486,7 +514,7 @@ public class CharController6 : MonoBehaviour {
 		}
 	}
 
-	public void SnapTo(Transform transformToSnapTo) {
+	public void SnapTo(Transform transformToSnapTo, bool pause) {
 		currentState = State.SnapTo;
 		previousNode = transformToSnapTo;
 		currentNode = transformToSnapTo;
@@ -494,6 +522,12 @@ public class CharController6 : MonoBehaviour {
 		nextNode = transformToSnapTo;
 
 		lookTarget = transform.position + transform.forward * 10f;
+
+		if (pause) {
+			nextState = State.Pause;
+		} else {
+			nextState = State.Default;
+		}
 	}
 
 	public void DirectedPathwayFunc(int closestNodeIndex) {
@@ -553,20 +587,30 @@ public class CharController6 : MonoBehaviour {
 	}
 
 	public void Respawn() {
-		transform.position = respawnPoint;
-		previousNode = originPrevNode;
-		currentNode = previousNode;
-		nextNode = originNextNode;
-		Pause (currentNode, false, null);
+		if (channel == 0) {
+			transform.position = respawnPoint;
+			previousNode = originPrevNode;
+			currentNode = previousNode;
+			nextNode = originNextNode;
+			Pause (originPrevNode, false, null);
 
-		for (int i = 0; i < nodeArray.Length; i++) {
-			nodeArray[i] = nullNode;
+			for (int i = 0; i < nodeArray.Length; i++) {
+				nodeArray [i] = nullNode;
+			}
+
+			lookTarget = nextNode.position;
+
+			invokeCounter = 0;
+			InvokeRepeating ("FlashRespawn", 0.1f, 0.15f);
+		} else {
+			this.gameObject.SetActive(false);
 		}
+	}
 
-		lookTarget = nextNode.position;
-
-		invokeCounter = 0;
-		InvokeRepeating ("FlashRespawn", 0.1f, 0.15f);
+	public void SetRespawn(Vector3 resPoint, Transform prevNode, Transform nexNode) {
+		respawnPoint = resPoint;
+		originPrevNode = prevNode;
+		originNextNode = nexNode;
 	}
 
 	void FlashRespawn() {

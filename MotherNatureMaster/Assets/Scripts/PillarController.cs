@@ -60,7 +60,7 @@ public class PillarController : MonoBehaviour {
 	void Start() {
 		if (onStartGrown) {
 			grow = true;
-			pillarFinalPosition = transform.up * (pillarHeight - 0.5f);
+			pillarFinalPosition = transform.up * (pillarHeight);
 			platform.position = transform.position + pillarFinalPosition;
 		}
 	}
@@ -73,7 +73,7 @@ public class PillarController : MonoBehaviour {
 		AdjustPillarCollider ();
 
 		//Determines where the final position of the pillar should be. Can be changed dynamically.
-		pillarFinalPosition = transform.up * (pillarHeight - 0.5f);
+		pillarFinalPosition = transform.up * (pillarHeight);
 
 		//Determines when player has tapped on pillar
 		if (mainCam.target != null && mainCam.target == this.transform && mainCam.fingerDown && inputEnabled) {
@@ -193,7 +193,7 @@ public class PillarController : MonoBehaviour {
 
 		Debug.DrawRay (platform.position + transform.up * 0.5f, transform.up * 0.05f, Color.green);
 
-		if (Vector3.Distance (platform.position, transform.position + pillarFinalPosition) < 0.1 && kidAttached) {
+		if (Vector3.Distance (platform.position, transform.position + pillarFinalPosition) < 0.05f && kidAttached) {
 			DetachKid();
 		}
 	}
@@ -202,7 +202,7 @@ public class PillarController : MonoBehaviour {
 	public void Fall() {
 		platform.localPosition = Vector3.MoveTowards (platform.localPosition, Vector3.zero, moveSpeed * Time.deltaTime);
 
-		if (Vector3.Distance (platform.position, transform.position) < 0.1 && kidAttached) {
+		if (Vector3.Distance (platform.position, transform.position) < 0.05f && kidAttached) {
 			DetachKid();
 		}
 	}
@@ -235,7 +235,7 @@ public class PillarController : MonoBehaviour {
 		//PillarCollider is used to block objects.
 		//Adjust the size of the PillarCollider;
 		pillarCollider.position = transform.position + transform.up * (Vector3.Magnitude (platform.localPosition) / 2f);
-		pillarCollider.GetComponent<BoxCollider> ().size = new Vector3 (1f, Vector3.Magnitude (platform.localPosition) + 0.5f, 1f);
+		pillarCollider.GetComponent<BoxCollider> ().size = new Vector3 (1f, Vector3.Magnitude (platform.localPosition) + 1f, 1f);
 	}
 
 	void AdjustTriggerCollider() {
@@ -245,22 +245,39 @@ public class PillarController : MonoBehaviour {
 		switch (currentDirection) {
 		case Direction.Ydir:
 
-			this.GetComponent<BoxCollider> ().center = new Vector3 (0f, platform.localPosition.y + 0.4f, 0f);
+			if (atMaxHeight) {
+				this.GetComponent<BoxCollider> ().center = new Vector3 (0f, pillarHeight + 0.45f, 0f);
+			} else if (atGroundHeight) {
+				this.GetComponent<BoxCollider> ().center = new Vector3 (0f, 0.45f, 0f);
+			} else {
+				//this.GetComponent<BoxCollider> ().center = new Vector3 (0f, platform.localPosition.y + 0.45f, 0f);
+			}
+			
 			this.GetComponent<BoxCollider>().size = new Vector3(0.8f,0.2f,0.8f);
 
 			break;
 
 		case Direction.Xdir:
 
-			this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.4f;
-			this.GetComponent<BoxCollider>().size = new Vector3(0.2f,0.8f,0.8f) + new Vector3(0f,platform.localPosition.y,0f);
+			if (atGroundHeight) {
+				this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.2f;
+			} else {
+				this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f + 0.5f, 0f) - transform.up * 0.45f;
+			}
+			
+			this.GetComponent<BoxCollider>().size = new Vector3(0.2f,0f,0.8f) + new Vector3(0f,platform.localPosition.y,0f);
 
 			break;
 
 		case Direction.Zdir:
 
-			this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.4f;
-			this.GetComponent<BoxCollider>().size = new Vector3(0.8f,0.8f,0.2f) + new Vector3(0f,platform.localPosition.y,0f);
+			if (atGroundHeight) {
+				this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f, 0f) - transform.up * 0.2f;
+			} else {
+				this.GetComponent<BoxCollider> ().center = new Vector3(0f, platform.localPosition.y / 2f + 0.5f, 0f) - transform.up * 0.45f;
+			}
+			
+			this.GetComponent<BoxCollider>().size = new Vector3(0.8f,0f,0.2f) + new Vector3(0f,platform.localPosition.y,0f);
 
 			break;
 		}
@@ -271,7 +288,11 @@ public class PillarController : MonoBehaviour {
 			kid.GetComponent<CharController6> ().Pause (node, false, null);
 			kid.transform.parent = platform.transform;
 			kidAttached = true;
+
+//			Debug.Log ("blah");
 		}
+
+//		Debug.Log ("kidinrange = " + kidInRange + ". kidAttached = " + kidAttached);
 	}
 
 	void DetachKid() {
@@ -285,11 +306,13 @@ public class PillarController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Kid") {
 			kidInRange = true;
-
 			if (currentDirection != Direction.Ydir) {
 				inputEnabled = false;
 			}
+
+			//Debug.Log ("kidinrange");
 		}
+
 	}
 
 	void OnTriggerExit(Collider other) {
@@ -297,7 +320,10 @@ public class PillarController : MonoBehaviour {
 			kidInRange = false;
 
 			inputEnabled = true;
+
+			//Debug.Log ("kid out of range");
 		}
+
 	}
 
 	void InstantiateExtraNodes() {
