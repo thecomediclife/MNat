@@ -10,11 +10,10 @@ public class BombScript : MonoBehaviour {
 
 	public Material defaultMat, redMat;
 
-	private Transform bomb, sphere;
+	private Transform bomb;
 
 	void Awake() {
 		bomb = transform.GetChild (0);
-		sphere = transform.GetChild (0).transform.GetChild (2);
 	}
 
 	// Update is called once per frame
