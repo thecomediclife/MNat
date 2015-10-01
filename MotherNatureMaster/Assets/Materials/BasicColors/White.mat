@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: White
-  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
+  m_Shader: {fileID: 4800000, guid: 4a6aba8ad13e9704687a790b59eaf008, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 4000
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -78,6 +78,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MatCap
+        second:
+          m_Texture: {fileID: 2800000, guid: b4a39e223b86cf24d82d7c34e6366131, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -129,6 +136,14 @@ Material:
         second: 0
       data:
         first:
+          name: _yPosLow
+        second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
           name: _GradientStrength
         second: 1
       data:
@@ -143,14 +158,6 @@ Material:
         first:
           name: _MainTexMoveSpeedV
         second: 0
-      data:
-        first:
-          name: _yPosLow
-        second: 0
-      data:
-        first:
-          name: _yPosHigh
-        second: 10
     m_Colors:
       data:
         first:
