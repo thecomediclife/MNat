@@ -1,24 +1,24 @@
 fileFormatVersion: 2
-guid: 90f9536bf18e27944a338d10af554870
-timeCreated: 1443053397
+guid: dcdb0bf5050b63b4ea94035d2b1102a0
+timeCreated: 1443672795
 licenseType: Pro
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Arm_L
-    100004: Arm_R
-    100006: Armature
-    100008: ArmIK_L
-    100010: ArmIK_R
-    100012: Body
-    100014: Elbow_L
-    100016: Elbow_R
-    100018: Foot_L
-    100020: Foot_R
-    100022: Hand_L
-    100024: Hand_R
-    100026: Head
+    100000: Arm_L
+    100002: Arm_R
+    100004: Armature
+    100006: ArmIK_L
+    100008: ArmIK_R
+    100010: Body
+    100012: Elbow_L
+    100014: Elbow_R
+    100016: Foot_L
+    100018: Foot_R
+    100020: Hand_L
+    100022: Hand_R
+    100024: Head
+    100026: //RootNode
     100028: Knee_L
     100030: Knee_R
     100032: Leg_L
@@ -29,20 +29,20 @@ ModelImporter:
     100042: Root
     100044: Sphere
     100046: Sphere_001
-    400000: //RootNode
-    400002: Arm_L
-    400004: Arm_R
-    400006: Armature
-    400008: ArmIK_L
-    400010: ArmIK_R
-    400012: Body
-    400014: Elbow_L
-    400016: Elbow_R
-    400018: Foot_L
-    400020: Foot_R
-    400022: Hand_L
-    400024: Hand_R
-    400026: Head
+    400000: Arm_L
+    400002: Arm_R
+    400004: Armature
+    400006: ArmIK_L
+    400008: ArmIK_R
+    400010: Body
+    400012: Elbow_L
+    400014: Elbow_R
+    400016: Foot_L
+    400018: Foot_R
+    400020: Hand_L
+    400022: Hand_R
+    400024: Head
+    400026: //RootNode
     400028: Knee_L
     400030: Knee_R
     400032: Leg_L
@@ -53,32 +53,28 @@ ModelImporter:
     400042: Root
     400044: Sphere
     400046: Sphere_001
-    2300000: //RootNode
-    3300000: //RootNode
     4300000: Sphere
     4300002: Sphere_001
     7400000: Default Take
     7400002: ArmatureAction
-    7400004: Idle1_nothing
-    7400006: Idle2_starGazing
-    7400008: Run1
-    7400010: Walk
-    7400012: ArmatureAction_001
-    7400014: ArmatureAction_002
-    7400016: Get_Item
-    7400018: Idle1
-    7400020: Run
-    7400022: Create
-    7400024: Idle1_001
-    7400026: Push
-    7400028: React1
-    7400030: React2
-    7400032: React3
-    7400034: React4
-    7400036: Throw
-    7400038: Death1
-    7400040: Walk_001
-    7400042: Walk3
+    7400004: ArmatureAction_001
+    7400006: ArmatureAction_002
+    7400008: Create
+    7400010: Death1
+    7400012: Get_Item
+    7400014: Idle1
+    7400016: Idle1_001
+    7400018: Idle1_nothing
+    7400020: Idle2_starGazing
+    7400022: Look_Up
+    7400024: Push
+    7400026: React1
+    7400028: React2
+    7400030: React4
+    7400032: Run
+    7400034: Throw
+    7400036: Walk
+    7400038: Walk3
     9500000: //RootNode
     13700000: Sphere
     13700002: Sphere_001
@@ -112,7 +108,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -473,6 +469,80 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
+      name: Death1
+      takeName: Death1
+      firstFrame: -1
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_R
+        weight: 1
+      - path: Armature/Root/Body/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 1
+      - path: Armature/Root/Body/Knee_L
+        weight: 1
+      - path: Armature/Root/Body/Knee_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body/LegIK_R
+        weight: 1
+      - path: Armature/Root/Body/Pouch
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
       name: Get_Item
       takeName: Get_Item
       firstFrame: -1
@@ -556,7 +626,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -773,6 +843,80 @@ ModelImporter:
       takeName: Idle2_starGazing
       firstFrame: -1
       lastFrame: 107
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_R
+        weight: 1
+      - path: Armature/Root/Body/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 1
+      - path: Armature/Root/Body/Knee_L
+        weight: 1
+      - path: Armature/Root/Body/Knee_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body/LegIK_R
+        weight: 1
+      - path: Armature/Root/Body/Pouch
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Look_Up
+      takeName: Look_Up
+      firstFrame: -1
+      lastFrame: 51
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1065,80 +1209,6 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: React3
-      takeName: React3
-      firstFrame: -1
-      lastFrame: 59
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Root
-        weight: 1
-      - path: Armature/Root/Body
-        weight: 1
-      - path: Armature/Root/Body/Arm_L
-        weight: 1
-      - path: Armature/Root/Body/Arm_L/Hand_L
-        weight: 1
-      - path: Armature/Root/Body/Arm_R
-        weight: 1
-      - path: Armature/Root/Body/Arm_R/Hand_R
-        weight: 1
-      - path: Armature/Root/Body/ArmIK_L
-        weight: 1
-      - path: Armature/Root/Body/ArmIK_R
-        weight: 1
-      - path: Armature/Root/Body/Elbow_L
-        weight: 1
-      - path: Armature/Root/Body/Elbow_R
-        weight: 1
-      - path: Armature/Root/Body/Head
-        weight: 1
-      - path: Armature/Root/Body/Knee_L
-        weight: 1
-      - path: Armature/Root/Body/Knee_R
-        weight: 1
-      - path: Armature/Root/Body/Leg_L
-        weight: 1
-      - path: Armature/Root/Body/Leg_L/Foot_L
-        weight: 1
-      - path: Armature/Root/Body/Leg_R
-        weight: 1
-      - path: Armature/Root/Body/Leg_R/Foot_R
-        weight: 1
-      - path: Armature/Root/Body/LegIK_L
-        weight: 1
-      - path: Armature/Root/Body/LegIK_R
-        weight: 1
-      - path: Armature/Root/Body/Pouch
-        weight: 1
-      - path: Sphere
-        weight: 1
-      - path: Sphere_001
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
       name: React4
       takeName: React4
       firstFrame: -1
@@ -1215,7 +1285,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Run
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 58
       wrapMode: 0
       orientationOffsetY: 0
@@ -1363,6 +1433,80 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_L/Hand_L
+        weight: 1
+      - path: Armature/Root/Body/Arm_R
+        weight: 1
+      - path: Armature/Root/Body/Arm_R/Hand_R
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_L
+        weight: 1
+      - path: Armature/Root/Body/ArmIK_R
+        weight: 1
+      - path: Armature/Root/Body/Elbow_L
+        weight: 1
+      - path: Armature/Root/Body/Elbow_R
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 1
+      - path: Armature/Root/Body/Knee_L
+        weight: 1
+      - path: Armature/Root/Body/Knee_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_L/Foot_L
+        weight: 1
+      - path: Armature/Root/Body/Leg_R
+        weight: 1
+      - path: Armature/Root/Body/Leg_R/Foot_R
+        weight: 1
+      - path: Armature/Root/Body/LegIK_L
+        weight: 1
+      - path: Armature/Root/Body/LegIK_R
+        weight: 1
+      - path: Armature/Root/Body/Pouch
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk3
+      takeName: Walk3
       firstFrame: -1
       lastFrame: 59
       wrapMode: 0
