@@ -263,7 +263,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .800000012, y: .200000003, z: .800000012}
-  m_Center: {x: 0, y: .400000006, z: 0}
+  m_Center: {x: 0, y: .449999988, z: 0}
 --- !u!65 &6533524
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -320,8 +320,9 @@ MonoBehaviour:
   kid: {fileID: 0}
   platform: {fileID: 431490}
   touchCollider: {fileID: 485788}
-  node: {fileID: 475568}
   pillarCollider: {fileID: 465382}
+  nodes:
+  - {fileID: 475568}
   pillarHeight: 4
   moveSpeed: 2
   atMaxHeight: 0
@@ -365,7 +366,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Center.y
-      value: .400000006
+      value: .449999988
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Size.y

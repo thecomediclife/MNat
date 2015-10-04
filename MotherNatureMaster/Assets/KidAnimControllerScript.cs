@@ -18,8 +18,7 @@ public class KidAnimControllerScript : MonoBehaviour {
 		switch (kid.currentState) {
 		case CharController6.State.Default:
 
-			anim.SetBool("Locomotion", true);
-			anim.speed = kid.speed / 2f;
+			DetermineKidMovement();
 
 			break;
 
@@ -32,8 +31,7 @@ public class KidAnimControllerScript : MonoBehaviour {
 
 		case CharController6.State.Continue:
 
-			anim.SetBool("Locomotion", true);
-			anim.speed = kid.speed / 2f;
+			DetermineKidMovement();
 
 			break;
 
@@ -46,24 +44,46 @@ public class KidAnimControllerScript : MonoBehaviour {
 
 		case CharController6.State.ChosenDir:
 
-			anim.SetBool("Locomotion", true);
-			anim.speed = kid.speed / 2f;
+			DetermineKidMovement();
 
 			break;
 
 		case CharController6.State.SnapTo:
 
-			anim.SetBool("Locomotion", false);
-			anim.speed = 1f;
+			DetermineKidMovement();
 
 			break;
 
 		case CharController6.State.DirectedPath:
 
-			anim.SetBool("Locomotion", true);
-			anim.speed = kid.speed / 2f;
+			DetermineKidMovement();
 
 			break;
+		}
+	}
+
+	void DetermineKidMovement() {
+//		int counter = 0;
+//		for (int i = 0; i < kid.nodeArray.Length; i++) {
+//			if (kid.nodeArray[i] != null) {
+//				counter++;
+//			}
+//		}
+//		
+//		if (counter > 1) {
+//			anim.SetBool("Locomotion", true);
+//			anim.speed = kid.speed / 2f;
+//		} else { 
+//			anim.SetBool("Locomotion", false);
+//			anim.speed = 1f;
+//		}
+
+		if (kid.currentNode != kid.nextNode) {
+			anim.SetBool("Locomotion", true);
+			anim.speed = kid.speed / 2f;
+		} else {
+			anim.SetBool("Locomotion", false);
+			anim.speed = 1f;
 		}
 	}
 }

@@ -26,9 +26,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 432558}
   - 114: {fileID: 11478672}
-  - 114: {fileID: 11481996}
   - 65: {fileID: 6512330}
   - 54: {fileID: 5415254}
+  - 114: {fileID: 11453966}
   m_Layer: 0
   m_Name: BombParent
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 20, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499914}
@@ -141,8 +141,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191258}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: .124869995, y: .777827919, z: .163559631, w: -.593834579}
+  m_LocalPosition: {x: 0, y: -.100000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 427458}
@@ -279,7 +279,7 @@ Animator:
   m_GameObject: {fileID: 191258}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 05b3afcc44a539540bfab2a8e8cf908c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: acd2d1b57a8d7444dba2c15806650c23, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -287,6 +287,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11453966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6158e21e3bb957d458a8ada720522b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fall: 0
+  fallSpeed: 10
+  attached: 0
+  parentTransform: {fileID: 0}
+  kid: {fileID: 0}
+  blockFor: 0
+  blockBack: 0
+  blockRight: 0
+  blockLeft: 0
+  pushDir: 4
+  node: {fileID: 0}
 --- !u!114 &11478672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,31 +324,18 @@ MonoBehaviour:
   detonateTime: 10
   defaultMat: {fileID: 2100000, guid: 9400368445726f04ca4030619c30dc7b, type: 2}
   redMat: {fileID: 2100000, guid: 800a7a47f4c99f445a2fd2bbae799eb6, type: 2}
---- !u!114 &11481996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c8a5d7ab7a3f344afefee24b46bdfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kid: {fileID: 0}
-  pushable: 0
-  pushF: 0
-  pushB: 0
-  pushL: 0
-  pushR: 0
-  falling: 0
+  detonate: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: -.100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 134720}
