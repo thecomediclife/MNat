@@ -8,35 +8,33 @@ public class Level13Blueprint : MonoBehaviour {
 
 	public BombScript2 bomb;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+	public Transform node1,node2,node3;
+
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Z)) {
-			layer1Activate = true;
-		}
-
-		if (Input.GetKeyDown (KeyCode.X)) {
-			layer2Activate = true;
-		}
-
-		if (Input.GetKeyDown (KeyCode.C)) {
-			layer3Activate = true;
-		}
+//		if (Input.GetKeyDown (KeyCode.Z)) {
+//			layer1Activate = true;
+//		}
+//
+//		if (Input.GetKeyDown (KeyCode.X)) {
+//			layer2Activate = true;
+//		}
+//
+//		if (Input.GetKeyDown (KeyCode.C)) {
+////			layer3Activate = true;
+//		}
 
 		if (layer1Activate) {
 			for (int i = 0; i < layer1.childCount; i++) {
-				layer1.transform.GetChild(i).position = Vector3.MoveTowards(layer1.transform.GetChild(i).position, Vector3.zero, Random.Range(1f, 5f) * Time.deltaTime);
+				layer1.transform.GetChild(i).position = Vector3.MoveTowards(layer1.transform.GetChild(i).position, new Vector3(layer1.transform.GetChild(i).position.x, 0f, layer1.transform.GetChild(i).position.z), Random.Range(1f, 5f) * Time.deltaTime);
 			}
 		}
 
 		if (layer2Activate) {
 			for (int i = 0; i < layer2.childCount; i++) {
-				layer2.transform.GetChild(i).position = Vector3.MoveTowards(layer2.transform.GetChild(i).position, Vector3.zero, Random.Range(1f, 5f) * Time.deltaTime);
+				layer2.transform.GetChild(i).position = Vector3.MoveTowards(layer2.transform.GetChild(i).position, new Vector3(layer2.transform.GetChild(i).position.x, 0f, layer2.transform.GetChild(i).position.z), Random.Range(1f, 5f) * Time.deltaTime);
 			}
+
 		}
 
 		if (layer3Activate) {
@@ -45,11 +43,11 @@ public class Level13Blueprint : MonoBehaviour {
 			}
 		}
 
-		if (Mathf.Abs (bomb.transform.position.y - 19f) < 0.5f) {
+		if (Mathf.Abs (bomb.transform.position.y - 17f) < 0.5f) {
 			bomb.SetActive();
 		}
 
-		if (Mathf.Abs (bomb.transform.position.y - 18f) < 0.5f && bomb.detonate) {
+		if (Mathf.Abs (bomb.transform.position.y - 16f) < 0.5f && bomb.detonate) {
 			layer1Activate = true;
 		}
 
@@ -58,12 +56,12 @@ public class Level13Blueprint : MonoBehaviour {
 		}
 
 		if (Mathf.Abs (bomb.transform.position.y - 9f) < 0.5f && bomb.detonate) {
-			layer3Activate = true;
+//			layer3Activate = true;
 		}
 
 		if (bomb.detonate) {
 			bomb.Reset();
-			bomb.transform.position = new Vector3(-1f,23f,-2f);
+			bomb.transform.position = new Vector3(0f,23f,-2f);
 		}
 	}
 }

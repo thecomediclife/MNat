@@ -63,17 +63,25 @@ public class KidAnimControllerScript : MonoBehaviour {
 	}
 
 	void DetermineKidMovement() {
-		int counter = 0;
-		for (int i = 0; i < kid.nodeArray.Length; i++) {
-			if (kid.nodeArray[i] != null) {
-				counter++;
-			}
-		}
-		
-		if (counter > 1) {
+//		int counter = 0;
+//		for (int i = 0; i < kid.nodeArray.Length; i++) {
+//			if (kid.nodeArray[i] != null) {
+//				counter++;
+//			}
+//		}
+//		
+//		if (counter > 1) {
+//			anim.SetBool("Locomotion", true);
+//			anim.speed = kid.speed / 2f;
+//		} else { 
+//			anim.SetBool("Locomotion", false);
+//			anim.speed = 1f;
+//		}
+
+		if (kid.currentNode != kid.nextNode) {
 			anim.SetBool("Locomotion", true);
 			anim.speed = kid.speed / 2f;
-		} else { 
+		} else {
 			anim.SetBool("Locomotion", false);
 			anim.speed = 1f;
 		}

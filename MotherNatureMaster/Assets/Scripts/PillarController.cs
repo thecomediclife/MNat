@@ -11,7 +11,8 @@ public class PillarController : MonoBehaviour {
 
 	private TouchController5 mainCam;
 	public Transform kid;
-	public Transform platform, touchCollider, node, pillarCollider;
+	public Transform platform, touchCollider, pillarCollider;
+    public Transform[] nodes;
 
 	public float pillarHeight = 4f;
 	public float moveSpeed = 2f;
@@ -32,13 +33,13 @@ public class PillarController : MonoBehaviour {
 		kid = GameObject.Find ("Kid").transform;
 
 		//Pillar is ALWAYS first child of the parent.
-		platform = transform.GetChild (0);
+		//platform = transform.GetChild (0);
 		//TouchCollider is Always the second child of the parent.
-		touchCollider = transform.GetChild (1);
+		//touchCollider = transform.GetChild (1);
 		//Node is always first child of the first child.
-		node = transform.GetChild (0).transform.GetChild (0);
+		//node = transform.GetChild (0).transform.GetChild (0);
 		//Get PillarColliderchild
-		pillarCollider = transform.GetChild (2);
+		//pillarCollider = transform.GetChild (2);
 
 		AdjustEnumDirection ();
 
@@ -46,10 +47,13 @@ public class PillarController : MonoBehaviour {
 		previousHeight = pillarHeight;
 		nodeArray = new Transform[Mathf.FloorToInt(previousHeight)];
 		if (currentDirection == Direction.Xdir || currentDirection == Direction.Zdir) {
-			node.gameObject.SetActive(false);
-
+            
+            for (int i = 0; i < nodes.Length; i++) {
+                nodes[i].gameObject.SetActive(false);
+            }
+			
 			for (int i = 0; i < nodeArray.Length; i++) {
-				nodeArray[i] = Instantiate(node, transform.position, Quaternion.identity) as Transform;
+				nodeArray[i] = Instantiate(nodes[0], transform.position, Quaternion.identity) as Transform;
 				nodeArray[i].parent = this.transform;
 			}
 		}
@@ -97,10 +101,13 @@ public class PillarController : MonoBehaviour {
 
 		//Update nodes if the pillar has been rotated.
 		if (previousDir != currentDirection) {
-			node.gameObject.SetActive(false);
-			
-			for (int i = 0; i < nodeArray.Length; i++) {
-				nodeArray[i] = Instantiate(node, transform.position, Quaternion.identity) as Transform;
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                nodes[i].gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < nodeArray.Length; i++) {
+				nodeArray[i] = Instantiate(nodes[0], transform.position, Quaternion.identity) as Transform;
 				nodeArray[i].parent = this.transform;
 			}
 			previousDir = currentDirection;
@@ -116,17 +123,29 @@ public class PillarController : MonoBehaviour {
 			inputEnabled = true;
 
 			if (Vector3.Distance (platform.position, transform.position + pillarFinalPosition) < 0.1) {
-				node.gameObject.SetActive(true);
-			} else if (Vector3.Distance (platform.position, transform.position) < 0.1) {
-				node.gameObject.SetActive(true);
-			} else {
-				node.gameObject.SetActive(false);
-			}
+                for (int i = 0; i < nodes.Length; i++)
+                {
+                    nodes[i].gameObject.SetActive(true);
+                }
+            } else if (Vector3.Distance (platform.position, transform.position) < 0.1) {
+                for (int i = 0; i < nodes.Length; i++)
+                {
+                    nodes[i].gameObject.SetActive(true);
+                }
+            } else {
+                for (int i = 0; i < nodes.Length; i++)
+                {
+                    nodes[i].gameObject.SetActive(false);
+                }
+            }
 
 		} else if (currentDirection == Direction.Xdir || currentDirection == Direction.Zdir) {
-			node.gameObject.SetActive(false);
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                nodes[i].gameObject.SetActive(false);
+            }
 
-			if (Vector3.Distance (platform.position, transform.position) < 0.1) {
+            if (Vector3.Distance (platform.position, transform.position) < 0.1) {
 				for (int i = 0; i < nodeArray.Length; i++) {
 					nodeArray[i].gameObject.SetActive(false);
 				}
@@ -285,7 +304,7 @@ public class PillarController : MonoBehaviour {
 
 	void AttachKid() {
 		if (kidInRange && !kidAttached) {
-			kid.GetComponent<CharController6> ().Pause (node, false, null);
+			kid.GetComponent<CharController6> ().Pause (nodes[0], false, null);
 			kid.transform.parent = platform.transform;
 			kidAttached = true;
 
@@ -332,13 +351,13 @@ public class PillarController : MonoBehaviour {
 			if (nodeArray[i] != null) {
 				newNodeArray[i] = nodeArray[i];
 			} else {
-				newNodeArray[i] = Instantiate(node, transform.position, Quaternion.identity) as Transform;
+				newNodeArray[i] = Instantiate(nodes[0], transform.position, Quaternion.identity) as Transform;
 				newNodeArray[i].parent = this.transform;
 			}
 		}
 
 		for (int i = Mathf.FloorToInt(previousHeight); i < newNodeArray.Length; i++) {
-			newNodeArray[i] = Instantiate (node, transform.position, Quaternion.identity) as Transform;
+			newNodeArray[i] = Instantiate (nodes[0], transform.position, Quaternion.identity) as Transform;
 			newNodeArray[i].parent = this.transform;
 		}
 
