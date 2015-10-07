@@ -3,55 +3,55 @@ using System.Collections;
 
 public class VineAnimatorScript : MonoBehaviour {
 
-	public float height = 4.0f;
+	public float playbackTime;
 
-	public bool grow = true;
+	private Animator anim;
+	public PillarController parentObj;
+
+	public float playSpeed = 1.0f;
+
+	private bool play;
 
 	// Use this for initialization
 	void Start () {
-	
+		anim = this.GetComponent<Animator> ();
+		play = !parentObj.grow;
+		playSpeed = parentObj.moveSpeed / 4f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		AnimatorStateInfo currentState = GetComponent<Animator> ().GetCurrentAnimatorStateInfo (0);
+		AnimatorStateInfo currentState = anim.GetCurrentAnimatorStateInfo (0);
 
-		float playbackTime = currentState.normalizedTime % 1;
+		playbackTime = currentState.normalizedTime % 1;
 
-/*		if (grow) {
+		if (parentObj.grow) {
 
-			GetComponent<Animator> ().speed = 1;
-			if (playbackTime > height / 10f) {
-				GetComponent<Animator> ().speed = 0;
+			if (playbackTime < parentObj.pillarHeight * 0.1f) {
+				anim.speed = playSpeed;
+
+				if (!play) {
+					anim.Play("Grow", -1, playbackTime);
+					play = true;
+				}
+			} else {
+				anim.speed = 0;
 			}
 
-		} else {
+		} else if (!parentObj.grow) {
 
-			GetComponent<Animator> ().speed = -1;
+			if (playbackTime > 0.1f) {
+				anim.speed = playSpeed;
 
-			Debug.Log (playbackTime);
+				if (play) {
+					anim.Play("Shrink", -1, 1f - playbackTime);
+					play = false;
+				}
+			} else {
+				anim.speed = 0;
+			}
 
-		} */
-
-		if (Input.GetKeyDown (KeyCode.Z)) {
-			GetComponent<Animator> ().speed = 0;
-		//	Debug.Log (GetComponent<Animator>().time
 		}
 
-		if (Input.GetKeyDown (KeyCode.X)) {
-			grow = true;
-			GetComponent<Animator> ().speed = 1;
-			//GetComponent<Animator>().Play(currentState.shortNameHash, -1, playbackTime);
-		}
-
-		if (Input.GetKeyDown(KeyCode.C)) {
-			grow = false;
-			GetComponent<Animator> ().speed = 1;
-			//GetComponent<Animator>().Play(currentState.shortNameHash, -1, playbackTime);
-		}
-
-
-		GetComponent<Animator>().SetBool("Grow", grow);
-		//Debug.Log (playbackTime);
 	}
 }
