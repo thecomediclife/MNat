@@ -27,7 +27,7 @@ public class VineAnimatorScript : MonoBehaviour {
 
 		if (parentObj.grow) {
 
-			if (playbackTime < parentObj.pillarHeight * 0.1f) {
+			if (playbackTime < (parentObj.pillarHeight + 0.25f) * 0.1f) {
 				anim.speed = playSpeed;
 
 				if (!play) {
