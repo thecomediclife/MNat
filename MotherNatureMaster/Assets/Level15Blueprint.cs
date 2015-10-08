@@ -27,7 +27,7 @@ public class Level15Blueprint : MonoBehaviour {
 	void Update () {
 
 		//Resets the crate position when you press the button.
-		if (button.GetComponent<PillarController>().grow != reset) {
+		if (button.GetComponent<PillarController>().grow == reset) {
 			reset = !reset;
 
 			crate.transform.position = new Vector3(-4f,22f,-4f);

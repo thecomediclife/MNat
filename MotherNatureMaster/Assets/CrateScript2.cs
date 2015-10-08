@@ -309,7 +309,7 @@ public class CrateScript2 : MonoBehaviour {
 
 			} else if (hit.transform.tag == "Kid") {
 //				Debug.Log (hit.transform.name);
-				if (hit.transform.GetComponent<CharController6>().channel == 0) {
+//				if (hit.transform.GetComponent<CharController6>().channel == 0) {
 
 					//if (hit.transform.GetComponent<CharController6>().nextNode == node) {
 //					if (Vector3.Angle(hit.transform.forward, new Vector3(transform.position.x, 0f, transform.position.z) - new Vector3(hit.transform.position.x, 0f, hit.transform.position.z)) < 2.5f) {
@@ -321,7 +321,7 @@ public class CrateScript2 : MonoBehaviour {
 						pushDir = pushdirec;
 //					}
 
-				}
+//				}
 				
 			}
 		}
