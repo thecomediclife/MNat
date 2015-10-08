@@ -346,6 +346,12 @@ public class CrateScript2 : MonoBehaviour {
 		if (other.tag == "Node") {
 			node = other.transform;
 		}
+
+		if (fall) {
+			if (other.tag == "Kid") {
+				other.GetComponent<CharController6>().Respawn();
+			}
+		}
 	}
 
 	void Orphanize() {
