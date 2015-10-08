@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Green
-  m_Shader: {fileID: 4800000, guid: de7e0ef86e0f5a54a81a1450588fc0af, type: 3}
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b3c50e887ff874b96bae38629958949c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -231,6 +231,30 @@ Material:
         second: 0
       data:
         first:
+          name: _GradientStrength
+        second: 1
+      data:
+        first:
+          name: _EmissiveStrengh
+        second: 1
+      data:
+        first:
+          name: _MainTexMoveSpeedU
+        second: 0
+      data:
+        first:
+          name: _MainTexMoveSpeedV
+        second: 0
+      data:
+        first:
+          name: _yPosLow
+        second: 0
+      data:
+        first:
+          name: _yPosHigh
+        second: 10
+      data:
+        first:
           name: _RampPower
         second: 1
       data:
@@ -262,3 +286,19 @@ Material:
         first:
           name: _SpecColor
         second: {r: .558823526, g: .353373706, b: .353373706, a: 1}
+      data:
+        first:
+          name: _ColorLow
+        second: {r: 1, g: 1, b: .752941251, a: 1}
+      data:
+        first:
+          name: _ColorHigh
+        second: {r: 1, g: 1, b: .752941251, a: 1}
+      data:
+        first:
+          name: _ColorX
+        second: {r: 1, g: 1, b: .752941251, a: 1}
+      data:
+        first:
+          name: _ColorY
+        second: {r: 1, g: 1, b: .752941251, a: 1}
