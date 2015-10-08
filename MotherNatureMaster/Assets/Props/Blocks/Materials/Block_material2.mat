@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Block_material2
-  m_Shader: {fileID: 4800000, guid: f307c95fcec424eeab15ae06ac0a3336, type: 3}
+  m_Shader: {fileID: 4800000, guid: 18d807787bedd4df29a45ab4fd404f79, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -141,7 +141,7 @@ Material:
       data:
         first:
           name: _EmissiveStrengh
-        second: .300000012
+        second: 1
       data:
         first:
           name: _MainTexMoveSpeedU
@@ -150,6 +150,14 @@ Material:
         first:
           name: _MainTexMoveSpeedV
         second: 0
+      data:
+        first:
+          name: _xPosHigh
+        second: 10
+      data:
+        first:
+          name: _xPosLow
+        second: -10
       data:
         first:
           name: _DecalTexMoveSpeedU
@@ -168,12 +176,12 @@ Material:
         second: 5
       data:
         first:
-          name: _xPosHigh
-        second: 10
+          name: _yPosLow
+        second: 0
       data:
         first:
-          name: _xPosLow
-        second: -10
+          name: _yPosHigh
+        second: 14.04
     m_Colors:
       data:
         first:
@@ -190,11 +198,11 @@ Material:
       data:
         first:
           name: _ColorHigh
-        second: {r: 1, g: .193548411, b: 0, a: 1}
+        second: {r: .580882311, g: .0841277763, b: 0, a: 1}
       data:
         first:
           name: _ColorX
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: .0321690962, g: .683183253, b: .875, a: 1}
       data:
         first:
           name: _ColorY
