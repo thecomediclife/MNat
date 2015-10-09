@@ -58,15 +58,22 @@ public class CrateScript2 : MonoBehaviour {
 		fallLayerMask |= (1 << 11);
 		fallLayerMask = ~fallLayerMask;
 
-		if (!Physics.Raycast (transform.position + transform.forward * 0.35f, new Vector3 (0f, -1f, 0f), 0.55f, fallLayerMask) &&
-			!Physics.Raycast (transform.position - transform.forward * 0.35f, new Vector3 (0f, -1f, 0f), 0.55f, fallLayerMask) &&
-			!Physics.Raycast (transform.position + transform.right * 0.35f, new Vector3 (0f, -1f, 0f), 0.55f, fallLayerMask) &&
-			!Physics.Raycast (transform.position - transform.right * 0.35f, new Vector3 (0f, -1f, 0f), 0.55f, fallLayerMask)) {
+		RaycastHit fallhit1, fallhit2, fallhit3, fallhit4;
+
+		if (!Physics.Raycast (transform.position + transform.forward * 0.35f, new Vector3 (0f, -1f, 0f), out fallhit1, 0.55f, fallLayerMask) &&
+		    !Physics.Raycast (transform.position - transform.forward * 0.35f, new Vector3 (0f, -1f, 0f), out fallhit2, 0.55f, fallLayerMask) &&
+		    !Physics.Raycast (transform.position + transform.right * 0.35f, new Vector3 (0f, -1f, 0f), out fallhit3, 0.55f, fallLayerMask) &&
+		    !Physics.Raycast (transform.position - transform.right * 0.35f, new Vector3 (0f, -1f, 0f), out fallhit4, 0.55f, fallLayerMask)) {
 
 			fall = true;
 
 			Orphanize();
 		} else {
+
+			FallTriggerRespawn(fallhit1);
+			FallTriggerRespawn(fallhit2);
+			FallTriggerRespawn(fallhit3);
+			FallTriggerRespawn(fallhit4);
 
 			fall = false;
 		
@@ -158,7 +165,7 @@ public class CrateScript2 : MonoBehaviour {
 
 				case PushDirection.Forward:
 
-					if (DetermineKidForwardDirection() != new Vector3(0f, 0f, -1f)) {
+					if (DetermineKidForwardDirection(parentTransform.parent.transform.GetComponent<CharController6>()) != new Vector3(0f, 0f, -1f)) {
 						Orphanize();
 					}
 
@@ -167,7 +174,7 @@ public class CrateScript2 : MonoBehaviour {
 
 				case PushDirection.Backward:
 
-					if (DetermineKidForwardDirection() != new Vector3(0f, 0f, 1f)) {
+					if (DetermineKidForwardDirection(parentTransform.parent.transform.GetComponent<CharController6>()) != new Vector3(0f, 0f, 1f)) {
 						Orphanize();
 					}
 
@@ -175,7 +182,7 @@ public class CrateScript2 : MonoBehaviour {
 
 				case PushDirection.Right:
 
-					if (DetermineKidForwardDirection() != new Vector3(-1f, 0f, 0f)) {
+					if (DetermineKidForwardDirection(parentTransform.parent.transform.GetComponent<CharController6>()) != new Vector3(-1f, 0f, 0f)) {
 						Orphanize();
 					}
 
@@ -183,7 +190,7 @@ public class CrateScript2 : MonoBehaviour {
 
 				case PushDirection.Left:
 
-					if (DetermineKidForwardDirection() != new Vector3(1f, 0f, 0f)) {
+					if (DetermineKidForwardDirection(parentTransform.parent.transform.GetComponent<CharController6>()) != new Vector3(1f, 0f, 0f)) {
 						Orphanize();
 					}
 
@@ -346,15 +353,9 @@ public class CrateScript2 : MonoBehaviour {
 		if (other.tag == "Node") {
 			node = other.transform;
 		}
-
-		if (fall) {
-			if (other.tag == "Kid") {
-				other.GetComponent<CharController6>().Respawn();
-			}
-		}
 	}
 
-	void Orphanize() {
+	public void Orphanize() {
 		this.transform.parent = null;
 		attached = false;
 		parent = ParentedObj.None;
@@ -362,12 +363,27 @@ public class CrateScript2 : MonoBehaviour {
 		parentTransform = null;
 	}
 
-	Vector3 DetermineKidForwardDirection() {
-		Vector3 nextNodePos = kid.GetComponent<CharController6>().nextNode.position;
-		nextNodePos = new Vector3(nextNodePos.x, 0f, nextNodePos.z);
-		Vector3 currentNodePos = kid.GetComponent<CharController6>().currentNode.position;
-		currentNodePos = new Vector3(currentNodePos.x, 0f, currentNodePos.z);
+//	Vector3 DetermineKidForwardDirection() {
+//		Vector3 nextNodePos = kid.GetComponent<CharController6>().nextNode.position;
+//		nextNodePos = new Vector3(nextNodePos.x, 0f, nextNodePos.z);
+//		Vector3 currentNodePos = kid.GetComponent<CharController6>().currentNode.position;
+//		currentNodePos = new Vector3(currentNodePos.x, 0f, currentNodePos.z);
+//
+//		return Vector3.Normalize (nextNodePos - currentNodePos);
+//	}
 
+	Vector3 DetermineKidForwardDirection(CharController6 kidTarget) {
+		Vector3 nextNodePos = kidTarget.nextNode.position;
+		nextNodePos = new Vector3(nextNodePos.x, 0f, nextNodePos.z);
+		Vector3 currentNodePos = kidTarget.currentNode.position;
+		currentNodePos = new Vector3(currentNodePos.x, 0f, currentNodePos.z);
+		
 		return Vector3.Normalize (nextNodePos - currentNodePos);
+	}
+
+	void FallTriggerRespawn(RaycastHit hit) {
+		if (hit.transform != null && hit.transform.tag == "Kid") {
+			hit.transform.GetComponent<CharController6>().Respawn();
+		}
 	}
 }

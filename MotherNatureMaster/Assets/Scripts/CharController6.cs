@@ -44,6 +44,8 @@ public class CharController6 : MonoBehaviour {
 
 	private int invokeCounter;
 
+	public int health = 3;
+
 	void Start () {
 		lookTarget = transform.forward + transform.position;
 
@@ -53,6 +55,10 @@ public class CharController6 : MonoBehaviour {
 	}
 	
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.Z)) {
+			Respawn();
+		}
 
 		Debug.DrawRay (transform.position, transform.forward, Color.green);
 		Debug.DrawRay (lookTarget + new Vector3 (0f, 2f, 0f), new Vector3 (0f, -4f, 0f), Color.black);
@@ -587,7 +593,15 @@ public class CharController6 : MonoBehaviour {
 	}
 
 	public void Respawn() {
-		if (channel == 0) {
+		health--;
+
+		if (transform.GetChild(1).childCount != 0) {
+			for (int i = 0; i < transform.GetChild(1).childCount; i++) {
+				transform.GetChild(1).GetChild(i).GetComponent<CrateScript2>().Orphanize(); 
+			}
+		}
+
+		if (health > 0) {
 			transform.position = respawnPoint;
 			previousNode = originPrevNode;
 			currentNode = previousNode;

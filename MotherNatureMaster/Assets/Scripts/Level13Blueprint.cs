@@ -6,7 +6,7 @@ public class Level13Blueprint : MonoBehaviour {
 
 	public bool layer1Activate, layer2Activate, layer3Activate;
 
-	public BombScript2 bomb;
+	public BombScript3 bomb;
 
 	public Transform node1,node2,node3;
 
@@ -59,9 +59,9 @@ public class Level13Blueprint : MonoBehaviour {
 //			layer3Activate = true;
 		}
 
-		if (bomb.detonate) {
-			bomb.Reset();
-			bomb.transform.position = new Vector3(0f,23f,-2f);
+		if (bomb.detonate && bomb.activate) {
+			bomb.Reset(new Vector3(0f,25f,-2f));
+//			bomb.transform.position = new Vector3(0f,23f,-2f);
 		}
 	}
 }

@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BombScript : MonoBehaviour {
+public class BombScript2 : MonoBehaviour {
 	public bool activate = false;
 
 	public float detonateTime = 10f;
 
 	private float timer;
 
-	public Material defaultMat, redMat;
-
 	private Transform bomb;
+
+	public bool detonate;
+
+	public GameObject particle;
 
 	void Awake() {
 		bomb = transform.GetChild (0);
@@ -28,13 +30,14 @@ public class BombScript : MonoBehaviour {
 			}
 
 			if (Time.time > timer) {
-				Debug.Log ("detonate");
+				//Debug.Log ("detonate");
+				detonate = true;
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.Z)) {
-			SetActive();
-		}
+//		if (Input.GetKeyDown(KeyCode.Z)) {
+//			SetActive();
+//		}
 	}
 
 	public void SetActive() {
