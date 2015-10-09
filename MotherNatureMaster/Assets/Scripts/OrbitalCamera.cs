@@ -18,7 +18,18 @@ public class OrbitalCamera : MonoBehaviour {
 	private bool moveLeft;
 
 	private float lastOmega;
+
+	public float panningCamSpeed = 8f;
+
+	public Transform centerP;
+
+	private Vector3 addedVec;
+
+	void Awake() {
+		centerP.position = centerPoint;
 	
+	}
+
 	// Update is called once per frame
 	void Update () {
 //		omega += Input.GetAxis ("Horizontal") * xScrollSpeed * Time.deltaTime;
@@ -37,15 +48,15 @@ public class OrbitalCamera : MonoBehaviour {
 
         if (panningCamera)
         {
-            centerPoint += Input.GetAxis("Horizontal") * 8f * Time.deltaTime * transform.right;
-            centerPoint += Input.GetAxis("Vertical") * 8f * Time.deltaTime * transform.up;
+			centerPoint += Input.GetAxis("Horizontal") * panningCamSpeed * Time.deltaTime * transform.right;
+			centerPoint += Input.GetAxis("Vertical") * panningCamSpeed * Time.deltaTime * transform.up;
 
             if (Input.GetKey(KeyCode.Q))
             {
-                this.GetComponent<Camera>().orthographicSize -= 8f * Time.deltaTime;
+				this.GetComponent<Camera>().orthographicSize -= panningCamSpeed * Time.deltaTime;
             } else if (Input.GetKey(KeyCode.E))
             {
-                this.GetComponent<Camera>().orthographicSize += 8f * Time.deltaTime;
+				this.GetComponent<Camera>().orthographicSize += panningCamSpeed * Time.deltaTime;
             }
             //this.GetComponent<Camera>().orthographicSize -= Input.GetAxis("Vertical") * 0.25f;
         }
@@ -76,7 +87,13 @@ public class OrbitalCamera : MonoBehaviour {
 		float y = radius * Mathf.Cos (Mathf.Deg2Rad * phi);
 		float z = radius * Mathf.Sin	 (Mathf.Deg2Rad * omega) * Mathf.Sin (Mathf.Deg2Rad * phi);
 	
-		transform.position = new Vector3 (x, y, z) + centerPoint;
+		//transform.position = new Vector3 (x, y, z) + centerPoint;
+		addedVec = new Vector3 (x, y, z);
+		centerP.position = centerPoint;
 		transform.rotation = Quaternion.LookRotation (centerPoint - transform.position);
+	}
+
+	void LateUpdate() {
+		transform.position = addedVec + centerP.position;
 	}
 }
