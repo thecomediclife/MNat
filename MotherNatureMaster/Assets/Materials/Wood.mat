@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Wood
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 7328ac37991b243c19e9ed4005b1b6d8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -35,6 +35,13 @@ Material:
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: a4973a7ca9e984d94b960323e1370cad, type: 3}
+          m_Scale: {x: .200000003, y: .200000003}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -182,8 +189,8 @@ Material:
       data:
         first:
           name: _ColorX
-        second: {r: .627451003, g: .384313762, b: .270588249, a: 1}
+        second: {r: .529411793, g: .298671097, b: .190743953, a: 1}
       data:
         first:
           name: _ColorY
-        second: {r: .627451003, g: .384313762, b: .270588249, a: 1}
+        second: {r: .735294104, g: .562164903, b: .481185108, a: 1}
